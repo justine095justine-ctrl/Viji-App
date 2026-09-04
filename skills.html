@@ -7,50 +7,49 @@
 <style>
     *{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial}
     body{background:#0D0F1A; color:white; padding:0 0 80px 0}
-    
-    .header{background:linear-gradient(135deg, #DC2626, #0D0F1A); padding:20px 15px; text-align:center}
-    .header h1{font-size:22px}
-    .header p{font-size:12px; opacity:0.8}
-    
-    .container{padding:15px}
-    .search-box-wrap{display:flex; gap:8px; margin-bottom:12px}
-    .search-box{flex:1; padding:12px; border-radius:10px; border:1px solid #333; background:#1A1E2E; color:white}
-    .search-btn{padding:0 15px; background:#DC2626; border:none; border-radius:10px; color:white; font-size:18px}
-    
-    .categories{display:flex; gap:8px; overflow-x:auto; margin-bottom:15px}
-    .cat-btn{padding:8px 12px; background:#1A1E2E; border:none; color:white; border-radius:20px; white-space:nowrap; font-size:12px}
-    .cat-btn.active{background:#DC2626}
-    
-    .alert{background:#FEE2E2; color:#000; padding:15px; border-radius:10px; margin-bottom:15px; text-align:center}
-    .alert button{width:100%; padding:12px; background:#DC2626; border:none; border-radius:8px; font-weight:bold; margin-top:10px; color:white; cursor:pointer}
-    
-    .add-btn{width:100%; padding:14px; background:#DC2626; border:none; border-radius:10px; color:white; font-weight:bold; font-size:16px; margin-bottom:15px}
-    .add-btn:disabled{background:#6B7280}
-    .counter{font-size:12px; text-align:center; margin-bottom:10px; color:#FACC15}
-    
-    .fundi-card{background:#1A1E2E; border-radius:12px; padding:12px; margin-bottom:12px; position:relative}
-    .fundi-card.verified{border:2px solid #22C55E} /* Card ya walio verified inang'aa */
-    .fundi-top{display:flex; gap:12px; margin-bottom:8px}
-    .fundi-card img.profile{width:70px; height:70px; border-radius:50%; object-fit:cover; background:#333}
-    .fundi-info h3{font-size:15px; margin-bottom:3px; display:flex; align-items:center; gap:5px}
-    .fundi-info p{font-size:12px; opacity:0.7; margin:2px 0}
-    .badge-verified{background:#22C55E; color:white; padding:2px 8px; border-radius:10px; font-size:10px}
-    .badge-free{background:#F97316; color:white; padding:2px 8px; border-radius:10px; font-size:10px}
-    .stars{color:#FACC15; font-size:12px}
-    
-    /* GALLERY MPYA */
-    .gallery{display:flex; gap:5px; margin:8px 0}
-    .gallery img{width:70px; height:70px; border-radius:8px; object-fit:cover; border:1px solid #333}
-    
-    .call-btn{width:100%; padding:10px; background:#2563EB; border:none; border-radius:8px; color:white; font-weight:bold; margin-top:5px}
-    .delete-btn{position:absolute; top:10px; right:10px; background:red; color:white; border:none; border-radius:5px; padding:3px 6px; font-size:10px}
-    
-    .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:100; padding:20px; overflow-y:auto}
-    .modal-content{background:#1A1E2E; padding:20px; border-radius:12px}
-    .modal input, .modal select, .modal textarea{width:100%; padding:10px; margin:8px 0; background:#0D0F1A; border:1px solid #333; color:white; border-radius:8px}
-    .pay-info{background:#0D0F1A; padding:15px; border-radius:10px; margin:15px 0; text-align:center}
-    .pay-info h4{color:#F59E0B; margin-bottom:8px}
-    .pay-number{font-size:22px; font-weight:bold; color:#22C55E}
+
+   .header{background:linear-gradient(135deg, #DC2626, #0D0F1A); padding:20px 15px; text-align:center}
+   .header h1{font-size:22px}
+
+   .container{padding:15px}
+   .search-box-wrap{display:flex; gap:8px; margin-bottom:12px}
+   .search-box{flex:1; padding:12px; border-radius:10px; border:1px solid #333; background:#1A1E2E; color:white}
+   .search-btn{padding:0 15px; background:#DC2626; border:none; border-radius:10px; color:white; font-size:18px}
+
+   .categories{display:flex; gap:8px; overflow-x:auto; margin-bottom:15px}
+   .cat-btn{padding:8px 12px; background:#1A1E2E; border:none; color:white; border-radius:20px; white-space:nowrap; font-size:12px}
+   .cat-btn.active{background:#DC2626}
+
+   .alert{background:#FEE2E2; color:#000; padding:15px; border-radius:10px; margin-bottom:15px; text-align:center}
+   .alert button{width:100%; padding:12px; background:#DC2626; border:none; border-radius:8px; font-weight:bold; margin-top:10px; color:white; cursor:pointer}
+
+   .add-btn{width:100%; padding:14px; background:#DC2626; border:none; border-radius:10px; color:white; font-weight:bold; font-size:16px; margin-bottom:15px}
+   .add-btn:disabled{background:#6B7280}
+   .counter{font-size:12px; text-align:center; margin-bottom:10px; color:#FACC15}
+
+   .fundi-card{background:#1A1E2E; border-radius:12px; padding:12px; margin-bottom:12px; position:relative}
+   .fundi-card.verified{border:2px solid #22C55E}
+   .fundi-top{display:flex; gap:12px; margin-bottom:8px}
+   .fundi-card img.profile{width:70px; height:70px; border-radius:50%; object-fit:cover; background:#333}
+   .fundi-info h3{font-size:15px; margin-bottom:3px; display:flex; align-items:center; gap:5px}
+   .fundi-info p{font-size:12px; opacity:0.7; margin:2px 0}
+   .badge-verified{background:#22C55E; color:white; padding:2px 8px; border-radius:10px; font-size:10px}
+   .badge-free{background:#F97316; color:white; padding:2px 8px; border-radius:10px; font-size:10px}
+   .stars{color:#FACC15; font-size:12px}
+
+   .gallery{display:flex; gap:5px; margin:8px 0; flex-wrap:wrap}
+   .gallery img{width:70px; height:70px; border-radius:8px; object-fit:cover; border:1px solid #333}
+
+   .call-btn{width:100%; padding:10px; background:#2563EB; border:none; border-radius:8px; color:white; font-weight:bold; margin-top:5px}
+   .delete-btn{position:absolute; top:10px; right:10px; background:red; color:white; border:none; border-radius:5px; padding:3px 6px; font-size:10px}
+
+   .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:100; padding:20px; overflow-y:auto}
+   .modal-content{background:#1A1E2E; padding:20px; border-radius:12px}
+   .modal input,.modal select,.modal textarea{width:100%; padding:10px; margin:8px 0; background:#0D0F1A; border:1px solid #333; color:white; border-radius:8px}
+   .modal input[type="file"]{background:#1A1E2E; padding:8px}
+   .pay-info{background:#0D0F1A; padding:15px; border-radius:10px; margin:15px 0; text-align:center}
+   .pay-info h4{color:#F59E0B; margin-bottom:8px}
+   .pay-number{font-size:22px; font-weight:bold; color:#22C55E}
 </style>
 </head>
 <body>
@@ -65,7 +64,7 @@
         <input type="text" id="searchInput" class="search-box" placeholder="Tafuta: Fundi Umeme, Mchoraji...">
         <button class="search-btn" onclick="searchFundi()">🔍</button>
     </div>
-    
+
     <div class="categories">
         <button class="cat-btn active" onclick="filterCat('Zote', this)">Zote</button>
         <button class="cat-btn" onclick="filterCat('Umeme', this)">Umeme</button>
@@ -73,15 +72,15 @@
         <button class="cat-btn" onclick="filterCat('Beauty', this)">Beauty</button>
         <button class="cat-btn" onclick="filterCat('Teknolojia', this)">Teknolojia</button>
     </div>
-    
+
     <div class="alert">
         <div>⭐ Pata Kazi Zaidi + Kuwa juu ya List</div>
         <button onclick="openPayModal()">Lipia Tsh 2000 Uthibitishwe</button>
     </div>
-    
+
     <div class="counter" id="freeCounter"></div>
     <button class="add-btn" id="addBtn" onclick="openModal()">+ Jiandikishe kama Fundi</button>
-    
+
     <div id="fundiList"></div>
 </div>
 
@@ -97,10 +96,15 @@
         <input id="flocation" placeholder="Eneo: Nyerere, Mwanza">
         <input id="fphone" placeholder="Namba ya Simu">
         <textarea id="fdesc" placeholder="Maelezo mafupi ya ujuzi wako"></textarea>
-        <input id="fimg" placeholder="Link ya Picha yako">
-        <input id="fwork1" placeholder="Link ya Picha ya Kazi 1">
-        <input id="fwork2" placeholder="Link ya Picha ya Kazi 2">
-        <input id="fwork3" placeholder="Link ya Picha ya Kazi 3">
+
+        <label>Picha yako ya Profile:</label>
+        <input type="file" id="fimg" accept="image/*">
+
+        <label>Picha za Kazi zako:</label>
+        <input type="file" id="fwork1" accept="image/*">
+        <input type="file" id="fwork2" accept="image/*">
+        <input type="file" id="fwork3" accept="image/*">
+
         <button style="background:#DC2626; color:white; width:48%" onclick="addFundi()">Hifadhi</button>
         <button style="background:#6B7280; color:white; width:48%" onclick="closeModal()">Funga</button>
     </div>
@@ -112,11 +116,10 @@
         <h3>Kuwa Fundi Aliethibitishwa</h3>
         <div class="pay-info">
             <h4>Tuma Tsh 2000 kwa:</h4>
-            <div class="pay-number">M-Pesa: 0681821524</div>
+            <div class="pay-number" AIRTEL MONEY 0681821524</div>
             <div class="pay-number">Tigo Pesa: 06XX XXX</div>
             <p>Jina: <b>VERONICA BARAKA ]</b></p>
         </div>
-        <p style="font-size:12px">Baada ya kulipa njoo WhatsApp tukuweke juu ya list + ✓</p>
         <button style="background:#6B7280; color:white; width:100%" onclick="closePayModal()">Funga</button>
     </div>
 </div>
@@ -127,15 +130,25 @@ let freeFundi = JSON.parse(localStorage.getItem('freeFundi')) || {count:0};
 let currentCat = 'Zote';
 let searchQuery = '';
 
+// FUNCTION YA KUBADILISHA PICHA KUWA LINK
+function toBase64(file){
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
 // HESABU MFUNDI BURE
 function checkFreeFundi(){
-    const freeCount = fundis.filter(i => !i.paid).length;
+    const freeCount = fundis.filter(i =>!i.paid).length;
     freeFundi.count = freeCount;
     localStorage.setItem('freeFundi', JSON.stringify(freeFundi));
-    
+
     const btn = document.getElementById('addBtn');
     const counter = document.getElementById('freeCounter');
-    
+
     if(freeCount >= 1){
         btn.disabled = true;
         btn.innerText = `Umeshajandikisha Bure. Lipia Tsh 2000`;
@@ -151,33 +164,31 @@ function checkFreeFundi(){
 function displayFundis(){
     const list = document.getElementById('fundiList');
     list.innerHTML = '';
-    
-    // 1. Weka waliolipia juu kwanza 2. Kisha rate ya juu
+
     const sorted = [...fundis].sort((a,b) => {
-        if(b.paid !== a.paid) return b.paid - a.paid;
+        if(b.paid!== a.paid) return b.paid - a.paid;
         return b.rating - a.rating;
     });
-    
-    const filtered = sorted.filter(i => 
+
+    const filtered = sorted.filter(i =>
         (currentCat === 'Zote' || i.skill === currentCat) &&
         (i.name.toLowerCase().includes(searchQuery.toLowerCase()) || i.skill.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-    
+
     filtered.forEach((fundi, index) => {
-        // Tengeneza nyota
         let stars = '';
         for(let i=1; i<=5; i++){
-            stars += i <= fundi.rating ? '⭐' : '☆';
+            stars += i <= fundi.rating? '⭐' : '☆';
         }
-        
+
         list.innerHTML += `
-        <div class="fundi-card ${fundi.paid ? 'verified' : ''}">
+        <div class="fundi-card ${fundi.paid? 'verified' : ''}">
             <button class="delete-btn" onclick="deleteFundi(${index})">X</button>
             <div class="fundi-top">
                 <img class="profile" src="${fundi.img || 'https://via.placeholder.com/70'}">
                 <div class="fundi-info">
-                    <h3>${fundi.name} 
-                        ${fundi.paid ? '<span class="badge-verified">✓ AMETHIBITISHWA</span>' : '<span class="badge-free">BURE</span>'}
+                    <h3>${fundi.name}
+                        ${fundi.paid? '<span class="badge-verified">✓ AMETHIBITISHWA</span>' : '<span class="badge-free">BURE</span>'}
                     </h3>
                     <div class="stars">${stars} (${fundi.rating}.0)</div>
                     <p>Ujuzi: ${fundi.skill}</p>
@@ -186,9 +197,9 @@ function displayFundis(){
                 </div>
             </div>
             <div class="gallery">
-                ${fundi.work1 ? `<img src="${fundi.work1}">` : ''}
-                ${fundi.work2 ? `<img src="${fundi.work2}">` : ''}
-                ${fundi.work3 ? `<img src="${fundi.work3}">` : ''}
+                ${fundi.work1? `<img src="${fundi.work1}">` : ''}
+                ${fundi.work2? `<img src="${fundi.work2}">` : ''}
+                ${fundi.work3? `<img src="${fundi.work3}">` : ''}
             </div>
             <button class="call-btn">Piga / WhatsApp: ${fundi.phone}</button>
         </div>`;
@@ -196,13 +207,19 @@ function displayFundis(){
 }
 
 // KUADD MFUNDI
-function addFundi(){
-    const freeCount = fundis.filter(i => !i.paid).length;
+async function addFundi(){
+    const freeCount = fundis.filter(i =>!i.paid).length;
     if(freeCount >= 1){
         alert("Umeshajandikisha bure. Lipia Tsh 2000 ili uonekane juu + ✓");
         closeModal();
         return;
     }
+
+    // Pata picha
+    const imgFile = document.getElementById('fimg').files[0];
+    const work1File = document.getElementById('fwork1').files[0];
+    const work2File = document.getElementById('fwork2').files[0];
+    const work3File = document.getElementById('fwork3').files[0];
 
     const newFundi = {
         name: document.getElementById('fname').value,
@@ -210,14 +227,14 @@ function addFundi(){
         location: document.getElementById('flocation').value,
         phone: document.getElementById('fphone').value,
         desc: document.getElementById('fdesc').value,
-        img: document.getElementById('fimg').value,
-        work1: document.getElementById('fwork1').value,
-        work2: document.getElementById('fwork2').value,
-        work3: document.getElementById('fwork3').value,
+        img: imgFile? await toBase64(imgFile) : '',
+        work1: work1File? await toBase64(work1File) : '',
+        work2: work2File? await toBase64(work2File) : '',
+        work3: work3File? await toBase64(work3File) : '',
         paid: false,
-        rating: 5 // default rating 5
+        rating: 5
     };
-    
+
     fundis.unshift(newFundi);
     localStorage.setItem('vijiFundis', JSON.stringify(fundis));
     closeModal();
@@ -255,4 +272,4 @@ displayFundis();
 </script>
 
 </body>
-</html>
+   </html>
