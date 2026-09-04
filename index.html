@@ -9,7 +9,7 @@
         --bg:#0D0F1A; --card-bg:#1A1E2E; --text:white; --subtext:#aaa;
         --blue:#2563EB; --orange:#F97316; --purple:#8B5CF6; --green:#22C55E;
         --red:#EF4444; --pink:#EC4899; --cyan:#06B6D4; --yellow:#FACC15; 
-        --navy:#1E3A8A; /* Hii ndio Rangi ya Viji Sheria */
+        --navy:#1E3A8A;
     }
     body.light{
         --bg:#F5F5F5; --card-bg:white; --text:#111; --subtext:#555;
@@ -55,7 +55,7 @@
     .pink-full{grid-column: 1 / -1; background:var(--pink)}
     .cyan-half{background:var(--cyan)}
     .yellow-half{background:var(--yellow); color:#000}
-    .navy-full{grid-column: 1 / -1; background:var(--navy)} /* Rangi mpya ya Sheria */
+    .navy-full{grid-column: 1 / -1; background:var(--navy)}
     
 </style>
 </head>
@@ -93,19 +93,21 @@
         <p>Uza na Nunua</p>
     </a>
     
-    <a href="skills.html" class="card red-full">
+    <!-- NIMEIREKEBISHA HAPA: skills.html -> viji-skills.html -->
+    <a href="viji-skills.html" class="card red-full">
         <div class="icon">🔧</div>
         <h3>Viji Skills</h3>
         <p>Pata fundi wa ujuzi wowote</p>
     </a>
     
-    <a href="trends.html" class="card pink-full">
+    <!-- NIMEIONGEZA HAPA: trends.html -> viji-trends.html -->
+    <a href="viji-trends.html" class="card pink-full">
         <div class="icon">🔥</div>
         <h3>Viji Trends</h3>
         <p>Video fupi + Viral + Methali</p>
     </a>
     
-    <a href="jamii.html" class="card cyan-half">
+    <a href="#" class="card cyan-half">
         <div class="icon">💬</div>
         <h3>Viji Jamii</h3>
         <p>Jadili na watu</p>
@@ -117,7 +119,7 @@
         <p>Tukio na matangazo</p>
     </a>
     
-    <a href="sheria.html" class="card navy-full">
+    <a href="#" class="card navy-full">
         <div class="icon">⚖️</div>
         <h3>Viji Sheria</h3>
         <p>Jua haki zako</p>
@@ -127,7 +129,6 @@
 </div>
 
 <script>
-// Kazi ya Kubadilisha Light/Dark Mode
 function toggleMode(){
     document.body.classList.toggle('light');
     const btn = document.querySelector('.toggle');
@@ -139,7 +140,6 @@ function toggleMode(){
         localStorage.setItem('theme', 'dark');
     }
 }
-// Kumbuka theme aliyochagua
 if(localStorage.getItem('theme') === 'light'){
     document.body.classList.add('light');
     document.querySelector('.toggle').innerText = '🌙 Dark';
