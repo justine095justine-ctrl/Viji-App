@@ -3,55 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viji Sokoni</title>
+<title>Viji Sokoni - Soko la Dijiti</title>
 <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; }
-  .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #F97316; position:sticky; top:0; display:flex; align-items:center; gap:15px; }
-  .back-btn { background:#F97316; color:white; border:none; padding:10px 15px; border-radius:8px; font-weight:bold; cursor:pointer; text-decoration:none; }
-  .header-center { flex:1; text-align:center; }
-  .header-center h1 { color:#F97316; margin:0; font-size:20px; }
-  .search-box { padding:15px; }
-  .search-box input { width:100%; padding:12px; background:#1A1A1A; border:1px solid #333; border-radius:10px; color:white; }
-  .tabs { display:flex; padding:0 15px 15px 15px; gap:10px; }
-  .tab { padding:10px 18px; background:#1A1A1A; border-radius:20px; cursor:pointer; font-size:14px; font-weight:bold; }
-  .tab.active { background:#F97316; }
-  .app-container { padding:15px; max-width:700px; margin:auto; }
-  .card { background:#1A1A1A; border-radius:12px; margin-bottom:15px; padding:15px; }
-  .card img { width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:10px; }
-  .badge { padding:6px 12px; border-radius:6px; font-size:11px; font-weight:bold; background:#F97316; margin-bottom:10px; display:inline-block; }
-  .bei { color:#22C55E; font-weight:bold; font-size:18px; margin:10px 0; }
-  .btn { background:#22C55E; color:white; padding:14px; border:none; border-radius:10px; width:100%; font-weight:bold; font-size:15px; cursor:pointer; }
-  .fab { position:fixed; bottom:25px; right:20px; background:#F97316; color:white; width:56px; height:56px; border-radius:50%; font-size:32px; border:none; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:80px; }
+  
+  /* HEADER */
+  .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #F97316; position:sticky; top:0; z-index:10; }
+  .header-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .header-top h1 { color:#F97316; font-size:22px; }
+  .viji-contact { font-size:11px; color:#aaa; text-align:right; }
+  .viji-contact b { color:#22C55E; }
+  .search { width:100%; padding:12px; background:#1A1A1A; border:1px solid #333; border-radius:10px; color:white; }
+  
+  /* CATEGORIES */
+  .categories { display:flex; gap:10px; padding:15px; overflow-x:auto; background:#0F0F0F; }
+  .cat { background:#1A1A1A; padding:10px 16px; border-radius:20px; white-space:nowrap; font-size:13px; border:1px solid #222; cursor:pointer; transition:0.3s; }
+  .cat.active { background:#F97316; border-color:#F97316; color:white; }
+  
+  /* PRODUCTS GRID */
+  .container { padding:15px; display:grid; grid-template-columns:repeat(2, 1fr); gap:15px; }
+  .card { background:#1A1A1A; border-radius:15px; border:1px solid #222; overflow:hidden; cursor:pointer; display:block; }
+  .card.hide { display:none; } /* Hii inaficha card */
+  .card img { width:100%; height:150px; object-fit:cover; background:#222; }
+  
+  /* VIP BADGE */
+  .vip { position:absolute; top:10px; left:10px; background:#F97316; color:white; padding:4px 10px; border-radius:8px; font-size:10px; font-weight:bold; }
+  .card-img-wrap { position:relative; }
+  
+  .card-body { padding:12px; }
+  .card-body h3 { font-size:14px; margin-bottom:5px; }
+  .bei { color:#22C55E; font-weight:bold; font-size:15px; margin-bottom:8px; }
+  .mahali { font-size:12px; color:#aaa; margin-bottom:10px; }
+  
+  /* FOOTER YA CARD - VIEWS + SIMU */
+  .card-footer { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:#aaa; border-top:1px solid #222; padding-top:8px; }
+  
+  /* FAB BUTTON */
+  .fab { position:fixed; bottom:20px; right:20px; background:#F97316; color:white; width:55px; height:55px; border-radius:50%; font-size:28px; border:none; box-shadow:0 4px 15px rgba(249,115,22,0.4); cursor:pointer; z-index:9; }
+  
+  @media(min-width:768px){ .container{grid-template-columns:repeat(4, 1fr);} }
 </style>
 </head>
 <body>
+
+  <!-- HEADER -->
   <div class="header">
-    <a href="index.html" class="back-btn">← Rudi</a>
-    <div class="header-center"><h1>🛒 VIJI SOKONI</h1><p>Nunua. Uza. Pata Wateja</p></div>
-  </div>
-  
-  <div class="search-box"><input type="text" placeholder="🔍 Tafuta bidhaa, huduma..."></div>
-  
-  <div class="tabs">
-    <div class="tab active">Zote</div>
-    <div class="tab">Bidhaa</div>
-    <div class="tab">Huduma</div>
-    <div class="tab" onclick="alert('Dashboard inakuja')">📊 Dashboard</div>
-  </div>
-  
-  <div class="app-container">
-    <div class="card">
-      <img src="https://via.placeholder.com/600x180/F97316/FFFFFF?text=SIMU">
-      <span class="badge">BIDHAA</span>
-      <h3>Simu ya Samsung A15</h3>
-      <p>Mpya, GB 128, Ram 6. Warranty miezi 12</p>
-      <p class="bei">Tsh 350,000</p>
-      <p>📍 Mwanza, Pasiansi</p>
-      <button class="btn" onclick="alert('Piga: 0681821524')">Piga Simu Muuzaji</button>
+    <div class="header-top">
+      <h1>Viji Sokoni 🛒</h1>
+      <div class="viji-contact">Malipo:<br><b>0681821524</b><br>Veronica Baraka</div>
     </div>
+    <input type="text" class="search" placeholder="Tafuta bidhaa, duka, huduma...">
   </div>
-  
-  <button class="fab" onclick="window.location.href='viji-ongeza.html'">+</button>
+
+  <!-- CATEGORIES -->
+  <div class="categories">
+    <div class="cat active" onclick="filterCat('zote', this)">Zote</div>
+    <div class="cat" onclick="filterCat('simu', this)">Simu</div>
+    <div class="cat" onclick="filterCat('kompyuta', this)">Kompyuta</div>
+    <div class="cat" onclick="filterCat('viatu', this)">Viatu</div>
+    <div class="cat" onclick="filterCat('nguo', this)">Nguo</div>
+    <div class="cat" onclick="filterCat('huduma', this)">Huduma</div>
+    <div class="cat" onclick="filterCat('shule', this)">Shule</div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="container">
+    
+    <!-- CARD 1 - CATEGORY: SIMU -->
+    <div class="card" data-cat="simu" onclick="ongezaView('views-1')">
+      <div class="card-img-wrap">
+        <span class="vip">VIP ⭐</span>
+        <img src="https://via.placeholder.com/300x200/F97316/FFFFFF?text=Samsung+A15" alt="Samsung">
+      </div>
+      <div class="card-body">
+        <h3>Samsung Galaxy A15</h3>
+        <div class="bei">Tsh 350,000</div>
+        <div class="mahali">📍 Mwanza, Nyegezi</div>
+        <div class="card-footer">
+          <span>👁️ <b id="views-1">2</b> Wameona</span>
+          <span>📞 0681 821 524</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 - CATEGORY: VIATU -->
+    <div class="card" data-cat="viatu" onclick="ongezaView('views-2')">
+      <div class="card-img-wrap">
+        <img src="https://via.placeholder.com/300x200/222/FFFFFF?text=Viatu+Nike" alt="Viatu">
+      </div>
+      <div class="card-body">
+        <h3>Viatu vya Nike Mpya</h3>
+        <div class="bei">Tsh 45,000</div>
+        <div class="mahali">📍 Dar, Mikocheni</div>
+        <div class="card-footer">
+          <span>👁️ <b id="views-2">10</b> Wameona</span>
+          <span>📞 0712 345 678</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 - CATEGORY: KOMPYUTA -->
+    <div class="card" data-cat="kompyuta" onclick="ongezaView('views-3')">
+      <div class="card-img-wrap">
+        <span class="vip">DUKA VIP</span>
+        <img src="https://via.placeholder.com/300x200/22C55E/FFFFFF?text=Laptop+HP" alt="Laptop">
+      </div>
+      <div class="card-body">
+        <h3>Laptop HP Core i5</h3>
+        <div class="bei">Tsh 850,000</div>
+        <div class="mahali">📍 Arusha, Soko Kuu</div>
+        <div class="card-footer">
+          <span>👁️ <b id="views-3">247</b> Wameona</span>
+          <span>📞 0654 987 321</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 - CATEGORY: SHULE -->
+    <div class="card" data-cat="shule" onclick="ongezaView('views-4')">
+      <div class="card-img-wrap">
+        <span class="vip">SHULE ⭐</span>
+        <img src="https://via.placeholder.com/300x200/3B82F6/FFFFFF?text=Shule+Ya+Kompyuta" alt="Shule">
+      </div>
+      <div class="card-body">
+        <h3>Kozi ya Kompyuta</h3>
+        <div class="bei">Tsh 80,000 / Mwezi</div>
+        <div class="mahali">📍 Dodoma, Nzuguni</div>
+        <div class="card-footer">
+          <span>👁️ <b id="views-4">56</b> Wameona</span>
+          <span>📞 0623 111 222</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 - CATEGORY: NGUO -->
+    <div class="card" data-cat="nguo" onclick="ongezaView('views-5')">
+      <div class="card-img-wrap">
+        <img src="https://via.placeholder.com/300x200/EF4444/FFFFFF?text=Nguo+Za+Watoto" alt="Nguo">
+      </div>
+      <div class="card-body">
+        <h3>Nguo za Watoto</h3>
+        <div class="bei">Tsh 15,000</div>
+        <div class="mahali">📍 Mwanza, Pasiansi</div>
+        <div class="card-footer">
+          <span>👁️ <b id="views-5">8</b> Wameona</span>
+          <span>📞 0755 444 333</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BUTTON YA KUONGEZA TANGAZO -->
+  <button class="fab" onclick="window.location.href='viji-ongeza-sokoni.html'">+</button>
+
+<script>
+  // FUNCTION YA KUHESABU VIEWS
+  function ongezaView(id){
+    let element = document.getElementById(id);
+    let currentViews = parseInt(element.innerText);
+    element.innerText = currentViews + 1;
+  }
+
+  // FUNCTION YA KUCHUJA KWA CATEGORY
+  function filterCat(category, element){
+    // 1. Ondoa active kwa zote
+    document.querySelectorAll('.cat').forEach(cat => cat.classList.remove('active'));
+    // 2. Weka active kwa iliyobonyezwa
+    element.classList.add('active');
+
+    // 3. Ficha au onyesha cards
+    document.querySelectorAll('.card').forEach(card => {
+      if(category === 'zote' || card.getAttribute('data-cat') === category){
+        card.classList.remove('hide');
+      } else {
+        card.classList.add('hide');
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
