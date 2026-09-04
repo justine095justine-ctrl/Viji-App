@@ -8,19 +8,19 @@
     *{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial}
     body{background:#0D0F1A; color:white; padding-bottom:40px}
     
-    .header{text-align:center; padding:25px 15px}
+    .header{text-align:center; padding:25px 15px; background:linear-gradient(135deg, #15803D, #F97316)}
     .header h1{font-size:24px; margin-bottom:5px}
-    .header p{font-size:12px; opacity:0.6}
+    .header p{font-size:12px; opacity:0.8}
     
-    .container{padding:10px 15px}
+    .container{padding:15px}
     .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     
     .card{
-        text-decoration:none; color:white; padding:20px 15px; border-radius:15px; 
+        text-decoration:none; color:white; padding:20px 10px; border-radius:15px; 
         text-align:center; min-height:120px; display:flex; flex-direction:column; 
-        justify-content:center; align-items:center; gap:8px; border:2px solid transparent
+        justify-content:center; align-items:center; gap:8px; transition:0.2s
     }
-    .card:active{transform:scale(0.95); border:2px solid white}
+    .card:active{transform:scale(0.95)}
     .card .icon{font-size:30px}
     .card h3{font-size:15px; font-weight:bold}
     .card p{font-size:11px; opacity:0.8}
@@ -30,7 +30,7 @@
     .c2{background:#F97316}
     .c3{background:#8B5CF6}
     .c4{background:#22C55E}
-    .c5{background:#EF4444; grid-column:1 / -1} /* HUYU NDIO VIJI SKILLS */
+    .c5{background:#EF4444; grid-column:1 / -1} /* VIJI SKILLS HAPA */
     .c6{background:#EC4899; grid-column:1 / -1}
     .c7{background:#06B6D4}
     .c8{background:#FACC15; color:#000}
@@ -48,44 +48,34 @@
     <div class="grid">
         
         <a href="viji-game.html" class="card c1">
-            <div class="icon">🎮</div><h3>Viji Game</h3><p>Cheza na ujifunze</p>
+            <div class="icon">🎮</div>
+            <h3>Viji Game</h3>
+            <p>Cheza na ujifunze</p>
         </a>
 
         <a href="viji-stories.html" class="card c2">
-            <div class="icon">📖</div><h3>Viji Stories</h3><p>Soma hadithi fupi</p>
+            <div class="icon">📖</div>
+            <h3>Viji Stories</h3>
+            <p>Soma hadithi fupi</p>
         </a>
 
         <a href="viji-doc.html" class="card c3">
-            <div class="icon">🎬</div><h3>Documentary & Makala</h3><p>Tazama na ujifunze</p>
+            <div class="icon">🎬</div>
+            <h3>Documentary</h3>
+            <p>Tazama na ujifunze</p>
         </a>
 
         <a href="viji-sokoni.html" class="card c4">
-            <div class="icon">🛒</div><h3>Viji Sokoni</h3><p>Uza na Nunua</p>
+            <div class="icon">🛒</div>
+            <h3>Viji Sokoni</h3>
+            <p>Uza na Nunua</p>
         </a>
 
-        <!-- HAPA NDIO VIJI SKILLS MWEKUNDU MKUBWA -->
+        <!-- HAPA NDIO VIJI SKILLS ILIKUWA IMEKOSA -->
         <a href="viji-skills.html" class="card c5">
-            <div class="icon">🔧</div><h3>Viji Skills</h3><p>Pata fundi wa ujuzi wowote</p>
+            <div class="icon">🔧</div>
+            <h3>Viji Skills</h3>
+            <p>Pata fundi wa ujuzi wowote</p>
         </a>
 
-        <a href="viji-trends.html" class="card c6">
-            <div class="icon">🔥</div><h3>Viji Trends</h3><p>Video fupi + Viral + Methali</p>
-        </a>
-
-        <a href="viji-jamii.html" class="card c7">
-            <div class="icon">💬</div><h3>Viji Jamii</h3><p>Jadili na watu</p>
-        </a>
-
-        <a href="viji-events.html" class="card c8">
-            <div class="icon">📍</div><h3>Viji Events</h3><p>Tukio na matangazo</p>
-        </a>
-
-        <a href="viji-sheria.html" class="card c9">
-            <div class="icon">⚖️</div><h3>Viji Sheria</h3><p>Jua haki zako</p>
-        </a>
-
-    </div>
-</div>
-
-</body>
-</html>
+        <a href="viji-trends.html" class="
