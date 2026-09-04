@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Viji Skills</title>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="firebase-config.js"></script>
+    <title>Viji Skills</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{font-family:Arial; padding:20px; background:#f4f4f4}
+        .container{max-width:400px; margin:auto; background:white; padding:20px; border-radius:10px}
+        input, select, button{width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:5px}
+        button{background:#28a745; color:white; border:none; font-size:16px}
+    </style>
 </head>
 <body>
-  <h1>Karibu Viji Skills</h1>
-  <p>Jisajili kama Fundi</p>
+<div class="container">
+    <h2>Karibu Viji Skills</h2>
+    <form id="skillForm">
+        <input type="text" id="jina" placeholder="Jina Kamili" required>
+        <input type="text" id="ujuzi" placeholder="Ujuzi: Mf. Upishi, Umeme" required>
+        <input type="tel" id="simu" placeholder="Namba ya Simu" required>
+        <button type="submit">Jisajili</button>
+    </form>
+</div>
 
-  <input id="jina" placeholder="Jina la Fundi"><br><br>
-  <input id="uhunzi" placeholder="Ujuzi: Bomba, Umeme, Useremala"><br><br>
-  <input id="simu" placeholder="Namba ya Simu"><br><br>
-  <button onclick="sajiliFundi()">Jisajili</button>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script>
+  // WEKA CONFIG YAKO HAPA
+  const firebaseConfig = {
+    apiKey: "WEKA_YAKO",
+    authDomain: "viji-app-84c7d.firebaseapp.com",
+    databaseURL: "https://viji-app-84c7d-default-rtdb.firebaseio.com",
+    projectId: "viji-app-84c7d"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
 
-  <script>
-    function sajiliFundi() {
-      var jina = document.getElementById('jina').value;
-      var ujuzi = document.getElementById('uhunzi').value;
-      var simu = document.getElementById('simu').value;
-      
-      firebase.database().ref('mafundi/').push({
-        jina: jina,
-        ujuzi: ujuzi,
-        simu: simu
+  document.getElementById('skillForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const jina = document.getElementById('jina').value;
+      const ujuzi = document.getElementById('ujuzi').value;
+      const simu = document.getElementById('simu').value;
+
+      db.ref("mafundi").push({
+          jina: jina,
+          ujuzi: ujuzi,
+          simu: simu
+      }).then(() => {
+          alert("Hongera " + jina + "! Umejisajili kwa mafanikio ✅");
+          window.location.href = "asante.html"; // ITAKUPELEKA UKURASA MPYA
+          document.getElementById('skillForm').reset();
+      }).catch((error) => {
+          alert("Kuna tatizo: " + error.message);
       });
-      alert('Hongera! Umejisajili ' + jina);
-    }
-  </script>
+  });
+</script>
 </body>
 </html>
