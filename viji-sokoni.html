@@ -174,14 +174,29 @@ function displayItems(){
         </div>`;
     });
 }
+// 3. KUADD ITEM - VERSION MPYA NA UPLOAD
+async function toBase64(file){
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
 
-// 3. KUADD ITEM
-function addItem(){
-    const freeCount = items.filter(i => !i.paid).length;
+async function addItem(){
+    const freeCount = items.filter(i =>!i.paid).length;
     if(freeCount >= 3){
         alert("Umejaa Post 3 Bure. Lipia Tsh 2000 ili uongeze nyingine");
         closeModal();
         return;
+    }
+
+    const imgFile = document.getElementById('img').files[0];
+    let imgBase64 = 'https://via.placeholder.com/300'; // default kama hakuchagua
+
+    if(imgFile){
+        imgBase64 = await toBase64(imgFile);
     }
 
     const newItem = {
@@ -189,18 +204,18 @@ function addItem(){
         price: document.getElementById('price').value,
         location: document.getElementById('location').value,
         category: document.getElementById('category').value,
-        img: document.getElementById('img').value,
+        img: imgBase64, // hapa sasa inahifadhi picha yenyewe
         paid: false,
         time: Date.now()
     };
-    
+
     items.unshift(newItem);
     localStorage.setItem('vijiItems', JSON.stringify(items));
     closeModal();
     checkFreeLimit();
     displayItems();
-}
-
+   }
+   
 // 4. KUFUTA ITEM
 function deleteItem(index){
     if(confirm("Una uhakika unataka kufuta bidhaa hii?")){
