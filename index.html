@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Viji App - Burudani + Elimu + Biashara</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{font-family:Arial; margin:0; background:#f0f0f0}
+        header{background:#222; color:white; text-align:center; padding:20px}
+        header h1{margin:0}
+        .container{padding:20px}
+        .grid{display:grid; grid-template-columns:1fr 1fr; gap:15px}
+        .card{padding:25px; border-radius:12px; text-align:center; box-shadow:0 4px 8px #ccc; color:white}
+        .card a{text-decoration:none; color:white; font-size:18px; font-weight:bold}
+        .card p{font-size:14px; margin-top:8px}
+        .card:hover{opacity:0.85}
+
+        /* RANGI 1 HADI 5 */
+        .game{background:#1e90ff;}      /* 1. BLUE - Viji Game */
+        .stories{background:#ff8c00;}    /* 2. ORANGE - Viji Stories */
+        .makala{background:#9b59b6;}     /* 3. PURPLE - Documentary */
+        .sokoni{background:#28a745;}     /* 4. GREEN - Viji Sokoni */
+        .skills{background:#e74c3c;}     /* 5. RED - Viji Skills */
+        
+        .skills{grid-column: span 2;} /* Hii ichukue nafasi mbili */
+        footer{text-align:center; padding:15px; color:#666}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎉 Karibu Viji App</h1>
+    <p>Burudani | Elimu | Biashara | Ujuzi</p>
+</header>
+
+<div class="container">
+    <div class="grid">
+        
+        <div class="card game">
+            <a href="game.html">🎮<br>Viji Game</a>
+            <p>Cheza na ujifunze</p>
+        </div>
+
+        <div class="card stories">
+            <a href="stories.html">📖<br>Viji Stories</a>
+            <p>Soma hadithi fupi</p>
+        </div>
+
+        <div class="card makala">
+            <a href="makala.html">🎬<br>Documentary & Makala</a>
+            <p>Tazama na ujifunze</p>
+        </div>
+
+        <div class="card sokoni">
+            <a href="sokoni.html">🛒<br>Viji Sokoni</a>
+            <p>Uza na Nunua</p>
+        </div>
+
+        <div class="card skills">
+            <a href="skills.html">🔧<br>Viji Skills</a>
+            <p>Pata fundi wa ujuzi wowote</p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Viji App - Mwanza, Tanzania</p>
+</footer>
+
+</body>
+</html>
