@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nasoma Sasa - Viji</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; }
+  
+  .header { 
+    background:#1A1A1A; padding:15px; 
+    border-bottom:2px solid #F97316; position:sticky; top:0; z-index:10; 
+  }
+  .header h1 { color:#F97316; margin:0; font-size:16px; }
+  .header p { color:#aaa; font-size:12px; margin-top:3px; }
+  
+  .container { padding:20px; max-width:700px; margin:auto; line-height:1.8; }
+  
+  .alert { 
+    background:#222; padding:15px; border-radius:10px; 
+    border-left:4px solid #22C55E; margin-bottom:20px; font-size:14px;
+  }
+  .alert b { color:#22C55E; }
+  
+  .content { font-size:16px; color:#ddd; }
+  .content h2 { color:#F97316; margin:20px 0 10px 0; }
+  .content p { margin-bottom:15px; }
+  
+  .btn-back { 
+    background:#222; color:#F97316; padding:12px; border:1px solid #F97316; 
+    border-radius:8px; width:100%; font-weight:bold; font-size:15px; 
+    margin-top:30px; text-align:center; text-decoration:none; display:block;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1 id="jina-kichwa">Inapakia...</h1>
+    <p>Asante kwa kununua. Furahia kusoma 📚</p>
+  </div>
+
+  <div class="container">
+    
+    <div class="alert">
+      <b>✅ Malipo Yamethibitishwa</b><br>
+      Unaweza kusoma maudhui yako yote hapa chini. Usishare na mtu.
+    </div>
+
+    <!-- HAPA NDIO MAUDHUI KAMILI YATAKUWA -->
+    <div class="content" id="maudhui-kamili">
+      <h2>SURA YA 1: KUANZA</h2>
+      <p>
+        Ilikuwa asubuhi ya Jumatatu. Juma aliinuka na ndoto moja kichwani mwake: 
+        Kuwa tajiri. Alikuwa na Tsh 10,000 mfukoni na simu moja tu...
+      </p>
+      <p>
+        Siku hiyo aliamua kuanza biashara ndogo ya kuuza data. Hakujua itampeleka wapi.
+        Lakini alijua kitu 1: Lazima aanze mahali.
+      </p>
+      
+      <h2>SURA YA 2: changamoto</h2>
+      <p>
+        Wiki ya kwanza ilikuwa ngumu. Hakuna mtu aliyenunua. Alipiga kelele sokoni,
+        watu wakamcheka. "Huyu kijana anauza hewa" wakasema...
+      </p>
+      <p>
+        Lakini Juma hakuacha. Aliendelea kupiga post facebook kila siku. 
+        Siku ya 10, kitu kilibadilika...
+      </p>
+
+      <h2>Mwisho</h2>
+      <p>
+        Baada ya miezi 6, Juma alikuwa na maduka 3 ya data. Yote yalianza na 
+        Tsh 10,000 na uamuzi mmoja. Wewe unaweza pia.
+      </p>
+    </div>
+
+    <a href="viji-elimu.html" class="btn-back">← Rudi Maktabani</a>
+
+  </div>
+
+<script>
+  // CHUKUA JINA LA BIDHAA ALILONUNUA
+  let jina = localStorage.getItem('bidhaa_jina');
+  if(jina){
+    document.getElementById('jina-kichwa').innerText = jina;
+  }
+</script>
+
+</body>
+</html>
