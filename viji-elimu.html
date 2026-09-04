@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ongeza Kozi / Makala - Viji</title>
-  <style>
-    body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; margin:0; padding:0; }
-  .header { background:#1A1A1A; padding:15px; text-align:center; border-bottom:2px solid #F97316; }
-  .header h1 { color:#F97316; margin:0; font-size:20px; }
-  .container { padding:15px; max-width:600px; margin:auto; }
-  .card { background:#1A1A1A; border-radius:12px; padding:20px; border:1px solid #222; }
-    label { display:block; margin-bottom:8px; font-weight:bold; font-size:14px; }
-    input, textarea, select { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; margin-bottom:15px; font-size:14px; box-sizing:border-box; }
-    textarea { min-height:80px; }
-  .btn { background:#F97316; color:white; padding:14px; border:none; border-radius:8px; width:100%; font-weight:bold; font-size:16px; cursor:pointer; }
-  .btn:hover { background:#EA580C; }
-  .note { background:#222; padding:12px; border-radius:8px; font-size:12px; color:#aaa; margin-bottom:15px; border-left:3px solid #F97316; }
-  .note.error { border-left:3px solid red; }
-  .preview-img { width:100%; height:180px; background:#222; border-radius:10px; object-fit:cover; margin-bottom:10px; display:none; }
-  .upload-options { display:flex; gap:10px; }
-  .hidden { display:none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ongeza Maudhui - Viji</title>
+<style>
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; margin:0; padding:0; }
+ .header { background:#1A1A1A; padding:15px; text-align:center; border-bottom:2px solid #F97316; }
+ .header h1 { color:#F97316; margin:0; font-size:18px; }
+ .container { padding:15px; max-width:600px; margin:auto; }
+ .card { background:#1A1A1A; border-radius:12px; padding:20px; border:1px solid #222; }
+  label { display:block; margin-bottom:8px; font-weight:bold; font-size:14px; }
+  input, textarea, select { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; margin-bottom:15px; font-size:14px; box-sizing:border-box; }
+  textarea { min-height:80px; }
+ .btn { background:#F97316; color:white; padding:14px; border:none; border-radius:8px; width:100%; font-weight:bold; font-size:16px; cursor:pointer; }
+ .alert { background:#222; padding:12px; border-radius:8px; font-size:13px; margin-bottom:20px; border-left:4px solid #F97316; }
+ .alert b { color:#F97316; }
+ .hidden { display:none; }
+ .preview-img { width:100%; height:180px; background:#222; border-radius:10px; object-fit:cover; margin-bottom:10px; display:none; }
+ .note { font-size:12px; color:#aaa; margin-top:-10px; margin-bottom:15px; }
+</style>
 </head>
 <body>
 
   <div class="header">
     <h1>✍️ Ongeza Kozi / Makala / Kitabu</h1>
-    <p>Andika na Pata Pesa</p>
+    <p style="margin:5px 0 0 0; font-size:13px;">Andika na Pata Pesa</p>
   </div>
 
   <div class="container">
     <div class="card">
-      <form id="fomuOngeza">
 
+      <div class="alert">
+        <b>📢 Kumbuka Kanuni:</b> Kwa kila mauzo tunakata <b>Asilimia 30</b> tu.
+        Mfano: Ukiuza kwa Tsh 500, unapata Tsh 350. Pesa zinatumwa kila Ijumaa M-Pesa.
+      </div>
+
+      <form id="fomuOngeza">
         <label>1. Chagua Aina ya Maudhui *</label>
         <select id="aina" onchange="onyeshaSehemu()">
           <option value="story">Story / Hadithi</option>
@@ -44,48 +48,41 @@
 
         <label>2. Picha ya Kifuniko / Cover</label>
         <img id="preview" class="preview-img">
-        <div class="upload-options">
-          <input type="file" id="pichaGallery" accept="image/*" style="flex:1;">
-          <input type="text" id="linkPicha" placeholder="Au weka Link ya Picha" style="flex:2;">
-        </div>
+        <input type="file" id="pichaGallery" accept="image/*">
+        <input type="text" id="linkPicha" placeholder="Au weka Link ya Picha kutoka internet">
+        <p class="note">Chagua 1: Gallery yako AU Weka Link</p>
 
         <label>3. Kichwa cha Habari / Kozi *</label>
-        <input type="text" id="kichwa" placeholder="Mfano: Jinsi ya Kuza Biashara" required>
+        <input type="text" id="kichwa" placeholder="Mfano: Jinsi ya Kupata Wateja" required>
 
-        <!-- SEHEMU YA KOZI TU -->
+        <!-- SEHEMU YA KOZI -->
         <div id="sehemuKozi" class="hidden">
-          <div class="note error">
-            ⚠️ Kumbuka: Video ya Kozi lazima isiwe zaidi ya Dakika 5
+          <div class="alert" style="border-left-color:red;">
+            <b>⚠️ Sheria ya Kozi:</b> Video lazima isiwe zaidi ya Dakika 5
           </div>
-
           <label>4. Pakia Video ya Somo</label>
           <input type="file" id="videoKozi" accept="video/*">
-          <input type="text" id="linkVideo" placeholder="Au weka Link ya YouTube">
-          <p style="font-size:12px; color:#aaa;">Video fupi. Dakika 3-5 inatosha kueleza kitu 1</p>
+          <input type="text" id="linkVideo" placeholder="Au Weka Link ya YouTube">
 
           <label>5. Pakia Noti / PDF ya Somo</label>
           <input type="file" id="pdfKozi" accept=".pdf">
-
-          <label>6. Maswali 3 ya Mtihani</label>
-          <textarea id="maswali" placeholder="1. Swali la 1?&#10;2. Swali la 2?&#10;3. Swali la 3?"></textarea>
         </div>
 
-        <!-- SEHEMU YA STORY/MAKALA -->
+        <!-- SEHEMU YA STORY/MAKALA/NOTI -->
         <div id="sehemuMaudhui">
           <label>4. Kionjo cha Maneno 20 *</label>
-          <div class="note">Andika maneno 20 ya kwanza tu. Haya ndio watu watasoma Bure</div>
-          <textarea id="kionjo" placeholder="Mfano: Alikuwa na ndoto kubwa sana..." maxlength="200" required></textarea>
+          <textarea id="kionjo" placeholder="Andika maneno 20 ya kwanza tu..." maxlength="200" required></textarea>
+          <p class="note">Haya ndio watu watasoma Bure ili wavutiwe kulipia</p>
 
           <label>5. Maudhui Kamili *</label>
           <textarea id="maudhui" placeholder="Andika maudhui yako kamili hapa..." rows="8" required></textarea>
         </div>
 
-        <label>7. Weka Bei</label>
-        <div class="note">Kozi: Tsh 5,000. Story: Tsh 500. Kitabu: Tsh 2,000</div>
-        <input type="number" id="bei" placeholder="Bei Tsh" value="500">
+        <label>6. Weka Bei Tsh</label>
+        <input type="number" id="bei" placeholder="Mfano: 500" value="500">
 
-        <label>8. Jina Lako la Mwalimu / Mwandishi</label>
-        <input type="text" id="mwandishi" placeholder="Mfano: Mwalimu Juma">
+        <label>7. Jina Lako la Mwalimu / Mwandishi</label>
+        <input type="text" id="mwandishi" placeholder="Mfano: Amina kutoka Mwanza">
 
         <button type="submit" class="btn">Tuma kwa Ukaguzi</button>
       </form>
@@ -93,7 +90,6 @@
   </div>
 
 <script>
-  // KUONYESHA/FICHA SEHEMU KWA SABABU YA AINA
   function onyeshaSehemu(){
     let aina = document.getElementById('aina').value;
     if(aina == 'kozi'){
@@ -103,7 +99,9 @@
     } else {
       document.getElementById('sehemuKozi').classList.add('hidden');
       document.getElementById('sehemuMaudhui').classList.remove('hidden');
-      document.getElementById('bei').value = 500;
+      if(aina == 'kitabu') document.getElementById('bei').value = 2000;
+      else if(aina == 'noti') document.getElementById('bei').value = 1000;
+      else document.getElementById('bei').value = 500;
     }
   }
 
@@ -122,15 +120,10 @@
 
   document.getElementById('fomuOngeza').addEventListener('submit', function(e){
     e.preventDefault();
-    let aina = document.getElementById('aina').value;
-    let ujumbe = "Asante! Maudhui yako yametumwa.";
-
-    if(aina == 'kozi'){
-      ujumbe = "Asante! Kozi yako imetumwa.\nInahitaji video isiyozidi dakika 5 + PDF + Maswali";
-    }
-    alert(ujumbe);
+    alert("Asante! Maudhui yako yametumwa kwa ukaguzi.\nBaada ya masaa 24 utapata jibu.");
+    document.getElementById('fomuOngeza').reset();
   });
 </script>
 
 </body>
-  </html>
+</html>
