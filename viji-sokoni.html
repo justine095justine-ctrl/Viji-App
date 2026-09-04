@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Viji Sokoni - Uza na Nunua</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root{
+            --bg:#f5f5f5; --text:#222; --card:#fff; --header:#28a745; --star:#ffc107;
+        }
+        body.dark{
+            --bg:#121212; --text:#eee; --card:#1e1e1e; --header:#1a5c2e;
+        }
+        body{font-family:Arial; margin:0; background:var(--bg); color:var(--text)}
+        header{background:var(--header); color:white; text-align:center; padding:15px; position:sticky; top:0; z-index:10}
+        header h1{margin:0; font-size:22px}
+
+        .container{padding:15px}
+        
+        /* 1. SEARCH BAR */
+        .search-box{margin-bottom:12px}
+        .search-box input{
+            width:100%; padding:12px; border-radius:10px; border:1px solid #ccc; 
+            font-size:15px; box-sizing:border-box; background:var(--card); color:var(--text)
+        }
+
+        /* 2. CATEGORY BUTTONS */
+        .categories{display:flex; gap:8px; overflow-x:auto; margin-bottom:15px; padding-bottom:5px}
+        .cat-btn{
+            background:var(--card); border:1px solid #ccc; padding:8px 14px; border-radius:20px; 
+            white-space:nowrap; font-size:14px; cursor:pointer; font-weight:bold
+        }
+        .cat-btn.active{background:var(--header); color:white; border-color:var(--header)}
+
+        /* BOX YA PESA */
+        .money-box{
+            background:#fff3cd; padding:15px; border-radius:12px; margin-bottom:15px; 
+            border:2px solid var(--star); text-align:center
+        }
+        .pay-btn{background:var(--star); border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer}
+
+        .add-btn{background:#28a745; color:white; border:none; padding:12px; width:100%; border-radius:10px; font-size:16px; font-weight:bold; margin-bottom:15px; cursor:pointer}
+
+        /* KADI ZA BIDHAA */
+        .products{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+        .product{
+            background:var(--card); border-radius:12px; padding:10px; 
+            box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; position:relative;
+            border:2px solid transparent; display:block; /* Muhimu kwa filter */
+        }
+        .product img{width:100%; height:120px; object-fit:cover; border-radius:8px; background:#ddd}
+        .product h3{margin:8px 0 4px 0; font-size:15px}
+        .price{color:#28a745; font-weight:bold; font-size:16px}
+        .location{font-size:12px; color:gray}
+        .contact-btn{background:#000080; color:white; border:none; padding:8px; width:100%; border-radius:8px; margin-top:8px; cursor:pointer}
+        
+        .kipekee{border:2px solid var(--star); box-shadow:0 0 10px rgba(255, 193, 7, 0.5)}
+        .badge{position:absolute; top:-8px; left:10px; background:var(--star); color:#222; padding:3px 8px; border-radius:8px; font-size:11px; font-weight:bold}
+
+        .no-results{text-align:center; padding:30px; color:gray; display:none}
+        .back{margin:20px; text-align:center}
+        .back a{color:var(--header); text-decoration:none; font-weight:bold}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🛒 VIJI SOKONI</h1>
+    <p>Uza na Nunua ndani ya Mwanza</p>
+</header>
+
+<div class="container">
+    
+    <!-- 1. SEARCH -->
+    <div class="search-box">
+        <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Tafuta: Simu, Viatu, Friji...">
+    </div>
+
+    <!-- 2. CATEGORIES - ZINAJIONGEZA AUTOMATIC -->
+    <div class="categories" id="categoryList">
+        <button class="cat-btn active" onclick="filterCategory('all', this)">Zote</button>
+        <!-- Categories zitasajiliwa na JS hapa chini -->
+    </div>
+
+    <!-- 3. BOX YA KULIPIA -->
+    <div class="money-box">
+        <p style="margin:0; font-weight:bold">⭐ Pata Wateja 10x Zaidi</p>
+        <p style="margin:5px 0 10px 0; font-size:13px">Lipa Tsh 2000 tu. Bidhaa yako ibaki juu kwa siku 7</p>
+        <button class="pay-btn" onclick="lipiaKipekee()">Lipia Tsh 2000 Sasa</button>
+    </div>
+
+    <button class="add-btn" onclick="alert('Jaza fomu ya bidhaa bure')">+ Ongeza Bidhaa Bure</button>
+
+    <div class="products" id="productList">
+        
+        <!-- KILA BIDHAA LAZIMA IWE NA data-category NA data-name -->
+        <div class="product kipekee" data-category="Simu" data-name="Simu Samsung A14">
+            <div class="badge">⭐ KIPEKEE</div>
+            <img src="https://via.placeholder.com/150/ffc107/000000" alt="Simu">
+            <h3>Simu Samsung A14</h3>
+            <p class="price">Tsh 450,000</p>
+            <p class="location">📍 Pasiansi, Mwanza</p>
+            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
+        </div>
+
+        <div class="product" data-category="Viatu" data-name="Viatu vya Kike">
+            <img src="https://via.placeholder.com/150" alt="Viatu">
+            <h3>Viatu vya Kike</h3>
+            <p class="price">Tsh 35,000</p>
+            <p class="location">📍 Nyerere, Mwanza</p>
+            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
+        </div>
+
+        <div class="product" data-category="Samani" data-name="Meza ya Kijanja">
+            <img src="https://via.placeholder.com/150" alt="Meza">
+            <h3>Meza ya Kijanja</h3>
+            <p class="price">Tsh 180,000</p>
+            <p class="location">📍 Igoma, Mwanza</p>
+            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
+        </div>
+
+        <div class="product kipekee" data-category="Umeme" data-name="Friji ndogo">
+            <div class="badge">⭐ KIPEKEE</div>
+            <img src="https://via.placeholder.com/150/ffc107/000" alt="Friji">
+            <h3>Friji ndogo</h3>
+            <p class="price">Tsh 300,000</p>
+            <p class="location">📍 Buzuruga, Mwanza</p>
+            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
+        </div>
+
+    </div>
+    
+    <p class="no-results" id="noResults">😔 Hakuna bidhaa katika category hii</p>
+
+    <div class="back">
+        <a href="index.html">⬅ Rudi Nyumbani</a>
+    </div>
+</div>
+
+<script>
+    // 1. KAZI YA KUTENGENEZA CATEGORIES AUTOMATIC
+    function loadCategories(){
+        let products = document.querySelectorAll('.product');
+        let categories = new Set();
+        products.forEach(p => categories.add(p.dataset.category));
+        
+        let catList = document.getElementById('categoryList');
+        categories.forEach(cat => {
+            catList.innerHTML += `<button class="cat-btn" onclick="filterCategory('${cat}', this)">${cat}</button>`;
+        });
+    }
+
+    // 2. KAZI YA KUCHUJA KWA CATEGORY
+    function filterCategory(category, el){
+        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+        el.classList.add('active');
+
+        let products = document.querySelectorAll('.product');
+        let visible = 0;
+        products.forEach(p => {
+            if(category === 'all' || p.dataset.category === category){
+                p.style.display = 'block';
+                visible++;
+            } else {
+                p.style.display = 'none';
+            }
+        });
+        document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    // 3. KAZI YA KUTAFUTA
+    function filterProducts(){
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let products = document.querySelectorAll('.product');
+        products.forEach(p => {
+            let name = p.dataset.name.toLowerCase();
+            p.style.display = name.includes(input) ? 'block' : 'none';
+        });
+    }
+
+    function lipiaKipekee(){
+        let namba = "0765 123 456"; // BADILI NA NAMBA YAKO
+        alert(`1. Tuma Tsh 2000 kwa ${namba}\n2. Tuma Screenshot WhatsApp\n3. Bidhaa yako itawekwa juu ndani ya dakika 10`);
+    }
+
+    if(localStorage.getItem("theme") === "dark"){ document.body.classList.add("dark"); }
+    
+    // Anzisha categories zinapoload
+    window.onload = loadCategories;
+</script>
+
+</body>
+  </html>
