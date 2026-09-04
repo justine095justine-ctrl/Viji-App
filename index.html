@@ -1,149 +1,72 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karibu Viji App</title>
-<style>
-    :root{
-        --bg:#0D0F1A; --card-bg:#1A1E2E; --text:white; --subtext:#aaa;
-        --blue:#2563EB; --orange:#F97316; --purple:#8B5CF6; --green:#22C55E;
-        --red:#EF4444; --pink:#EC4899; --cyan:#06B6D4; --yellow:#FACC15; 
-        --navy:#1E3A8A;
-    }
-    body.light{
-        --bg:#F5F5F5; --card-bg:white; --text:#111; --subtext:#555;
-    }
-
-    *{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial}
-    body{background:var(--bg); color:var(--text); padding:0; transition:0.3s}
-    
-    .header{
-        background:linear-gradient(135deg, var(--card-bg), var(--bg));
-        padding:25px 15px; text-align:center; position:relative
-    }
-    .header h1{font-size:24px; margin-bottom:6px}
-    .header p{font-size:13px; opacity:0.7; color:var(--subtext)}
-    .toggle{
-        position:absolute; top:15px; right:15px;
-        background:var(--card-bg); padding:6px 12px; border-radius:20px; 
-        font-size:12px; cursor:pointer; border:1px solid #333
-    }
-    
-    .container{padding:15px}
-    .grid{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        gap:12px;
-    }
-    .card{
-        padding:20px 10px; border-radius:18px; text-align:center;
-        text-decoration:none; color:white; transition:0.2s;
-        box-shadow:0 4px 10px rgba(0,0,0,0.3)
-    }
-    body.light .card{color:#111}
-    .card:active{transform:scale(0.96)}
-    .card h3{font-size:15px; margin:8px 0 4px 0; font-weight:bold}
-    .card p{font-size:11px; opacity:0.85}
-    .icon{font-size:28px}
-    
-    .blue{background:var(--blue)}
-    .orange{background:var(--orange)}
-    .purple{background:var(--purple)}
-    .green{background:var(--green)}
-    .red-full{grid-column: 1 / -1; background:var(--red)}
-    .pink-full{grid-column: 1 / -1; background:var(--pink)}
-    .cyan-half{background:var(--cyan)}
-    .yellow-half{background:var(--yellow); color:#000}
-    .navy-full{grid-column: 1 / -1; background:var(--navy)}
-    
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viji App - Nyumbani</title>
+  <style>
+    body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; margin:0; padding:0; }
+    .header { background:#1A1A1A; padding:20px; text-align:center; border-bottom:2px solid #F97316; }
+    .header h1 { color:#F97316; margin:0; font-size:28px; }
+    .header p { margin:5px 0 0 0; color:#aaa; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; padding:20px; }
+    .card { background:#1A1A1A; border-radius:15px; padding:20px; text-align:center; border:1px solid #222; text-decoration:none; color:white; transition:0.3s; }
+    .card:hover { border:1px solid #F97316; transform:scale(1.02); }
+    .icon { font-size:40px; margin-bottom:10px; }
+    .title { font-weight:bold; font-size:16px; margin-bottom:5px; }
+    .desc { font-size:12px; color:#aaa; }
+    .footer { text-align:center; padding:20px; font-size:11px; color:#555; }
+  </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="toggle" onclick="toggleMode()">🌙 Dark</div>
-    <h1>🎉 Karibu Viji App</h1>
-    <p>Burudani | Elimu | Biashara | Ujuzi | Sheria</p>
-</div>
+  <div class="header">
+    <h1>VIJI APP</h1>
+    <p>Burudani. Elimu. Biashara. Yote kwa Kiswahili</p>
+  </div>
 
-<div class="container">
-<div class="grid">
-    <a href="#" class="card blue">
-        <div class="icon">🎮</div>
-        <h3>Viji Game</h3>
-        <p>Cheza na ujifunze</p>
-    </a>
+  <div class="grid">
     
-    <a href="#" class="card orange">
-        <div class="icon">📖</div>
-        <h3>Viji Stories</h3>
-        <p>Soma hadithi fupi</p>
+    <!-- 1. VIJI SOKONI -->
+    <a href="viji-sokoni.html" class="card">
+      <div class="icon">🛒</div>
+      <div class="title">Viji Sokoni</div>
+      <div class="desc">Fungua Duka. Uza Bidhaa na Huduma</div>
     </a>
-    
-    <a href="#" class="card purple">
-        <div class="icon">🎬</div>
-        <h3>Documentary &<br>Makala</h3>
-        <p>Tazama na ujifunze</p>
-    </a>
-    
-    <a href="viji-sokoni.html" class="card green">
-        <div class="icon">🛒</div>
-        <h3>Viji Sokoni</h3>
-        <p>Uza na Nunua</p>
-    </a>
-    
-    <!-- NIMEIREKEBISHA HAPA: viji-skills.html -> skills.html -->
-    <a href="skills.html" class="card red-full">
-        <div class="icon">🔧</div>
-        <h3>Viji Skills</h3>
-        <p>Pata fundi wa ujuzi wowote</p>
-    </a>
-    
-    <a href="viji-trends.html" class="card pink-full">
-        <div class="icon">🔥</div>
-        <h3>Viji Trends</h3>
-        <p>Video fupi + Viral + Methali</p>
-    </a>
-    
-    <a href="#" class="card cyan-half">
-        <div class="icon">💬</div>
-        <h3>Viji Jamii</h3>
-        <p>Jadili na watu</p>
-    </a>
-    
-    <a href="#" class="card yellow-half">
-        <div class="icon">📍</div>
-        <h3>Viji Events</h3>
-        <p>Tukio na matangazo</p>
-    </a>
-    
-    <a href="#" class="card navy-full">
-        <div class="icon">⚖️</div>
-        <h3>Viji Sheria</h3>
-        <p>Jua haki zako</p>
-    </a>
-    
-</div>
-</div>
 
-<script>
-function toggleMode(){
-    document.body.classList.toggle('light');
-    const btn = document.querySelector('.toggle');
-    if(document.body.classList.contains('light')){
-        btn.innerText = '🌙 Dark';
-        localStorage.setItem('theme', 'light');
-    } else {
-        btn.innerText = '☀️ Light';
-        localStorage.setItem('theme', 'dark');
-    }
-}
-if(localStorage.getItem('theme') === 'light'){
-    document.body.classList.add('light');
-    document.querySelector('.toggle').innerText = '🌙 Dark';
-}
-</script>
+    <!-- 2. VIJI GAME -->
+    <a href="viji-game.html" class="card">
+      <div class="icon">🎮</div>
+      <div class="title">Viji Game</div>
+      <div class="desc">Cheza Michezo na Ushinde Zawadi</div>
+    </a>
+
+    <!-- 3. VIJI ELIMU & DOCUMENTARY - IMEUNGANISHWA -->
+    <a href="viji-elimu.html" class="card">
+      <div class="icon">📚</div>
+      <div class="title">Viji Elimu & Documentary</div>
+      <div class="desc">Jifunze Kozi + Tazama Historia ya Tanzania</div>
+    </a>
+
+    <!-- 4. VIJI TALENT & SKILL -->
+    <a href="viji-skills-talent.html" class="card">
+      <div class="icon">🌟</div>
+      <div class="title">Viji Talent & Skill</div>
+      <div class="desc">Onyesha Kipaji. Tafuta Fundi. Fuata Sheria 5</div>
+    </a>
+
+    <!-- 5. VIJI SHERIA -->
+    <a href="viji-sheria.html" class="card" style="grid-column:span 2;">
+      <div class="icon">⚖️</div>
+      <div class="title">Viji Sheria</div>
+      <div class="desc">Jifunze Haki zako na Sheria kwa Lugha Rahisi</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    © 2026 Viji App. Timetengenezwa Tanzania kwa Watu wa Tanzania.
+  </div>
 
 </body>
 </html>
