@@ -1,192 +1,211 @@
 <!DOCTYPE html>
-<html>
+<html lang="sw">
 <head>
-    <title>Viji Sokoni - Uza na Nunua</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        :root{
-            --bg:#f5f5f5; --text:#222; --card:#fff; --header:#28a745; --star:#ffc107;
-        }
-        body.dark{
-            --bg:#121212; --text:#eee; --card:#1e1e1e; --header:#1a5c2e;
-        }
-        body{font-family:Arial; margin:0; background:var(--bg); color:var(--text)}
-        header{background:var(--header); color:white; text-align:center; padding:15px; position:sticky; top:0; z-index:10}
-        header h1{margin:0; font-size:22px}
-
-        .container{padding:15px}
-        
-        /* 1. SEARCH BAR */
-        .search-box{margin-bottom:12px}
-        .search-box input{
-            width:100%; padding:12px; border-radius:10px; border:1px solid #ccc; 
-            font-size:15px; box-sizing:border-box; background:var(--card); color:var(--text)
-        }
-
-        /* 2. CATEGORY BUTTONS */
-        .categories{display:flex; gap:8px; overflow-x:auto; margin-bottom:15px; padding-bottom:5px}
-        .cat-btn{
-            background:var(--card); border:1px solid #ccc; padding:8px 14px; border-radius:20px; 
-            white-space:nowrap; font-size:14px; cursor:pointer; font-weight:bold
-        }
-        .cat-btn.active{background:var(--header); color:white; border-color:var(--header)}
-
-        /* BOX YA PESA */
-        .money-box{
-            background:#fff3cd; padding:15px; border-radius:12px; margin-bottom:15px; 
-            border:2px solid var(--star); text-align:center
-        }
-        .pay-btn{background:var(--star); border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer}
-
-        .add-btn{background:#28a745; color:white; border:none; padding:12px; width:100%; border-radius:10px; font-size:16px; font-weight:bold; margin-bottom:15px; cursor:pointer}
-
-        /* KADI ZA BIDHAA */
-        .products{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-        .product{
-            background:var(--card); border-radius:12px; padding:10px; 
-            box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; position:relative;
-            border:2px solid transparent; display:block; /* Muhimu kwa filter */
-        }
-        .product img{width:100%; height:120px; object-fit:cover; border-radius:8px; background:#ddd}
-        .product h3{margin:8px 0 4px 0; font-size:15px}
-        .price{color:#28a745; font-weight:bold; font-size:16px}
-        .location{font-size:12px; color:gray}
-        .contact-btn{background:#000080; color:white; border:none; padding:8px; width:100%; border-radius:8px; margin-top:8px; cursor:pointer}
-        
-        .kipekee{border:2px solid var(--star); box-shadow:0 0 10px rgba(255, 193, 7, 0.5)}
-        .badge{position:absolute; top:-8px; left:10px; background:var(--star); color:#222; padding:3px 8px; border-radius:8px; font-size:11px; font-weight:bold}
-
-        .no-results{text-align:center; padding:30px; color:gray; display:none}
-        .back{margin:20px; text-align:center}
-        .back a{color:var(--header); text-decoration:none; font-weight:bold}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viji Sokoni - Uza na Nunua</title>
+<style>
+    *{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial}
+    body{background:#0D0F1A; color:white; padding:0 0 80px 0}
+    
+    .header{background:linear-gradient(135deg, #15803D, #0D0F1A); padding:20px 15px; text-align:center}
+    .header h1{font-size:22px}
+    .header p{font-size:12px; opacity:0.8; margin-top:5px}
+    
+    .container{padding:15px}
+    .search-box{width:100%; padding:12px; border-radius:10px; border:1px solid #333; background:#1A1E2E; color:white; margin-bottom:12px}
+    
+    .categories{display:flex; gap:8px; overflow-x:auto; margin-bottom:15px}
+    .cat-btn{padding:8px 15px; background:#1A1E2E; border:none; color:white; border-radius:20px; white-space:nowrap}
+    .cat-btn.active{background:#22C55E}
+    
+    .alert{background:#FEF3C7; color:#000; padding:15px; border-radius:10px; margin-bottom:15px; text-align:center}
+    .alert button{width:100%; padding:12px; background:#F59E0B; border:none; border-radius:8px; font-weight:bold; margin-top:10px; color:#000}
+    
+    .add-btn{width:100%; padding:14px; background:#22C55E; border:none; border-radius:10px; color:white; font-weight:bold; font-size:16px; margin-bottom:15px}
+    .add-btn:disabled{background:#6B7280}
+    
+    .counter{font-size:12px; text-align:center; margin-bottom:10px; color:#FACC15}
+    
+    .grid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .item{background:#1A1E2E; border-radius:12px; padding:10px; position:relative}
+    .item.unpaid{opacity:0.6; border:2px dashed #F97316}
+    .item img{width:100%; height:120px; object-fit:cover; border-radius:8px; background:#333}
+    .badge{position:absolute; top:15px; left:15px; background:#FACC15; color:#000; padding:3px 8px; border-radius:5px; font-size:10px; font-weight:bold}
+    
+    .item h3{font-size:14px; margin:8px 0 4px 0}
+    .price{color:#22C55E; font-weight:bold; font-size:16px}
+    .location{font-size:11px; opacity:0.7; margin:4px 0 8px 0}
+    
+    .contact-btn{width:100%; padding:10px; background:#2563EB; border:none; border-radius:8px; color:white; font-weight:bold}
+    .preview-btn{width:100%; padding:10px; background:#6B7280; border:none; border-radius:8px; color:white; font-size:11px}
+    
+    /* Modal */
+    .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:100; padding:20px}
+    .modal-content{background:#1A1E2E; padding:20px; border-radius:12px}
+    .modal input, .modal select{width:100%; padding:10px; margin:8px 0; background:#0D0F1A; border:1px solid #333; color:white; border-radius:8px}
+    .modal button{padding:12px; border:none; border-radius:8px; margin-top:10px}
+</style>
 </head>
 <body>
 
-<header>
+<div class="header">
     <h1>🛒 VIJI SOKONI</h1>
     <p>Uza na Nunua ndani ya Mwanza</p>
-</header>
+</div>
 
 <div class="container">
+    <input type="text" class="search-box" placeholder="Tafuta: Simu, Viatu, Friji...">
     
-    <!-- 1. SEARCH -->
-    <div class="search-box">
-        <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Tafuta: Simu, Viatu, Friji...">
-    </div>
-
-    <!-- 2. CATEGORIES - ZINAJIONGEZA AUTOMATIC -->
-    <div class="categories" id="categoryList">
-        <button class="cat-btn active" onclick="filterCategory('all', this)">Zote</button>
-        <!-- Categories zitasajiliwa na JS hapa chini -->
-    </div>
-
-    <!-- 3. BOX YA KULIPIA -->
-    <div class="money-box">
-        <p style="margin:0; font-weight:bold">⭐ Pata Wateja 10x Zaidi</p>
-        <p style="margin:5px 0 10px 0; font-size:13px">Lipa Tsh 2000 tu. Bidhaa yako ibaki juu kwa siku 7</p>
-        <button class="pay-btn" onclick="lipiaKipekee()">Lipia Tsh 2000 Sasa</button>
-    </div>
-
-    <button class="add-btn" onclick="alert('Jaza fomu ya bidhaa bure')">+ Ongeza Bidhaa Bure</button>
-
-    <div class="products" id="productList">
-        
-        <!-- KILA BIDHAA LAZIMA IWE NA data-category NA data-name -->
-        <div class="product kipekee" data-category="Simu" data-name="Simu Samsung A14">
-            <div class="badge">⭐ KIPEKEE</div>
-            <img src="https://via.placeholder.com/150/ffc107/000000" alt="Simu">
-            <h3>Simu Samsung A14</h3>
-            <p class="price">Tsh 450,000</p>
-            <p class="location">📍 Pasiansi, Mwanza</p>
-            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
-        </div>
-
-        <div class="product" data-category="Viatu" data-name="Viatu vya Kike">
-            <img src="https://via.placeholder.com/150" alt="Viatu">
-            <h3>Viatu vya Kike</h3>
-            <p class="price">Tsh 35,000</p>
-            <p class="location">📍 Nyerere, Mwanza</p>
-            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
-        </div>
-
-        <div class="product" data-category="Samani" data-name="Meza ya Kijanja">
-            <img src="https://via.placeholder.com/150" alt="Meza">
-            <h3>Meza ya Kijanja</h3>
-            <p class="price">Tsh 180,000</p>
-            <p class="location">📍 Igoma, Mwanza</p>
-            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
-        </div>
-
-        <div class="product kipekee" data-category="Umeme" data-name="Friji ndogo">
-            <div class="badge">⭐ KIPEKEE</div>
-            <img src="https://via.placeholder.com/150/ffc107/000" alt="Friji">
-            <h3>Friji ndogo</h3>
-            <p class="price">Tsh 300,000</p>
-            <p class="location">📍 Buzuruga, Mwanza</p>
-            <button class="contact-btn" onclick="alert('WhatsApp: 0765 123 456')">Piga / WhatsApp</button>
-        </div>
-
+    <div class="categories">
+        <button class="cat-btn active" onclick="filterCat('Zote', this)">Zote</button>
+        <button class="cat-btn" onclick="filterCat('Simu', this)">Simu</button>
+        <button class="cat-btn" onclick="filterCat('Viatu', this)">Viatu</button>
+        <button class="cat-btn" onclick="filterCat('Samani', this)">Samani</button>
+        <button class="cat-btn" onclick="filterCat('Umeme', this)">Umeme</button>
     </div>
     
-    <p class="no-results" id="noResults">😔 Hakuna bidhaa katika category hii</p>
+    <div class="alert">
+        <div>⭐ Pata Wateja 10x Zaidi + Post Bila Kikomo</div>
+        <button onclick="alert('Lipa Tsh 2000 kwa M-Pesa/Tigo Pesa')">Lipia Tsh 2000 Sasa</button>
+    </div>
+    
+    <div class="counter" id="freeCounter"></div>
+    <button class="add-btn" id="addBtn" onclick="openModal()">+ Ongeza Bidhaa</button>
+    
+    <div class="grid" id="itemsGrid"></div>
+</div>
 
-    <div class="back">
-        <a href="index.html">⬅ Rudi Nyumbani</a>
+<!-- Modal ya Kuadd -->
+<div class="modal" id="addModal">
+    <div class="modal-content">
+        <h3>Ongeza Bidhaa</h3>
+        <input id="title" placeholder="Jina la Bidhaa">
+        <input id="price" type="number" placeholder="Bei Tsh">
+        <input id="location" placeholder="Eneo: Nyerere, Mwanza">
+        <select id="category">
+            <option>Simu</option><option>Viatu</option><option>Samani</option><option>Umeme</option>
+        </select>
+        <input id="img" placeholder="Link ya Picha">
+        <button style="background:#22C55E; color:white; width:48%" onclick="addItem()">Hifadhi</button>
+        <button style="background:#6B7280; color:white; width:48%" onclick="closeModal()">Funga</button>
     </div>
 </div>
 
 <script>
-    // 1. KAZI YA KUTENGENEZA CATEGORIES AUTOMATIC
-    function loadCategories(){
-        let products = document.querySelectorAll('.product');
-        let categories = new Set();
-        products.forEach(p => categories.add(p.dataset.category));
-        
-        let catList = document.getElementById('categoryList');
-        categories.forEach(cat => {
-            catList.innerHTML += `<button class="cat-btn" onclick="filterCategory('${cat}', this)">${cat}</button>`;
-        });
-    }
+let items = JSON.parse(localStorage.getItem('vijiItems')) || [];
+let freePosts = JSON.parse(localStorage.getItem('freePosts')) || {count:0, lastReset:Date.now(), lockUntil:0};
+let currentCat = 'Zote';
 
-    // 2. KAZI YA KUCHUJA KWA CATEGORY
-    function filterCategory(category, el){
-        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-        el.classList.add('active');
-
-        let products = document.querySelectorAll('.product');
-        let visible = 0;
-        products.forEach(p => {
-            if(category === 'all' || p.dataset.category === category){
-                p.style.display = 'block';
-                visible++;
-            } else {
-                p.style.display = 'none';
-            }
-        });
-        document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    // 3. KAZI YA KUTAFUTA
-    function filterProducts(){
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let products = document.querySelectorAll('.product');
-        products.forEach(p => {
-            let name = p.dataset.name.toLowerCase();
-            p.style.display = name.includes(input) ? 'block' : 'none';
-        });
-    }
-
-    function lipiaKipekee(){
-        let namba = "0765 123 456"; // BADILI NA NAMBA YAKO
-        alert(`1. Tuma Tsh 2000 kwa ${namba}\n2. Tuma Screenshot WhatsApp\n3. Bidhaa yako itawekwa juu ndani ya dakika 10`);
-    }
-
-    if(localStorage.getItem("theme") === "dark"){ document.body.classList.add("dark"); }
+// Angalia kama masaa 72 yamepita
+function checkFreeLimit(){
+    const now = Date.now();
+    const dayPassed = (now - freePosts.lastReset) > 24*60*60*1000;
+    const lockPassed = now > freePosts.lockUntil;
     
-    // Anzisha categories zinapoload
-    window.onload = loadCategories;
+    if(dayPassed && lockPassed){
+        freePosts = {count:0, lastReset:now, lockUntil:0};
+    }
+    localStorage.setItem('freePosts', JSON.stringify(freePosts));
+    
+    const btn = document.getElementById('addBtn');
+    const counter = document.getElementById('freeCounter');
+    
+    if(freePosts.lockUntil > now){
+        const hoursLeft = Math.ceil((freePosts.lockUntil - now)/1000/60/60);
+        btn.disabled = true;
+        btn.innerText = `Subiri masaa ${hoursLeft} kupost bure`;
+        counter.innerText = `Umetumia Post 3/3 bure. Lipia Tsh 2000 kwa post zisizo na kikomo`;
+    } else {
+        btn.disabled = false;
+        btn.innerText = '+ Ongeza Bidhaa';
+        counter.innerText = `Post Bure zilizobaki leo: ${3 - freePosts.count}/3`;
+    }
+}
+
+// Onyesha items
+function displayItems(){
+    // Futa post zisizolipwa zilizopita dakika 10
+    items = items.filter(item => {
+        if(!item.paid){
+            const minutesPassed = (Date.now() - item.time) / 1000 / 60;
+            return minutesPassed < 10;
+        }
+        return true;
+    });
+    localStorage.setItem('vijiItems', JSON.stringify(items));
+    
+    const grid = document.getElementById('itemsGrid');
+    grid.innerHTML = '';
+    
+    const filtered = items.filter(i => currentCat === 'Zote' || i.category === currentCat);
+    
+    filtered.forEach((item) => {
+        const minutesLeft = item.paid ? '' : Math.ceil(10 - (Date.now() - item.time) / 1000 / 60);
+        
+        grid.innerHTML += `
+        <div class="item ${!item.paid ? 'unpaid' : ''}">
+            ${item.paid ? '<div class="badge">KIPEKEE</div>' : ''}
+            <img src="${item.img || 'https://via.placeholder.com/150'}" alt="">
+            <h3>${item.title}</h3>
+            <div class="price">Tsh ${Number(item.price).toLocaleString()}</div>
+            <div class="location">📍 ${item.location}</div>
+            ${item.paid 
+                ? `<button class="contact-btn">Piga / WhatsApp</button>` 
+                : `<button class="preview-btn" disabled>INASUBIRI MALIPO - ${minutesLeft}min</button>`
+            }
+        </div>`;
+    });
+}
+
+// Kuadd item
+function addItem(){
+    const hasFree = freePosts.count < 3 && freePosts.lockUntil < Date.now();
+    
+    let alilipia = true;
+    if(hasFree){
+        alilipia = confirm(`Unayo Post Bure ${3-freePosts.count}/3 iliyobaki leo \n\nOK = Tumia Post Bure ya dakika 10 \nCANCEL = Lipia Tsh 2000 kwa post ya kudumu`);
+    }
+    
+    if(!alilipia){
+        freePosts.count += 1;
+        if(freePosts.count >= 3){
+            freePosts.lockUntil = Date.now() + 72*60*60*1000; // lock masaa 72
+            alert("Umetumia Post zako 3 Bure. Rudi baada ya masaa 72 au Lipia Tsh 2000");
+        }
+    }
+    
+    const newItem = {
+        title: document.getElementById('title').value,
+        price: document.getElementById('price').value,
+        location: document.getElementById('location').value,
+        category: document.getElementById('category').value,
+        img: document.getElementById('img').value,
+        paid: alilipia,
+        time: Date.now()
+    };
+    
+    items.unshift(newItem);
+    localStorage.setItem('vijiItems', JSON.stringify(items));
+    localStorage.setItem('freePosts', JSON.stringify(freePosts));
+    closeModal();
+    checkFreeLimit();
+    displayItems();
+}
+
+function openModal(){document.getElementById('addModal').style.display='block'}
+function closeModal(){document.getElementById('addModal').style.display='none'}
+function filterCat(cat, btn){
+    currentCat = cat;
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    displayItems();
+}
+
+checkFreeLimit();
+displayItems();
+setInterval(() => {checkFreeLimit(); displayItems();}, 60000); // update kila dakika 1
 </script>
 
 </body>
-  </html>
+</html>
