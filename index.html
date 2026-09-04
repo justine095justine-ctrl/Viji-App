@@ -1,57 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Viji App - Burudani + Elimu + Biashara</title>
+    <title>Viji Sheria - Kanuni za Viji App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body{font-family:Arial; margin:0; background:#f0f0f0}
-        header{background:#222; color:white; text-align:center; padding:20px}
-        header h1{margin:0}
+        body{font-family:Arial; background:white; margin:0; color:#000080} /* Nyeupe + Blue Black */
+        header{text-align:center; padding:20px; background:#000080; color:white}
         .container{padding:20px}
-        .grid{display:grid; grid-template-columns:1fr 1fr; gap:15px}
-        .card{padding:25px; border-radius:12px; text-align:center; box-shadow:0 4px 8px #ccc; color:white}
-        .card a{text-decoration:none; color:white; font-size:18px; font-weight:bold}
-        .card p{font-size:14px; margin-top:8px}
-        .card:hover{opacity:0.85}
-
-        /* RANGI 1 HADI 8 */
-        .game{background:#1e90ff;}      /* 1. BLUE */
-        .stories{background:#ff8c00;}    /* 2. ORANGE */
-        .makala{background:#9b59b6;}     /* 3. PURPLE */
-        .sokoni{background:#28a745;}     /* 4. GREEN */
-        .skills{background:#e74c3c;}     /* 5. RED */
-        .trends{background:#ff1493;}     /* 6. PINK */
-        .jamii{background:#17a2b8;}      /* 7. TEAL */
-        .events{background:#ffc107; color:#222} /* 8. YELLOW */
-        .events a{color:#222}
-
-        .skills, .trends{grid-column: span 2;} /* Hizi zichukue mistari 2 */
-        footer{text-align:center; padding:15px; color:#666}
+        h2{color:#000080; border-bottom:2px solid #000080; padding-bottom:5px}
+        .rule{background:#f0f0f0; padding:15px; margin:15px 0; border-radius:8px; border-left:5px solid #000080}
+        .adhabu{color:red; font-weight:bold}
+        .kosa{color:#000080; font-weight:bold}
+        .back{margin:20px; text-align:center}
+        .back a{color:#000080; text-decoration:none; font-weight:bold}
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🎉 Karibu Viji App</h1>
-    <p>Burudani | Elimu | Biashara | Ujuzi | Jamii</p>
+    <h1>📜 VIJI SHERIA</h1>
+    <p>Tusijiweke pamoja kwa heshima na amani</p>
 </header>
 
 <div class="container">
-    <div class="grid">
-        
-        <div class="card game"><a href="game.html">🎮<br>Viji Game</a><p>Cheza na ujifunze</p></div>
-        <div class="card stories"><a href="stories.html">📖<br>Viji Stories</a><p>Soma hadithi fupi</p></div>
-        <div class="card makala"><a href="makala.html">🎬<br>Documentary & Makala</a><p>Tazama na ujifunze</p></div>
-        <div class="card sokoni"><a href="sokoni.html">🛒<br>Viji Sokoni</a><p>Uza na Nunua</p></div>
-        <div class="card skills"><a href="skills.html">🔧<br>Viji Skills</a><p>Pata fundi wa ujuzi wowote</p></div>
-        
-        <div class="card trends"><a href="trends.html">🔥<br>Viji Trends</a><p>Video fupi + Viral + Methali</p></div>
-        <div class="card jamii"><a href="jamii.html">💬<br>Viji Jamii</a><p>Uliza na Jadili</p></div>
-        <div class="card events"><a href="events.html">📍<br>Viji Events</a><p>Bash, Soko, Semina</p></div>
+    <p>Karibu Vija. Kwa kutumia Viji App unakubali kufuata sheria zifuatazo. Kukiuka sheria = Adhabu.</p>
 
+    <h2>SHERIA ZA JUMLA</h2>
+    
+    <div class="rule">
+        <p class="kosa">1. HESHIMA</p>
+        <p>Hapana matusi, chuki, ubaguzi, au kumdhihaki mtu. Tuheshimiane wote.</p>
+        <p class="adhabu">ADHABU: Onyo la kwanza. Mara ya pili Akaunti kufungwa kwa siku 7. Mara ya tatu Kufungwa kabisa.</p>
+    </div>
+
+    <div class="rule">
+        <p class="kosa">2. MAUDHUI HALALI</p>
+        <p>Hapana kupost uchi, vurugu, dawa za kulevya, au udanganyifu. Video na picha ziwe zako au uwe na ruhusa.</p>
+        <p class="adhabu">ADHABU: Content inafutwa mara moja + Akaunti kufungwa kwa siku 14.</p>
+    </div>
+
+    <div class="rule">
+        <p class="kosa">3. BIASHARA YA UONGO</p>
+        <p>Kwenye Viji Sokoni hapana kudanganya wateja. Toa bei halisi na picha halisi.</p>
+        <p class="adhabu">ADHABU: Tangazo linatolewa + Kuzuiwa kupost kwa siku 30.</p>
+    </div>
+
+    <div class="rule">
+        <p class="kosa">4. KUTOKUHESHIMU COPYRIGHT</p>
+        <p>Kwenye Viji Trends na Makala, hapana kuiba kazi za watu. Tumia kazi yako mwenyewe.</p>
+        <p class="adhabu">ADHABU: Video inafutwa + Ripoti 3 = Akaunti inafungwa.</p>
+    </div>
+
+    <div class="rule">
+        <p class="kosa">5. USALAMA WA AKAUNTI</p>
+        <p>Hapana kuiba password ya mtu au kufungua akaunti za wengine.</p>
+        <p class="adhabu">ADHABU: Kufungwa kabisa + kuripotiwa kwa mamlaka.</p>
+    </div>
+
+    <h2>JINSI YA KURIPOTI</h2>
+    <p>Ukiiona mtu kavunja sheria bofya button ya "RIPOTI" kwenye post yake. Timu ya Viji itachunguza ndani ya masaa 24.</p>
+    
+    <p style="text-align:center; margin-top:30px;"><b>Imesasishwa: Septemba 2026</b></p>
+
+    <div class="back">
+        <a href="index.html">⬅ Rudi Nyumbani</a>
     </div>
 </div>
 
-<footer><p>© 2026 Viji App - Mara, Tanzania</p></footer>
 </body>
-</html>
+    </html>
