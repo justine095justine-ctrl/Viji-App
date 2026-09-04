@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ongeza Tangazo - Viji Sokoni</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; }
+ .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #F97316; display:flex; align-items:center; gap:15px; position:sticky; top:0; }
+ .back-btn { background:#F97316; color:white; padding:10px 18px; border-radius:8px; font-weight:bold; text-decoration:none; }
+ .header-center { flex:1; text-align:center; }
+ .header-center h1 { color:#F97316; font-size:18px; }
+ .container { padding:15px; max-width:700px; margin:auto; }
+ .card { background:#1A1A1A; padding:20px; border-radius:15px; border:1px solid #222; margin-bottom:15px; }
+ .viji-namba { background:#222; border:2px solid #22C55E; padding:15px; border-radius:12px; text-align:center; margin-bottom:15px; }
+ .viji-namba h3 { color:#22C55E; margin-bottom:8px; }
+ .namba { font-size:24px; font-weight:bold; color:white; }
+  label { font-size:13px; color:#aaa; margin-bottom:8px; display:block; font-weight:bold; }
+  input, select, textarea { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; margin-bottom:15px; }
+ .vip-box { background:#1A1A1A; border:2px solid #F97316; padding:15px; border-radius:12px; }
+ .vip-option { display:flex; justify-content:space-between; align-items:center; padding:14px; background:#222; border-radius:8px; margin-bottom:10px; }
+ .vip-option input { width:auto; margin:0; }
+ .bei-tag { background:#F97316; padding:6px 14px; border-radius:8px; font-weight:bold; }
+ .btn { background:#22C55E; color:white; padding:15px; border:none; border-radius:10px; width:100%; font-weight:bold; font-size:16px; cursor:pointer; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <a href="viji-sokoni.html" class="back-btn">← Rudi</a>
+    <div class="header-center"><h1>+ Ongeza Tangazo</h1></div>
+  </div>
+
+  <div class="container">
+
+    <!-- SEHEMU YA NAMBA YA VIJI -->
+    <div class="viji-namba">
+      <h3>📱 LIPA HAPA KWA TANGAZO LAKO</h3>
+      <div class="namba">0681821524</div>
+      <p>Jina: <b>VERONICA BARAKA</b></p>
+      <p style="font-size:12px; color:#aaa;">Baada ya kulipa tuma Screenshot WhatsApp</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:15px;">1. Weka Maelezo ya Bidhaa/Huduma</h3>
+      <label>Aina *</label>
+      <select><option>Bidhaa</option><option>Huduma</option><option>Shule</option><option>Shirika</option></select>
+      <label>Jina la Kichwa *</label>
+      <input type="text" placeholder="Mfano: Simu ya Samsung A15">
+      <label>Maelezo *</label>
+      <textarea rows="4"></textarea>
+      <label>Bei Tsh</label>
+      <input type="number" placeholder="350000">
+      <label>Mahali *</label>
+      <input type="text" placeholder="Mwanza, Nyegezi">
+      <label>Namba yako ya Simu/WhatsApp *</label>
+      <input type="tel" placeholder="0681 821 524">
+    </div>
+
+    <div class="vip-box">
+      <h3 style="margin-bottom:15px; color:#F97316;">2. Chagua Kifurushi cha Tangazo</h3>
+      <div class="vip-option"><input type="radio" name="kifurushi" value="2000-10" checked><div><b>SALINI</b><br><span style="font-size:12px; color:#aaa;">Tangazo 1. Siku 10</span></div><div class="bei-tag">Tsh 2,000</div></div>
+      <div class="vip-option"><input type="radio" name="kifurushi" value="2000-14"><div><b>BIDHAA 10</b><br><span style="font-size:12px; color:#aaa;">Bidhaa 10 za 10k-250k. Siku 14</span></div><div class="bei-tag">Tsh 2,000</div></div>
+      <div class="vip-option"><input type="radio" name="kifurushi" value="5000-15"><div><b>DUKA</b><br><span style="font-size:12px; color:#aaa;">Duka Zima. Siku 15</span></div><div class="bei-tag">Tsh 5,000</div></div>
+      <div class="vip-option"><input type="radio" name="kifurushi" value="10000-7"><div><b>SHULE/SHIRIKA</b><br><span style="font-size:12px; color:#aaa;">Imethibitishwa ⭐ Siku 7</span></div><div class="bei-tag">Tsh 10,000</div></div>
+    </div>
+
+    <button class="btn" onclick="chapisha()">✅ Chapisha Tangazo</button>
+  </div>
+
+<script>
+  function chapisha(){
+    let kifurushi = document.querySelector('input[name="kifurushi"]:checked').value.split('-');
+    let bei = kifurushi[0];
+    let siku = kifurushi[1];
+    alert(`✅ Tangazo limepokelewa!\n\nTuma Tsh ${parseInt(bei).toLocaleString()} kwenda:\n0681821524 - VERONICA BARAKA\nKwa siku ${siku}.\nTuma Screenshot ili lipandishwe.`);
+    window.location.href = 'viji-sokoni.html';
+  }
+</script>
+
+</body>
+</html>
