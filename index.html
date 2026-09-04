@@ -1,23 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="sw">
 <head>
-    <title>Viji - Nyumbani</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body{font-family:Arial; text-align:center; padding:50px; background:#f5f5f5}
-        h1{color:#28a745}
-        .btn{
-            display:block; background:#28a745; color:white; text-decoration:none;
-            padding:15px; border-radius:10px; margin:15px; font-size:18px; font-weight:bold
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karibu Viji App</title>
+<style>
+    *{margin:0; padding:0; box-sizing:border-box; font-family:Arial}
+    body{background:#0a0a1a; color:white; padding:15px}
+    
+    .header{
+        background:linear-gradient(135deg, #1a1a3a, #0a0a1a);
+        padding:20px; border-radius:15px; text-align:center; margin-bottom:20px
+    }
+    .header h1{font-size:26px; margin-bottom:8px}
+    .header p{font-size:13px; opacity:0.8}
+    
+    .grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:12px;
+    }
+    .card{
+        padding:25px 10px; border-radius:15px; text-align:center;
+        text-decoration:none; color:white; transition:0.2s
+    }
+    .card:active{transform:scale(0.95)}
+    
+    .card h3{font-size:16px; margin:8px 0 4px 0}
+    .card p{font-size:12px; opacity:0.9}
+    .icon{font-size:30px; margin-bottom:5px}
+    
+    .blue{background:#007bff}
+    .orange{background:#fd7e14}
+    .purple{background:#6f42c1}
+    .green{background:#28a745}
+    .red-full{grid-column: 1 / -1; background:#dc3545}
+    .pink-full{grid-column: 1 / -1; background:#e83e8c}
+    
+    .toggle{
+        position:absolute; top:15px; right:15px;
+        background:#333; padding:8px 12px; border-radius:20px; font-size:12px
+    }
+</style>
 </head>
 <body>
-    <h1>Karibu VIJI 🛒</h1>
-    <p>Chagua unachotaka</p>
+
+<div class="header">
+    <div class="toggle">☀️ Light</div>
+    <h1>🎉 Karibu Viji App</h1>
+    <p>Burudani | Elimu | Biashara | Ujuzi | Sheria</p>
+</div>
+
+<div class="grid">
+    <a href="#" class="card blue">
+        <div class="icon">🎮</div>
+        <h3>Viji Game</h3>
+        <p>Cheza na ujifunze</p>
+    </a>
     
-    <a href="viji-sokoni.html" class="btn">🛍️ Viji Sokoni</a>
-    <a href="skills.html" class="btn">💼 Viji Skills</a>
-    <a href="trends.html" class="btn">📈 Viji Trends</a>
+    <a href="#" class="card orange">
+        <div class="icon">📖</div>
+        <h3>Viji Stories</h3>
+        <p>Soma hadithi fupi</p>
+    </a>
+    
+    <a href="#" class="card purple">
+        <div class="icon">🎬</div>
+        <h3>Documentary & Makala</h3>
+        <p>Tazama na ujifunze</p>
+    </a>
+    
+    <a href="viji-sokoni.html" class="card green">
+        <div class="icon">🛒</div>
+        <h3>Viji Sokoni</h3>
+        <p>Uza na Nunua</p>
+    </a>
+    
+    <a href="skills.html" class="card red-full">
+        <div class="icon">🔧</div>
+        <h3>Viji Skills</h3>
+        <p>Pata fundi wa ujuzi wowote</p>
+    </a>
+    
+    <a href="trends.html" class="card pink-full">
+        <div class="icon">🔥</div>
+        <h3>Viji Trends</h3>
+        <p>Video fupi + Viral + Methali</p>
+    </a>
+</div>
+
 </body>
 </html>
