@@ -3,126 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ongeza Maudhui - Viji</title>
+<title>Viji Elimu - Kozi, Story, Noti</title>
 <style>
-  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; margin:0; padding:0; }
- .header { background:#1A1A1A; padding:15px; text-align:center; border-bottom:2px solid #F97316; }
- .header h1 { color:#F97316; margin:0; font-size:18px; }
- .container { padding:15px; max-width:600px; margin:auto; }
- .card { background:#1A1A1A; border-radius:12px; padding:20px; border:1px solid #222; }
-  label { display:block; margin-bottom:8px; font-weight:bold; font-size:14px; }
-  input, textarea, select { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; margin-bottom:15px; font-size:14px; box-sizing:border-box; }
-  textarea { min-height:80px; }
- .btn { background:#F97316; color:white; padding:14px; border:none; border-radius:8px; width:100%; font-weight:bold; font-size:16px; cursor:pointer; }
- .alert { background:#222; padding:12px; border-radius:8px; font-size:13px; margin-bottom:20px; border-left:4px solid #F97316; }
- .alert b { color:#F97316; }
- .hidden { display:none; }
- .preview-img { width:100%; height:180px; background:#222; border-radius:10px; object-fit:cover; margin-bottom:10px; display:none; }
- .note { font-size:12px; color:#aaa; margin-top:-10px; margin-bottom:15px; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:90px; }
+  
+  .header { 
+    background:#1A1A1A; padding:15px; text-align:center; 
+    border-bottom:2px solid #F97316; position:sticky; top:0; z-index:10; 
+  }
+  .header h1 { color:#F97316; margin:0; font-size:20px; }
+  .header p { color:#aaa; font-size:12px; margin-top:5px; }
+
+  .tabs { 
+    display:flex; background:#1A1A1A; padding:10px; gap:8px; 
+    overflow-x:auto; border-bottom:1px solid #222;
+  }
+  .tab { 
+    padding:10px 18px; background:#222; border-radius:20px; 
+    white-space:nowrap; cursor:pointer; font-size:14px; font-weight:bold;
+    transition:0.3s;
+  }
+  .tab.active { background:#F97316; color:white; }
+  
+  .container { padding:15px; }
+  
+  .card { 
+    background:#1A1A1A; border-radius:12px; margin-bottom:15px; 
+    overflow:hidden; border:1px solid #222; 
+  }
+  .card img { width:100%; height:180px; object-fit:cover; }
+  .card-body { padding:15px; }
+  
+  .badge { 
+    background:#F97316; padding:4px 10px; border-radius:5px; 
+    font-size:11px; font-weight:bold; display:inline-block; margin-bottom:8px;
+  }
+  .badge.kozi { background:#F97316; }
+  .badge.story { background:#8B5CF6; }
+  .badge.noti { background:#22C55E; }
+  .badge.kitabu { background:#3B82F6; }
+  .badge.makala { background:#EC4899; }
+  
+  .card h3 { margin:5px 0 8px 0; font-size:16px; }
+  .card .meta { color:#aaa; font-size:12px; margin-bottom:10px; }
+  .card .bei { color:#F97316; font-weight:bold; font-size:16px; margin-bottom:12px; }
+  
+  .btn { 
+    background:#F97316; color:white; padding:12px; border:none; 
+    border-radius:8px; width:100%; font-weight:bold; font-size:15px; 
+    cursor:pointer; 
+  }
+  .btn:hover { background:#EA580C; }
+
+  .fab { 
+    position:fixed; bottom:20px; right:20px; background:#F97316; 
+    color:white; width:60px; height:60px; border-radius:50%; 
+    font-size:35px; border:none; box-shadow:0 4px 15px rgba(249,115,22,0.5);
+    display:flex; align-items:center; justify-content:center;
+    text-decoration:none;
+  }
+
+  .dashboard-link {
+    position:fixed; bottom:90px; right:20px; background:#222;
+    color:#F97316; padding:10px 15px; border-radius:25px;
+    font-size:12px; font-weight:bold; text-decoration:none;
+    border:1px solid #F97316;
+  }
 </style>
 </head>
 <body>
 
   <div class="header">
-    <h1>✍️ Ongeza Kozi / Makala / Kitabu</h1>
-    <p style="margin:5px 0 0 0; font-size:13px;">Andika na Pata Pesa</p>
+    <h1>📚 VIJI MAKTABA</h1>
+    <p>Jifunze. Soma. Pata Maarifa</p>
   </div>
 
-  <div class="container">
-    <div class="card">
+  <!-- TABS ZA KUCHUJA -->
+  <div class="tabs">
+    <div class="tab active" data-filter="zote">Zote</div>
+    <div class="tab" data-filter="kozi">Kozi</div>
+    <div class="tab" data-filter="story">Story</div>
+    <div class="tab" data-filter="noti">Noti</div>
+    <div class="tab" data-filter="kitabu">Vitabu</div>
+    <div class="tab" data-filter="makala">Makala</div>
+  </div>
 
-      <div class="alert">
-        <b>📢 Kumbuka Kanuni:</b> Kwa kila mauzo tunakata <b>Asilimia 30</b> tu.
-        Mfano: Ukiuza kwa Tsh 500, unapata Tsh 350. Pesa zinatumwa kila Ijumaa M-Pesa.
+  <div class="container" id="makalaContainer">
+    
+    <!-- MFANO 1: KOZI -->
+    <div class="card" data-type="kozi">
+      <img src="https://via.placeholder.com/400x180/F97316/FFFFFF?text=Kozi+ya+Biashara">
+      <div class="card-body">
+        <span class="badge kozi">KOZI</span>
+        <h3>Jinsi ya Kuza Biashara Mtandaoni</h3>
+        <p class="meta">Video: 4:32 min + PDF + Mtihani | Na: Mwalimu Juma</p>
+        <p class="bei">Bei: Tsh 5,000</p>
+        <button class="btn" onclick="nendaKulipa('Kozi ya Biashara', 5000)">Lipa Tsh 5,000 na Uanze</button>
       </div>
-
-      <form id="fomuOngeza">
-        <label>1. Chagua Aina ya Maudhui *</label>
-        <select id="aina" onchange="onyeshaSehemu()">
-          <option value="story">Story / Hadithi</option>
-          <option value="makala">Makala ya Elimu</option>
-          <option value="noti">Noti za Shule</option>
-          <option value="kitabu">Kitabu PDF</option>
-          <option value="kozi">Kozi Kamili</option>
-        </select>
-
-        <label>2. Picha ya Kifuniko / Cover</label>
-        <img id="preview" class="preview-img">
-        <input type="file" id="pichaGallery" accept="image/*">
-        <input type="text" id="linkPicha" placeholder="Au weka Link ya Picha kutoka internet">
-        <p class="note">Chagua 1: Gallery yako AU Weka Link</p>
-
-        <label>3. Kichwa cha Habari / Kozi *</label>
-        <input type="text" id="kichwa" placeholder="Mfano: Jinsi ya Kupata Wateja" required>
-
-        <!-- SEHEMU YA KOZI -->
-        <div id="sehemuKozi" class="hidden">
-          <div class="alert" style="border-left-color:red;">
-            <b>⚠️ Sheria ya Kozi:</b> Video lazima isiwe zaidi ya Dakika 5
-          </div>
-          <label>4. Pakia Video ya Somo</label>
-          <input type="file" id="videoKozi" accept="video/*">
-          <input type="text" id="linkVideo" placeholder="Au Weka Link ya YouTube">
-
-          <label>5. Pakia Noti / PDF ya Somo</label>
-          <input type="file" id="pdfKozi" accept=".pdf">
-        </div>
-
-        <!-- SEHEMU YA STORY/MAKALA/NOTI -->
-        <div id="sehemuMaudhui">
-          <label>4. Kionjo cha Maneno 20 *</label>
-          <textarea id="kionjo" placeholder="Andika maneno 20 ya kwanza tu..." maxlength="200" required></textarea>
-          <p class="note">Haya ndio watu watasoma Bure ili wavutiwe kulipia</p>
-
-          <label>5. Maudhui Kamili *</label>
-          <textarea id="maudhui" placeholder="Andika maudhui yako kamili hapa..." rows="8" required></textarea>
-        </div>
-
-        <label>6. Weka Bei Tsh</label>
-        <input type="number" id="bei" placeholder="Mfano: 500" value="500">
-
-        <label>7. Jina Lako la Mwalimu / Mwandishi</label>
-        <input type="text" id="mwandishi" placeholder="Mfano: Amina kutoka Mwanza">
-
-        <button type="submit" class="btn">Tuma kwa Ukaguzi</button>
-      </form>
     </div>
+
+    <!-- MFANO 2: STORY -->
+    <div class="card" data-type="story">
+      <img src="https://via.placeholder.com/400x180/8B5CF6/FFFFFF?text=Story+ya+Mapenzi">
+      <div class="card-body">
+        <span class="badge story">STORY</span>
+        <h3>Kijana na Ndoto Yake</h3>
+        <p class="meta">Kionjo: Alikuwa na ndoto kubwa sana. Kila asubuhi aliota kuwa milionea...</p>
+        <p class="bei">Bei: Tsh 500</p>
+        <button class="btn" onclick="nendaKulipa('Kijana na Ndoto Yake', 500)">Lipa Tsh 500 na Soma Kamili</button>
+      </div>
+    </div>
+
+    <!-- MFANO 3: NOTI -->
+    <div class="card" data-type="noti">
+      <img src="https://via.placeholder.com/400x180/22C55E/FFFFFF?text=Noti+za+Form+4">
+      <div class="card-body">
+        <span class="badge noti">NOTI</span>
+        <h3>Noti za Hisabati Form 4 - Muhtasari</h3>
+        <p class="meta">Kurasa 30 za muhtasari kamili + Mifano | Na: Amina Dar</p>
+        <p class="bei">Bei: Tsh 1,000</p>
+        <button class="btn" onclick="nendaKulipa('Noti za Hisabati', 1000)">Lipa Tsh 1,000 na Pakua</button>
+      </div>
+    </div>
+
+    <!-- MFANO 4: KITABU -->
+    <div class="card" data-type="kitabu">
+      <img src="https://via.placeholder.com/400x180/3B82F6/FFFFFF?text=Kitabu+PDF">
+      <div class="card-body">
+        <span class="badge kitabu">KITABU</span>
+        <h3>Siri 7 za Mafanikio</h3>
+        <p class="meta">Kitabu Kamili PDF Kurasa 120 | Na: Dr. Musa</p>
+        <p class="bei">Bei: Tsh 2,000</p>
+        <button class="btn" onclick="nendaKulipa('Siri 7 za Mafanikio', 2000)">Lipa Tsh 2,000 na Pakua</button>
+      </div>
+    </div>
+
   </div>
+
+  <!-- LINK YA DASHBOARD YA MWANDISHI -->
+  <a href="viji-dashboard.html" class="dashboard-link">📊 Dashboard Yangu</a>
+
+  <!-- BATANI YA KUONGEZA MAUDHUI -->
+  <a href="viji-ongeza.html" class="fab">+</a>
 
 <script>
-  function onyeshaSehemu(){
-    let aina = document.getElementById('aina').value;
-    if(aina == 'kozi'){
-      document.getElementById('sehemuKozi').classList.remove('hidden');
-      document.getElementById('sehemuMaudhui').classList.add('hidden');
-      document.getElementById('bei').value = 5000;
-    } else {
-      document.getElementById('sehemuKozi').classList.add('hidden');
-      document.getElementById('sehemuMaudhui').classList.remove('hidden');
-      if(aina == 'kitabu') document.getElementById('bei').value = 2000;
-      else if(aina == 'noti') document.getElementById('bei').value = 1000;
-      else document.getElementById('bei').value = 500;
-    }
+  // 1. FUNCTION YA KUCHUJA KWA TABS
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      let filter = this.getAttribute('data-filter');
+      document.querySelectorAll('.card').forEach(card => {
+        if(filter == 'zote') { 
+          card.style.display = 'block'; 
+        } else {
+          let type = card.getAttribute('data-type');
+          card.style.display = type == filter ? 'block' : 'none';
+        }
+      });
+    });
+  });
+
+  // 2. FUNCTION YA KWENDA KULIPA
+  function nendaKulipa(jina, bei){
+    // Hifadhi kwenye localStorage ili ukurasa wa malipo uujue
+    localStorage.setItem('bidhaa_jina', jina);
+    localStorage.setItem('bidhaa_bei', bei);
+    // Nenda ukurasa wa malipo
+    window.location.href = 'malipo.html';
   }
-
-  // PREVIEW YA PICHA
-  document.getElementById('pichaGallery').addEventListener('change', function(e){
-    const file = e.target.files[0];
-    if(file){
-      const reader = new FileReader();
-      reader.onload = function(event){
-        document.getElementById('preview').src = event.target.result;
-        document.getElementById('preview').style.display = 'block';
-      }
-      reader.readAsDataURL(file);
-    }
-  });
-
-  document.getElementById('fomuOngeza').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert("Asante! Maudhui yako yametumwa kwa ukaguzi.\nBaada ya masaa 24 utapata jibu.");
-    document.getElementById('fomuOngeza').reset();
-  });
 </script>
 
 </body>
