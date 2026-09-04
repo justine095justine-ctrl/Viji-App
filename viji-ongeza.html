@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ongeza Maudhui - Viji</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:40px; }
+  
+  .header { background:#1A1A1A; padding:15px; text-align:center; border-bottom:2px solid #F97316; position:sticky; top:0; }
+  .header h1 { color:#F97316; margin:0; font-size:18px; }
+  .header p { color:#aaa; font-size:12px; margin-top:5px; }
+  
+  .container { padding:15px; max-width:600px; margin:auto; }
+  .card { background:#1A1A1A; border-radius:12px; padding:20px; border:1px solid #222; }
+  
+  label { font-size:13px; color:#aaa; margin-bottom:6px; display:block; margin-top:15px; font-weight:bold; }
+  input, select, textarea { 
+    width:100%; padding:12px; background:#222; border:1px solid #333; 
+    border-radius:8px; color:white; font-size:14px; box-sizing:border-box; 
+  }
+  textarea { height:150px; resize:vertical; }
+  input:focus, select:focus, textarea:focus { border-color:#F97316; outline:none; }
+  
+  .btn { 
+    background:#F97316; color:white; padding:14px; border:none; 
+    border-radius:8px; width:100%; font-weight:bold; font-size:16px; 
+    margin-top:20px; cursor:pointer; 
+  }
+  .btn:hover { background:#EA580C; }
+  
+  .info-box { 
+    background:#222; padding:12px; border-radius:8px; 
+    font-size:12px; border-left:4px solid #F97316; margin-top:15px; 
+  }
+  .file-upload { 
+    border:2px dashed #333; padding:20px; text-align:center; 
+    border-radius:8px; cursor:pointer; 
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>➕ Ongeza Maudhui Mapya</h1>
+    <p>Pata 70% ya kila mauzo yako</p>
+  </div>
+
+  <div class="container">
+    <form class="card">
+      
+      <label>1. Chagua Aina ya Maudhui *</label>
+      <select required>
+        <option value="">-- Chagua --</option>
+        <option value="kozi">Kozi - Video + PDF</option>
+        <option value="story">Story - Riwaya</option>
+        <option value="noti">Noti - Muhtasari wa Masomo</option>
+        <option value="kitabu">Kitabu - PDF Kamili</option>
+        <option value="makala">Makala - Blog</option>
+      </select>
+
+      <label>2. Jina la Kichwa *</label>
+      <input type="text" placeholder="Mfano: Jinsi ya Kupata Pesa Mtandaoni 2026" required>
+
+      <label>3. Maelezo Mafupi / Kionjo *</label>
+      <textarea placeholder="Andika aya 2-3 za kuvutia watu wanonue. Hiki ndio kionjo cha bure." required></textarea>
+
+      <label>4. Weka Bei Tsh *</label>
+      <input type="number" placeholder="Mfano: 500, 1000, 5000" min="100" required>
+
+      <label>5. Pakia Faili Kuu *</label>
+      <div class="file-upload">
+        <input type="file" accept=".pdf,.mp4,.docx,.zip" style="display:none;" id="fileInput">
+        <label for="fileInput" style="cursor:pointer;">
+          📁 Bonyeza hapa kuchagua Faili<br>
+          <small style="color:#aaa;">PDF, Video, DOCX. Max 100MB</small>
+        </label>
+      </div>
+
+      <label>6. Picha ya Kava / Thumbnail</label>
+      <div class="file-upload">
+        <input type="file" accept="image/*" style="display:none;" id="imageInput">
+        <label for="imageInput" style="cursor:pointer;">
+          🖼️ Chagua Picha ya Kuvutia<br>
+          <small style="color:#aaa;">Inapendekezwa: 1200x600</small>
+        </label>
+      </div>
+
+      <div class="info-box">
+        <b>📊 Ukikubali:</b><br>
+        Wewe unapata: <b style="color:#22C55E;">70%</b><br>
+        Viji Maktaba: <b style="color:#F97316;">30%</b><br>
+        Malipo yanatumwa kila Ijumaa kwenye namba yako.
+      </div>
+
+      <button type="submit" class="btn">Tuma kwa Ukaguzi</button>
+      <p style="font-size:12px; color:#aaa; text-align:center; margin-top:10px;">
+        Admin atakagua ndani ya masaa 24. Utapata SMS ukikubaliwa.
+      </p>
+
+    </form>
+    
+    <a href="viji-elimu.html" style="display:block; text-align:center; margin-top:15px; color:#aaa; text-decoration:none;">← Rudi Maktabani</a>
+  </div>
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('✅ Asante! Maudhui yako yametumwa kwa ukaguzi.\n\nUtapata ujumbe ukikubaliwa ndani ya masaa 24.');
+    window.location.href = 'viji-elimu.html';
+  });
+</script>
+
+</body>
+</html>
