@@ -1,8 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><title>Viji Skills</title></head>
+<head>
+  <title>Viji Skills</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
 <body>
   <h1>Karibu Viji Skills</h1>
-  <p>Hapa mafundi watajiandikisha</p>
+  <p>Jisajili kama Fundi</p>
+
+  <input id="jina" placeholder="Jina la Fundi"><br><br>
+  <input id="uhunzi" placeholder="Ujuzi: Bomba, Umeme, Useremala"><br><br>
+  <input id="simu" placeholder="Namba ya Simu"><br><br>
+  <button onclick="sajiliFundi()">Jisajili</button>
+
+  <script>
+    function sajiliFundi() {
+      var jina = document.getElementById('jina').value;
+      var ujuzi = document.getElementById('uhunzi').value;
+      var simu = document.getElementById('simu').value;
+      
+      firebase.database().ref('mafundi/').push({
+        jina: jina,
+        ujuzi: ujuzi,
+        simu: simu
+      });
+      alert('Hongera! Umejisajili ' + jina);
+    }
+  </script>
 </body>
 </html>
