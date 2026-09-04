@@ -3,148 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karibu Viji App</title>
+<title>Viji App - Fursa Ziko Mkononi</title>
 <style>
-    :root{
-        --bg:#0D0F1A; --card-bg:#1A1E2E; --text:white; --subtext:#aaa;
-        --blue:#2563EB; --orange:#F97316; --purple:#8B5CF6; --green:#22C55E;
-        --red:#EF4444; --pink:#EC4899; --cyan:#06B6D4; --yellow:#FACC15; 
-        --navy:#1E3A8A; /* Hii ndio Rangi ya Viji Sheria */
-    }
-    body.light{
-        --bg:#F5F5F5; --card-bg:white; --text:#111; --subtext:#555;
-    }
-
     *{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial}
-    body{background:var(--bg); color:var(--text); padding:0; transition:0.3s}
+    body{background:#0D0F1A; color:white; min-height:100vh}
     
-    .header{
-        background:linear-gradient(135deg, var(--card-bg), var(--bg));
-        padding:25px 15px; text-align:center; position:relative
-    }
-    .header h1{font-size:24px; margin-bottom:6px}
-    .header p{font-size:13px; opacity:0.7; color:var(--subtext)}
-    .toggle{
-        position:absolute; top:15px; right:15px;
-        background:var(--card-bg); padding:6px 12px; border-radius:20px; 
-        font-size:12px; cursor:pointer; border:1px solid #333
-    }
+    .header{background:linear-gradient(135deg, #15803D, #F97316); padding:30px 15px; text-align:center}
+    .header h1{font-size:28px; margin-bottom:5px}
+    .header p{opacity:0.8; font-size:14px}
     
-    .container{padding:15px}
-    .grid{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        gap:12px;
-    }
-    .card{
-        padding:20px 10px; border-radius:18px; text-align:center;
-        text-decoration:none; color:white; transition:0.2s;
-        box-shadow:0 4px 10px rgba(0,0,0,0.3)
-    }
-    body.light .card{color:#111}
-    .card:active{transform:scale(0.96)}
-    .card h3{font-size:15px; margin:8px 0 4px 0; font-weight:bold}
-    .card p{font-size:11px; opacity:0.85}
-    .icon{font-size:28px}
+    .container{padding:20px}
     
-    .blue{background:var(--blue)}
-    .orange{background:var(--orange)}
-    .purple{background:var(--purple)}
-    .green{background:var(--green)}
-    .red-full{grid-column: 1 / -1; background:var(--red)}
-    .pink-full{grid-column: 1 / -1; background:var(--pink)}
-    .cyan-half{background:var(--cyan)}
-    .yellow-half{background:var(--yellow); color:#000}
-    .navy-full{grid-column: 1 / -1; background:var(--navy)} /* Rangi mpya ya Sheria */
+    .menu-grid{display:grid; grid-template-columns:1fr; gap:15px; margin-top:20px}
     
+    .menu-card{
+        text-decoration:none; 
+        color:white; 
+        padding:25px 20px; 
+        border-radius:15px; 
+        display:flex; 
+        align-items:center; 
+        gap:15px;
+        transition:transform 0.2s
+    }
+    .menu-card:active{transform:scale(0.97)}
+    
+    .menu-card .icon{font-size:35px}
+    .menu-card .text h3{font-size:18px; margin-bottom:3px}
+    .menu-card .text p{font-size:12px; opacity:0.8}
+    
+    .card-sokoni{background:linear-gradient(135deg, #22C55E, #15803D)}
+    .card-skills{background:linear-gradient(135deg, #2563EB, #1E3A8A)}
+    .card-trends{background:linear-gradient(135deg, #F97316, #EA580C)}
+    
+    .footer{padding:20px; text-align:center; font-size:11px; opacity:0.5; margin-top:30px}
 </style>
 </head>
 <body>
 
 <div class="header">
-    <div class="toggle" onclick="toggleMode()">🌙 Dark</div>
-    <h1>🎉 Karibu Viji App</h1>
-    <p>Burudani | Elimu | Biashara | Ujuzi | Sheria</p>
+    <h1>🚀 VIJI APP</h1>
+    <p>Fursa Ziko Mkononi Mwako</p>
 </div>
 
 <div class="container">
-<div class="grid">
-    <a href="#" class="card blue">
-        <div class="icon">🎮</div>
-        <h3>Viji Game</h3>
-        <p>Cheza na ujifunze</p>
-    </a>
+    <h2 style="font-size:16px; margin-bottom:15px">Chagua Unachotaka 👇</h2>
     
-    <a href="#" class="card orange">
-        <div class="icon">📖</div>
-        <h3>Viji Stories</h3>
-        <p>Soma hadithi fupi</p>
-    </a>
-    
-    <a href="#" class="card purple">
-        <div class="icon">🎬</div>
-        <h3>Documentary &<br>Makala</h3>
-        <p>Tazama na ujifunze</p>
-    </a>
-    
-    <a href="viji-sokoni.html" class="card green">
-        <div class="icon">🛒</div>
-        <h3>Viji Sokoni</h3>
-        <p>Uza na Nunua</p>
-    </a>
-    
-    <a href="skills.html" class="card red-full">
-        <div class="icon">🔧</div>
-        <h3>Viji Skills</h3>
-        <p>Pata fundi wa ujuzi wowote</p>
-    </a>
-    
-    <a href="trends.html" class="card pink-full">
-        <div class="icon">🔥</div>
-        <h3>Viji Trends</h3>
-        <p>Video fupi + Viral + Methali</p>
-    </a>
-    
-    <a href="jamii.html" class="card cyan-half">
-        <div class="icon">💬</div>
-        <h3>Viji Jamii</h3>
-        <p>Jadili na watu</p>
-    </a>
-    
-    <a href="#" class="card yellow-half">
-        <div class="icon">📍</div>
-        <h3>Viji Events</h3>
-        <p>Tukio na matangazo</p>
-    </a>
-    
-    <a href="sheria.html" class="card navy-full">
-        <div class="icon">⚖️</div>
-        <h3>Viji Sheria</h3>
-        <p>Jua haki zako</p>
-    </a>
-    
-</div>
+    <div class="menu-grid">
+        
+        <!-- KADI 1: VIJI SOKONI -->
+        <a href="viji-sokoni.html" class="menu-card card-sokoni">
+            <div class="icon">🛒</div>
+            <div class="text">
+                <h3>Viji Sokoni</h3>
+                <p>Uza na Nunua Bidhaa - Post 3 Bure</p>
+            </div>
+        </a>
+
+        <!-- KADI 2: VIJI SKILLS -->
+        <a href="viji-skills.html" class="menu-card card-skills">
+            <div class="icon">🔧</div>
+            <div class="text">
+                <h3>Viji Skills</h3>
+                <p>Pata Fundi / Jiandikishe Kama Fundi</p>
+            </div>
+        </a>
+
+        <!-- KADI 3: VIJI TRENDS -->
+        <a href="viji-trends.html" class="menu-card card-trends">
+            <div class="icon">🔥</div>
+            <div class="text">
+                <h3>Viji Trends</h3>
+                <p>Video Fupi + Viral + Methali</p>
+            </div>
+        </a>
+
+    </div>
 </div>
 
-<script>
-// Kazi ya Kubadilisha Light/Dark Mode
-function toggleMode(){
-    document.body.classList.toggle('light');
-    const btn = document.querySelector('.toggle');
-    if(document.body.classList.contains('light')){
-        btn.innerText = '🌙 Dark';
-        localStorage.setItem('theme', 'light');
-    } else {
-        btn.innerText = '☀️ Light';
-        localStorage.setItem('theme', 'dark');
-    }
-}
-// Kumbuka theme aliyochagua
-if(localStorage.getItem('theme') === 'light'){
-    document.body.classList.add('light');
-    document.querySelector('.toggle').innerText = '🌙 Dark';
-}
-</script>
+<div class="footer">
+    © 2026 Viji App - Made in Mwanza, TZ
+</div>
 
 </body>
 </html>
