@@ -6,7 +6,7 @@
 <title>Viji Elimu - Kozi, Story, Noti</title>
 <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:90px; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:100px; }
   
   .header { 
     background:#1A1A1A; padding:15px; text-align:center; 
@@ -19,6 +19,7 @@
     display:flex; background:#1A1A1A; padding:10px; gap:8px; 
     overflow-x:auto; border-bottom:1px solid #222;
   }
+  .tabs::-webkit-scrollbar { display:none; }
   .tab { 
     padding:10px 18px; background:#222; border-radius:20px; 
     white-space:nowrap; cursor:pointer; font-size:14px; font-weight:bold;
@@ -32,7 +33,9 @@
     background:#1A1A1A; border-radius:12px; margin-bottom:15px; 
     overflow:hidden; border:1px solid #222; 
   }
-  .card img { width:100%; height:180px; object-fit:cover; }
+  .card img { 
+    width:100%; height:180px; object-fit:cover; background:#222; 
+  }
   .card-body { padding:15px; }
   
   .badge { 
@@ -56,19 +59,40 @@
   }
   .btn:hover { background:#EA580C; }
 
+  /* MAREKEBISHO YA + */
   .fab { 
-    position:fixed; bottom:20px; right:20px; background:#F97316; 
-    color:white; width:60px; height:60px; border-radius:50%; 
-    font-size:35px; border:none; box-shadow:0 4px 15px rgba(249,115,22,0.5);
-    display:flex; align-items:center; justify-content:center;
+    position:fixed; 
+    bottom:25px; 
+    right:20px; 
+    background:#F97316; 
+    color:white; 
+    width:56px; 
+    height:56px; 
+    border-radius:50%; 
+    font-size:32px; 
+    border:none; 
+    box-shadow:0 4px 15px rgba(249,115,22,0.5);
+    display:flex; 
+    align-items:center; 
+    justify-content:center;
     text-decoration:none;
+    z-index:999; /* Iwe juu kabisa */
   }
+  .fab:hover { background:#EA580C; }
 
   .dashboard-link {
-    position:fixed; bottom:90px; right:20px; background:#222;
-    color:#F97316; padding:10px 15px; border-radius:25px;
-    font-size:12px; font-weight:bold; text-decoration:none;
+    position:fixed; 
+    bottom:90px; 
+    right:20px; 
+    background:#222;
+    color:#F97316; 
+    padding:10px 15px; 
+    border-radius:25px;
+    font-size:12px; 
+    font-weight:bold; 
+    text-decoration:none;
     border:1px solid #F97316;
+    z-index:998;
   }
 </style>
 </head>
@@ -93,7 +117,7 @@
     
     <!-- MFANO 1: KOZI -->
     <div class="card" data-type="kozi">
-      <img src="https://via.placeholder.com/400x180/F97316/FFFFFF?text=Kozi+ya+Biashara">
+      <img src="https://via.placeholder.com/400x180/F97316/FFFFFF?text=Kozi+ya+Biashara" alt="Kozi">
       <div class="card-body">
         <span class="badge kozi">KOZI</span>
         <h3>Jinsi ya Kuza Biashara Mtandaoni</h3>
@@ -105,7 +129,7 @@
 
     <!-- MFANO 2: STORY -->
     <div class="card" data-type="story">
-      <img src="https://via.placeholder.com/400x180/8B5CF6/FFFFFF?text=Story+ya+Mapenzi">
+      <img src="https://via.placeholder.com/400x180/8B5CF6/FFFFFF?text=Story+ya+Mapenzi" alt="Story">
       <div class="card-body">
         <span class="badge story">STORY</span>
         <h3>Kijana na Ndoto Yake</h3>
@@ -117,7 +141,7 @@
 
     <!-- MFANO 3: NOTI -->
     <div class="card" data-type="noti">
-      <img src="https://via.placeholder.com/400x180/22C55E/FFFFFF?text=Noti+za+Form+4">
+      <img src="https://via.placeholder.com/400x180/22C55E/FFFFFF?text=Noti+za+Form+4" alt="Noti">
       <div class="card-body">
         <span class="badge noti">NOTI</span>
         <h3>Noti za Hisabati Form 4 - Muhtasari</h3>
@@ -127,24 +151,12 @@
       </div>
     </div>
 
-    <!-- MFANO 4: KITABU -->
-    <div class="card" data-type="kitabu">
-      <img src="https://via.placeholder.com/400x180/3B82F6/FFFFFF?text=Kitabu+PDF">
-      <div class="card-body">
-        <span class="badge kitabu">KITABU</span>
-        <h3>Siri 7 za Mafanikio</h3>
-        <p class="meta">Kitabu Kamili PDF Kurasa 120 | Na: Dr. Musa</p>
-        <p class="bei">Bei: Tsh 2,000</p>
-        <button class="btn" onclick="nendaKulipa('Siri 7 za Mafanikio', 2000)">Lipa Tsh 2,000 na Pakua</button>
-      </div>
-    </div>
-
   </div>
 
   <!-- LINK YA DASHBOARD YA MWANDISHI -->
   <a href="viji-dashboard.html" class="dashboard-link">📊 Dashboard Yangu</a>
 
-  <!-- BATANI YA KUONGEZA MAUDHUI -->
+  <!-- BATANI YA KUONGEZA MAUDHUI - ILIYOREKEBISHWA -->
   <a href="viji-ongeza.html" class="fab">+</a>
 
 <script>
@@ -168,10 +180,8 @@
 
   // 2. FUNCTION YA KWENDA KULIPA
   function nendaKulipa(jina, bei){
-    // Hifadhi kwenye localStorage ili ukurasa wa malipo uujue
     localStorage.setItem('bidhaa_jina', jina);
     localStorage.setItem('bidhaa_bei', bei);
-    // Nenda ukurasa wa malipo
     window.location.href = 'malipo.html';
   }
 </script>
