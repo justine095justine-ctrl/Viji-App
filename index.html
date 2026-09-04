@@ -4,35 +4,60 @@
     <title>Viji App - Burudani + Elimu + Biashara</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body{font-family:Arial; margin:0; background:#f5f5f5}
-        header{background:#000080; color:white; text-align:center; padding:20px} /* BLUE BLACK */
+        :root{
+            --bg:#f5f5f5;
+            --text:#222;
+            --card-text:white;
+            --header:#000080;
+            --footer:#fff;
+        }
+        body.dark{
+            --bg:#121212;
+            --text:#eee;
+            --card-text:white;
+            --header:#0a0a40;
+            --footer:#1e1e1e;
+        }
+
+        body{font-family:Arial; margin:0; background:var(--bg); color:var(--text); transition:0.3s}
+        header{background:var(--header); color:white; text-align:center; padding:20px; position:relative}
         header h1{margin:0}
+        
+        /* BUTTON YA DARK MODE */
+        .toggle-btn{
+            position:absolute; top:15px; right:15px; 
+            background:rgba(255,255,255,0.2); border:none; 
+            color:white; padding:8px 12px; border-radius:20px;
+            cursor:pointer; font-size:14px;
+        }
+
         .container{padding:15px}
         .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-        .card{padding:25px 15px; border-radius:15px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.2); color:white}
-        .card a{text-decoration:none; color:white; font-size:17px; font-weight:bold}
+        .card{padding:25px 15px; border-radius:15px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.2); color:var(--card-text)}
+        .card a{text-decoration:none; color:var(--card-text); font-size:17px; font-weight:bold}
         .card p{font-size:13px; margin-top:8px; opacity:0.9}
         .card:hover{transform:scale(1.03); transition:0.2s}
 
-        /* RANGI ZOTE MPYA KAMA PICHA YAKO */
-        .game{background:#1e90ff;}       /* 1. BLUE */
-        .stories{background:#ff8c00;}     /* 2. ORANGE */
-        .makala{background:#9b59b6;}      /* 3. PURPLE */
-        .sokoni{background:#28a745;}      /* 4. GREEN */
-        .skills{background:#e74c3c;}      /* 5. RED */
-        .trends{background:#ff1493;}      /* 6. PINK */
-        .jamii{background:#17a2b8;}       /* 7. TEAL */
-        .events{background:#ffc107; color:#222} /* 8. YELLOW */
+        /* RANGI ZOTE */
+        .game{background:#1e90ff;}      
+        .stories{background:#ff8c00;}    
+        .makala{background:#9b59b6;}     
+        .sokoni{background:#28a745;}     
+        .skills{background:#e74c3c;}     
+        .trends{background:#ff1493;}     
+        .jamii{background:#17a2b8;}      
+        .events{background:#ffc107; color:#222} 
         .events a{color:#222}
-        .sheria{background:#000080;}      /* 9. BLUE BLACK */
+        .sheria{background:#000080;}      
 
-        .skills, .trends, .sheria{grid-column: span 2;} /* Hizi zichukue mistari 2 */
-        footer{text-align:center; padding:15px; color:#666; background:white; margin-top:10px}
+        .skills, .trends, .sheria{grid-column: span 2;}
+        footer{text-align:center; padding:15px; background:var(--footer); color:var(--text); margin-top:10px}
     </style>
 </head>
 <body>
 
 <header>
+    <button class="toggle-btn" onclick="toggleDark()">🌙 Dark</button>
     <h1>🎉 Karibu Viji App</h1>
     <p>Burudani | Elimu | Biashara | Ujuzi | Sheria</p>
 </header>
@@ -54,5 +79,26 @@
 </div>
 
 <footer><p>© 2026 Viji App - Mwanza, Tanzania</p></footer>
+
+<script>
+    // KAZI YA BUTTON YA DARK MODE
+    function toggleDark(){
+        document.body.classList.toggle("dark");
+        // Hifadhi chaguo
+        if(document.body.classList.contains("dark")){
+            localStorage.setItem("theme","dark");
+            document.querySelector(".toggle-btn").innerHTML = "☀️ Light";
+        } else {
+            localStorage.setItem("theme","light");
+            document.querySelector(".toggle-btn").innerHTML = "🌙 Dark";
+        }
+    }
+    // Ikiwa mtu alichagua dark awali, iweke moja kwa moja
+    if(localStorage.getItem("theme") === "dark"){
+        document.body.classList.add("dark");
+        document.querySelector(".toggle-btn").innerHTML = "☀️ Light";
+    }
+</script>
+
 </body>
-</html>
+                                    </html>
