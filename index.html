@@ -19,46 +19,32 @@
   .full { grid-column: span 2; }
   .footer { color:#444; font-size:11px; margin-top:30px; }
 
-  .header { background:#1A1A1A; padding:15px; text-align:center; position:sticky; top:0; z-index:10; }
-  .header.sokoni { border-bottom:2px solid #22C55E; }
-  .header.maktaba { border-bottom:2px solid #F97316; }
-  .header h1 { margin:0; font-size:20px; }
-  .header.sokoni h1 { color:#22C55E; }
-  .header.maktaba h1 { color:#F97316; }
+  .header { background:#1A1A1A; padding:15px; text-align:center; position:sticky; top:0; z-index:10; border-bottom:2px solid #F97316; }
+  .header h1 { color:#F97316; margin:0; font-size:20px; }
   .header p { color:#aaa; font-size:12px; margin-top:5px; }
-  
   .search-box { padding:10px 15px; background:#1A1A1A; }
   .search-box input { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; font-size:14px; }
-  
   .tabs { display:flex; background:#1A1A1A; padding:10px; gap:8px; overflow-x:auto; }
   .tab { padding:10px 18px; background:#222; border-radius:20px; cursor:pointer; font-size:14px; font-weight:bold; white-space:nowrap; }
-  .tabs.sokoni .tab.active { background:#22C55E; }
-  .tabs.maktaba .tab.active { background:#F97316; }
-
+  .tab.active { background:#F97316; }
   .app-container { padding:15px; max-width:700px; margin:auto; text-align:left; }
   .card { background:#1A1A1A; border-radius:12px; margin-bottom:15px; padding:15px; border:1px solid #222; display:block; }
   .badge { padding:4px 10px; border-radius:5px; font-size:11px; font-weight:bold; display:inline-block; margin-bottom:8px; }
-  .badge.sokoni { background:#22C55E; } .badge.kozi { background:#F97316; } .badge.story { background:#8B5CF6; } .badge.noti { background:#22C55E; }
+  .badge.kozi { background:#F97316; } .badge.story { background:#8B5CF6; } .badge.noti { background:#22C55E; }
   .card h3 { margin:5px 0 8px 0; font-size:16px; }
   .card .meta { color:#aaa; font-size:12px; margin-bottom:10px; }
-  .card .bei { color:#22C55E; font-weight:bold; font-size:18px; margin-bottom:12px; }
-  .card .bei-maktaba { color:#F97316; font-weight:bold; font-size:16px; margin-bottom:12px; }
-  .btn { color:white; padding:12px; border:none; border-radius:8px; width:100%; font-weight:bold; font-size:15px; cursor:pointer; }
-  .btn.sokoni { background:#22C55E; }
-  .btn.maktaba { background:#F97316; }
-  .btn-secondary { background:#222; margin-top:10px; }
-  .btn-secondary.sokoni { color:#22C55E; border:1px solid #22C55E; }
-  .btn-secondary.maktaba { color:#F97316; border:1px solid #F97316; }
-  .fab { position:fixed; bottom:25px; right:20px; color:white; width:56px; height:56px; border-radius:50%; font-size:32px; border:none; display:flex; align-items:center; justify-content:center; z-index:999; }
-  .fab.sokoni { background:#22C55E; box-shadow:0 4px 12px rgba(34,197,94,0.4); }
-  .fab.maktaba { background:#F97316; box-shadow:0 4px 12px rgba(249,115,22,0.4); }
+  .card .bei { color:#F97316; font-weight:bold; font-size:16px; margin-bottom:12px; }
+  .btn { background:#F97316; color:white; padding:12px; border:none; border-radius:8px; width:100%; font-weight:bold; font-size:15px; cursor:pointer; }
+  .btn-secondary { background:#222; color:#F97316; border:1px solid #F97316; margin-top:10px; }
+  .fab { position:fixed; bottom:25px; right:20px; background:#F97316; color:white; width:56px; height:56px; border-radius:50%; font-size:32px; border:none; display:flex; align-items:center; justify-content:center; z-index:999; box-shadow:0 4px 12px rgba(249,115,22,0.4); }
   .page { display:none; } .page.active { display:block; }
   input, select, textarea { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; margin-bottom:15px; }
   label { font-size:12px; color:#aaa; margin-bottom:5px; display:block; }
-  .back-btn { position:fixed; top:15px; left:15px; color:white; border:none; padding:10px 15px; border-radius:8px; z-index:1000; font-weight:bold; }
-  .back-btn.sokoni { background:#22C55E; }
-  .back-btn.maktaba { background:#F97316; }
+  .back-btn { position:fixed; top:15px; left:15px; background:#F97316; color:white; border:none; padding:10px 15px; border-radius:8px; z-index:1000; font-weight:bold; }
   .no-result { text-align:center; padding:40px; color:#aaa; display:none; }
+  .mpesa-box { background:#D81B60; padding:20px; border-radius:12px; text-align:center; }
+  .namba { font-size:24px; font-weight:bold; background:white; color:#D81B60; padding:10px; border-radius:8px; margin:10px 0; }
+  .alert { background:#222; padding:12px; border-radius:8px; font-size:13px; border-left:4px solid #F97316; }
 </style>
 </head>
 <body>
@@ -69,117 +55,111 @@
     <h1>VIJI APP</h1>
     <p class="subtitle">Burudani. Elimu. Biashara. Yote kwa Kiswahili</p>
     <div class="grid">
-      <div class="box" onclick="onyeshaSokoni()"><div class="icon">🛒</div><h3>Viji Sokoni</h3><p>Fungua Duka. Uza Bidhaa na Huduma</p></div>
-      <div class="box"><div class="icon">🎮</div><h3>Viji Game</h3><p>Cheza Michezo na Ushinde Zawadi</p></div>
+      <div class="box" onclick="alert('Inakuja hivi karibuni')"><div class="icon">🛒</div><h3>Viji Sokoni</h3><p>Fungua Duka. Uza Bidhaa na Huduma</p></div>
+      <div class="box" onclick="alert('Inakuja hivi karibuni')"><div class="icon">🎮</div><h3>Viji Game</h3><p>Cheza Michezo na Ushinde Zawadi</p></div>
       <div class="box" onclick="onyeshaMaktaba()"><div class="icon">📚</div><h3>Viji Elimu & Documentary</h3><p>Jifunze Kozi + Tazama Historia</p></div>
-      <div class="box"><div class="icon">⭐</div><h3>Viji Talent & Skill</h3><p>Onyesha Kipaji. Tafuta Fundi</p></div>
-      <div class="box full"><div class="icon">⚖️</div><h3>Viji Sheria</h3><p>Jifunze Haki zako kwa Lugha Rahisi</p></div>
+      <div class="box" onclick="alert('Inakuja hivi karibuni')"><div class="icon">⭐</div><h3>Viji Talent & Skill</h3><p>Onyesha Kipaji. Tafuta Fundi</p></div>
+      <div class="box full" onclick="alert('Inakuja hivi karibuni')"><div class="icon">⚖️</div><h3>Viji Sheria</h3><p>Jifunze Haki zako kwa Lugha Rahisi</p></div>
     </div>
     <p class="footer">© 2026 Viji App. Timetengenezwa Tanzania.</p>
   </div>
 </div>
 
-<!-- UKURASA WA 2: VIJI SOKONI -->
-<div id="viji-sokoni" style="display:none;">
-<button class="back-btn sokoni" onclick="rudiHome()">← Rudi Viji App</button>
-  <div id="soko" class="page active">
-    <div class="header sokoni"><h1>🛒 VIJI SOKONI</h1><p>Nunua. Uza. Pata Wateja</p></div>
-    <div class="search-box"><input type="text" id="searchInput" placeholder="🔍 Tafuta bidhaa... Mfano: Simu, Nguo, Chakula" onkeyup="tafutaBidhaa()"></div>
-    <div class="tabs sokoni">
-      <div class="tab active" onclick="chujwaKategoria('zote', this)">Zote</div>
-      <div class="tab" onclick="chujwaKategoria('nguo', this)">Nguo</div>
-      <div class="tab" onclick="chujwaKategoria('simu', this)">Simu</div>
-      <div class="tab" onclick="chujwaKategoria('chakula', this)">Chakula</div>
-      <div class="tab" onclick="chujwaKategoria('huduma', this)">Huduma</div>
-    </div>
-    <div class="app-container" id="orodha-sokoni">
-      <div class="card" data-jina="shirt za kiume quality" data-kategoria="nguo">
-          <span class="badge sokoni">NGUO</span><h3>Shirt za Kiume - Quality</h3>
-          <p class="meta">Hali: Mpya | Mahali: Mwanza | Na: Juma Stores</p><p class="bei">Tsh 25,000</p>
-          <button class="btn sokoni" onclick="wasiliana('Shirt za Kiume', '0681 111 222')">Piga Simu / WhatsApp</button>
-      </div>
-      <div class="card" data-jina="iphone 13 gb 128" data-kategoria="simu">
-          <span class="badge sokoni">SIMU</span><h3>iPhone 13 - GB 128</h3>
-          <p class="meta">Hali: Imetumika Miezi 6 | Mahali: Dar | Na: Tech Point</p><p class="bei">Tsh 850,000</p>
-          <button class="btn sokoni" onclick="wasiliana('iPhone 13', '0678 333 444')">Piga Simu / WhatsApp</button>
-      </div>
-      <div class="no-result" id="hakuna"><h3>😔 Hakuna bidhaa iliyopatikana</h3></div>
-    </div>
-    <button class="fab sokoni" onclick="onyeshaPageSokoni('uza')">+</button>
-  </div>
-  <div id="uza" class="page">
-    <div class="header sokoni"><h1>➕ Tangaza Bidhaa Yako</h1><p>Ni Bure Kabisa</p></div>
-    <div class="app-container"><div class="card">
-      <label>1. Jina la Bidhaa/Huduma *</label><input type="text"><label>2. Chagua Aina *</label><select><option>Nguo</option><option>Simu</option><option>Chakula</option><option>Huduma</option></select>
-      <label>3. Bei Tsh *</label><input type="number"><label>4. Maelezo + Namba Yako *</label><textarea></textarea>
-      <button class="btn sokoni" onclick="alert('✅ Bidhaa yako imetumwa!'); onyeshaPageSokoni('soko')">Tangaza Sasa</button>
-      <button class="btn btn-secondary sokoni" onclick="onyeshaPageSokoni('soko')">← Rudi Sokoni</button>
-    </div></div>
-  </div>
-</div>
-
-<!-- UKURASA WA 3: VIJI MAKTABA -->
+<!-- UKURASA WA 2: VIJI MAKTABA -->
 <div id="viji-maktaba" style="display:none;">
-<button class="back-btn maktaba" onclick="rudiHome()">← Rudi Viji App</button>
+<button class="back-btn" onclick="rudiHome()">← Rudi Viji App</button>
   <div id="duka" class="page active">
-    <div class="header maktaba"><h1>📚 VIJI MAKTABA</h1><p>Jifunze. Soma. Pata Maarifa</p></div>
-    
-    <!-- HII NDIO SEARCH YA MAKTABA -->
+    <div class="header"><h1>📚 VIJI MAKTABA</h1><p>Jifunze. Soma. Pata Maarifa</p></div>
     <div class="search-box"><input type="text" id="searchMaktaba" placeholder="🔍 Tafuta kozi, story, noti..." onkeyup="tafutaMaktaba()"></div>
-
-    <div class="tabs maktaba"> 
-      <div class="tab active">Zote</div> 
-      <div class="tab" onclick="onyeshaPageMaktaba('dashboard')">📊 Dashboard</div> 
+    <div class="tabs"> 
+      <div class="tab active" onclick="onyeshaTab(this, 'duka')">Zote</div> 
+      <div class="tab" onclick="onyeshaTab(this, 'dashboard')">📊 Dashboard</div> 
     </div>
     <div class="app-container" id="orodha-maktaba"> 
       <div class="card" data-jina="jinsi ya kuza biashara mtandaoni">
         <span class="badge kozi">KOZI</span><h3>Jinsi ya Kuza Biashara Mtandaoni</h3>
         <p class="meta">Video: 4:32 min + PDF + Mtihani | Na: Mwalimu Juma</p>
-        <p class="bei-maktaba">Bei: Tsh 5,000</p><button class="btn maktaba" onclick="alert('Nenda Malipo')">Nunua</button> 
+        <p class="bei">Bei: Tsh 5,000</p><button class="btn" onclick="nendaMalipo('Jinsi ya Kuza Biashara', 5000)">Nunua</button> 
       </div>
       <div class="card" data-jina="kijana na ndoto yake">
         <span class="badge story">STORY</span><h3>Kijana na Ndoto Yake</h3>
         <p class="meta">Kionjo: Alikuwa na ndoto kubwa sana...</p>
-        <p class="bei-maktaba">Bei: Tsh 500</p><button class="btn maktaba" onclick="alert('Nenda Malipo')">Nunua</button> 
+        <p class="bei">Bei: Tsh 500</p><button class="btn" onclick="nendaMalipo('Kijana na Ndoto Yake', 500)">Nunua</button> 
       </div>
       <div class="card" data-jina="noti za hisabati form 4 muhtasari">
         <span class="badge noti">NOTI</span><h3>Noti za Hisabati Form 4 - Muhtasari</h3>
-        <p class="meta">Kurasa 30 za muhtasari kamili + Mifano</p>
-        <p class="bei-maktaba">Bei: Tsh 1,000</p><button class="btn maktaba" onclick="alert('Nenda Malipo')">Nunua</button> 
+        <p class="meta">Kurasa 30 za muhtasari kamili + Mifano | Na: Amina Dar</p>
+        <p class="bei">Bei: Tsh 1,000</p><button class="btn" onclick="nendaMalipo('Noti za Hisabati Form 4', 1000)">Nunua</button> 
       </div>
       <div class="no-result" id="hakunaMaktaba"><h3>📚 Hakuna maudhui yaliyopatikana</h3></div>
     </div>
-    <button class="fab maktaba" onclick="onyeshaPageMaktaba('ongeza')">+</button>
+    <button class="fab" onclick="onyeshaPage('ongeza')">+</button>
   </div>
   
-  <!-- PAGES ZINGINE ZA MAKTABA -->
-  <div id="dashboard" class="page"><div class="header maktaba"><h1>📊 Dashboard</h1></div><div class="app-container"><div class="card"><h1 style="color:#22C55E;">Tsh 17,150</h1></div><button class="btn btn-secondary maktaba" onclick="onyeshaPageMaktaba('duka')">← Rudi</button></div></div>
-  <div id="ongeza" class="page"><div class="header maktaba"><h1>➕ Ongeza Maudhui</h1></div><div class="app-container"><div class="card"><button class="btn maktaba" onclick="alert('Imetumwa'); onyeshaPageMaktaba('duka')">Tuma</button><button class="btn btn-secondary maktaba" onclick="onyeshaPageMaktaba('duka')">← Rudi</button></div></div></div>
+  <!-- PAGE YA MALIPO -->
+  <div id="malipo" class="page">
+    <div class="header"><h1>💳 Maliza Malipo</h1></div>
+    <div class="app-container">
+      <div class="card"><h3>Unaenda kununua:</h3><h4 id="jina-bidhaa">Inapakia...</h4><p style="color:#F97316; font-weight:bold; font-size:18px;" id="bei-bidhaa">Tsh 0</p></div>
+      <div class="card"><div class="mpesa-box"><h2>📱 Lipa kwa Airtel Money</h2><p>Tuma kwa Namba hii</p><div class="namba">0681 821 524</div><p>Jina: <b>VERONICA BARAKA</b></p></div></div>
+      <div class="card"><button class="btn" onclick="thibitishaMalipo()">Nimeshalipa - Tuma kwa Ukaguzi</button><button class="btn btn-secondary" onclick="onyeshaPage('duka')">← Rudi Nyuma</button></div>
+    </div>
+  </div>
 
+  <!-- PAGE YA SOMA -->
+  <div id="soma" class="page">
+    <div class="header"><h1 id="jina-kichwa">Inapakia...</h1></div>
+    <div class="app-container">
+      <div class="alert" style="border-left:4px solid #22C55E;"><b style="color:#22C55E;">✅ Malipo Yamethibitishwa</b></div>
+      <div class="card"><h2>MAUDHUI YAKO</h2><p>Hapa ndio maudhui yako yote yataonekana baada ya kulipa...</p></div>
+      <button class="btn btn-secondary" onclick="onyeshaPage('duka')">← Rudi Maktabani</button>
+    </div>
+  </div>
+
+  <!-- PAGE YA ONGEZA -->
+  <div id="ongeza" class="page">
+    <div class="header"><h1>➕ Ongeza Maudhui Mapya</h1><p>Pata 70% ya kila mauzo yako</p></div>
+    <div class="app-container"><div class="card">
+      <label>1. Chagua Aina ya Maudhui *</label>
+      <select><option>-- Chagua --</option><option>Kozi</option><option>Story</option><option>Noti</option></select>
+      <label>2. Jina la Kichwa *</label><input type="text" placeholder="Mfano: Jinsi ya Kupata Pesa">
+      <label>3. Maelezo Mafupi / Kionjo *</label><textarea placeholder="Andika aya 2-3 za kuvutia watu wanonue."></textarea>
+      <label>4. Weka Bei Tsh *</label><input type="number" placeholder="Mfano: 500, 1000, 5000">
+      <div class="alert"><b>📊 Ukikubali:</b><br>Wewe unapata: <b style="color:#22C55E;">70%</b><br>Viji Maktaba: <b style="color:#F97316;">30%</b></div>
+      <button class="btn" onclick="alert('✅ Asante! Maudhui yako yametumwa kwa ukaguzi.'); onyeshaPage('duka')">Tuma kwa Ukaguzi</button>
+      <button class="btn btn-secondary" onclick="onyeshaPage('duka')">← Rudi Nyuma</button>
+    </div></div>
+  </div>
+
+  <!-- PAGE YA DASHBOARD -->
+  <div id="dashboard" class="page">
+    <div class="header"><h1>📊 Dashboard Yangu</h1></div>
+    <div class="app-container">
+      <div class="card" style="text-align:center;">
+        <p>Mauzo ya Mwezi Huu</p><h1 style="color:#22C55E; font-size:28px;">Tsh 24,500</h1>
+        <p>Umepata: <b style="color:#22C55E;">Tsh 17,150</b> 70%</p>
+      </div>
+      <div class="card"><h3>Maudhui Yangu 3</h3><p>1. Jinsi ya Kuza Biashara - <b>Mauzo 3</b></p><p>2. Kijana na Ndoto - <b>Mauzo 8</b></p><p>3. Noti za Hisabati - <b>Mauzo 2</b></p></div>
+      <div class="card"><h3>Malipo Yajayo</h3><p>Tarehe: Ijumaa ijayo</p><p>Kiasi: <b style="color:#22C55E;">Tsh 17,150</b></p></div>
+      <button class="btn btn-secondary" onclick="onyeshaPage('duka')">← Rudi Maktabani</button>
+    </div>
+  </div>
 </div>
 
 <script>
-  // VIJI HOME
-  function onyeshaSokoni(){ document.getElementById('viji-home').style.display = 'none'; document.getElementById('viji-sokoni').style.display = 'block'; onyeshaPageSokoni('soko'); }
-  function onyeshaMaktaba(){ document.getElementById('viji-home').style.display = 'none'; document.getElementById('viji-maktaba').style.display = 'block'; onyeshaPageMaktaba('duka'); }
-  function rudiHome(){ document.getElementById('viji-home').style.display = 'block'; document.getElementById('viji-sokoni').style.display = 'none'; document.getElementById('viji-maktaba').style.display = 'none'; window.scrollTo(0,0); }
-
-  // VIJI SOKONI
-  function onyeshaPageSokoni(id){ document.querySelectorAll('#viji-sokoni .page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
-  function wasiliana(jina, namba){ window.open('https://wa.me/255' + namba.substring(1) + '?text=Habari, nimeona ' + jina + ' kwenye Viji Sokoni'); }
-  function tafutaBidhaa(){
-    let input = document.getElementById('searchInput').value.toLowerCase();
-    let cards = document.querySelectorAll('#orodha-sokoni .card'); let hakuna = document.getElementById('hakuna'); let found = 0;
-    cards.forEach(card => { if(card.classList.contains('no-result')) return; let jina = card.getAttribute('data-jina'); if(jina.includes(input)){ card.style.display = 'block'; found++; } else { card.style.display = 'none'; } });
-    hakuna.style.display = found === 0 ? 'block' : 'none';
+  function onyeshaMaktaba(){ document.getElementById('viji-home').style.display = 'none'; document.getElementById('viji-maktaba').style.display = 'block'; onyeshaPage('duka'); }
+  function rudiHome(){ document.getElementById('viji-home').style.display = 'block'; document.getElementById('viji-maktaba').style.display = 'none'; window.scrollTo(0,0); }
+  function onyeshaPage(id){ document.querySelectorAll('#viji-maktaba .page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+  function onyeshaTab(element, id){ document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); element.classList.add('active'); onyeshaPage(id); }
+  
+  function nendaMalipo(jina, bei){
+    document.getElementById('jina-bidhaa').innerText = jina;
+    document.getElementById('bei-bidhaa').innerText = 'Tsh ' + bei.toLocaleString();
+    document.getElementById('jina-kichwa').innerText = jina;
+    onyeshaPage('malipo');
   }
-  function chujwaKategoria(kategoria, element){
-    document.querySelectorAll('#viji-sokoni .tab').forEach(t => t.classList.remove('active')); element.classList.add('active');
-    let cards = document.querySelectorAll('#orodha-sokoni .card'); cards.forEach(card => { if(card.classList.contains('no-result')) return; let kat = card.getAttribute('data-kategoria'); if(kategoria === 'zote' || kat === kategoria){ card.style.display = 'block'; } else { card.style.display = 'none'; } });
-  }
-
-  // VIJI MAKTABA
-  function onyeshaPageMaktaba(id){ document.querySelectorAll('#viji-maktaba .page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+  function thibitishaMalipo(){ alert('✅ Tumepokea ombi lako. Tutakuthibitishia ndani ya dakika 5'); onyeshaPage('soma'); }
+  
   function tafutaMaktaba(){
     let input = document.getElementById('searchMaktaba').value.toLowerCase();
     let cards = document.querySelectorAll('#orodha-maktaba .card'); let hakuna = document.getElementById('hakunaMaktaba'); let found = 0;
@@ -189,4 +169,4 @@
 </script>
 
 </body>
-   </html>
+</html>
