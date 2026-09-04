@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lipa Sasa - Viji</title>
+<style>
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; margin:0; padding:0; }
+  .header { background:#1A1A1A; padding:15px; text-align:center; border-bottom:2px solid #F97316; }
+  .header h1 { color:#F97316; margin:0; font-size:18px; }
+  .container { padding:15px; max-width:500px; margin:auto; }
+  .card { background:#1A1A1A; border-radius:12px; padding:20px; border:1px solid #222; margin-bottom:15px; }
+  .mpesa-box { background:#D81B60; padding:20px; border-radius:12px; text-align:center; }
+  .mpesa-box h2 { margin:0 0 10px 0; font-size:18px; }
+  .namba { font-size:24px; font-weight:bold; letter-spacing:2px; background:white; color:#D81B60; padding:10px; border-radius:8px; margin:10px 0; }
+  .hesabu { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #333; }
+  .hesabu.total { border-bottom:none; font-weight:bold; font-size:16px; }
+  .btn { background:#F97316; color:white; padding:14px; border:none; border-radius:8px; width:100%; font-weight:bold; font-size:16px; margin-top:15px; }
+  input { width:100%; padding:12px; background:#222; border:1px solid #333; border-radius:8px; color:white; margin-bottom:15px; box-sizing:border-box; }
+  label { font-size:12px; color:#aaa; margin-bottom:5px; display:block; }
+  .alert { background:#222; padding:12px; border-radius:8px; font-size:13px; border-left:4px solid #F97316; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>💳 Maliza Malipo</h1>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+      <h3 style="margin-top:0;">Unaenda kununua:</h3>
+      <h4 id="jina-bidhaa" style="margin:5px 0;">Inapakia...</h4>
+      <p style="color:#F97316; font-weight:bold; font-size:18px;" id="bei-bidhaa">Tsh 0</p>
+    </div>
+
+    <div class="card">
+      <div class="mpesa-box">
+        <h2>📱 Lipa kwa Airtel Money</h2>
+        <p>Tuma kwa Namba hii ya VIJI MAKTABA</p>
+        <div class="namba">0681 821 524</div>
+        <p>Jina: <b>VERONICA BARAKA</b></p>
+      </div>
+      
+      <div class="alert" style="margin-top:15px;">
+        <b>⚠️ MUHIMU:</b> Baada ya kulipa weka namba ya marejeleo hapa chini. 
+        Admin atathibitisha ndani ya dakika 5 ufunguliwe.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">📊 Jinsi Pesa Inavyogawanyika</h3>
+      <div class="hesabu"><span>Bei Kamili</span><span id="bei-kamili">Tsh 0</span></div>
+      <div class="hesabu"><span>Viji 30%</span><span style="color:red;" id="asili-30">- Tsh 0</span></div>
+      <div class="hesabu total"><span>Mwandishi 70%</span><span style="color:#22C55E;" id="asili-70">+ Tsh 0</span></div>
+      <p style="font-size:12px; color:#aaa;">Pesa ya mwandishi inatumwa kila Ijumaa</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Thibitisha Malipo</h3>
+      <label>Weka Namba yako ya Airtel</label>
+      <input type="text" placeholder="0681 XXX XXX">
+      <label>Weka Namba ya Marejeleo / Control No</label>
+      <input type="text" placeholder="Mfano: ABCD1234">
+      <button class="btn">Nimeshalipa - Tuma kwa Ukaguzi</button>
+    </div>
+
+  </div>
+
+<script>
+  let jina = localStorage.getItem('bidhaa_jina');
+  let bei = parseInt(localStorage.getItem('bidhaa_bei'));
+  
+  if(jina && bei){
+    document.getElementById('jina-bidhaa').innerText = jina;
+    document.getElementById('bei-bidhaa').innerText = 'Tsh ' + bei.toLocaleString();
+    document.getElementById('bei-kamili').innerText = 'Tsh ' + bei.toLocaleString();
+    
+    let asili30 = bei * 0.3;
+    let asili70 = bei * 0.7;
+    document.getElementById('asili-30').innerText = '- Tsh ' + asili30.toLocaleString();
+    document.getElementById('asili-70').innerText = '+ Tsh ' + asili70.toLocaleString();
+  }
+</script>
+
+</body>
+                                                 </html>
