@@ -29,14 +29,19 @@
     .counter{font-size:12px; text-align:center; margin-bottom:10px; color:#FACC15}
     
     .fundi-card{background:#1A1E2E; border-radius:12px; padding:12px; margin-bottom:12px; position:relative}
+    .fundi-card.verified{border:2px solid #22C55E} /* Card ya walio verified inang'aa */
     .fundi-top{display:flex; gap:12px; margin-bottom:8px}
-    .fundi-card img{width:70px; height:70px; border-radius:50%; object-fit:cover; background:#333}
-    .fundi-info h3{font-size:15px; margin-bottom:3px}
+    .fundi-card img.profile{width:70px; height:70px; border-radius:50%; object-fit:cover; background:#333}
+    .fundi-info h3{font-size:15px; margin-bottom:3px; display:flex; align-items:center; gap:5px}
     .fundi-info p{font-size:12px; opacity:0.7; margin:2px 0}
     .badge-verified{background:#22C55E; color:white; padding:2px 8px; border-radius:10px; font-size:10px}
     .badge-free{background:#F97316; color:white; padding:2px 8px; border-radius:10px; font-size:10px}
+    .stars{color:#FACC15; font-size:12px}
+    
+    /* GALLERY MPYA */
     .gallery{display:flex; gap:5px; margin:8px 0}
-    .gallery img{width:60px; height:60px; border-radius:8px; object-fit:cover}
+    .gallery img{width:70px; height:70px; border-radius:8px; object-fit:cover; border:1px solid #333}
+    
     .call-btn{width:100%; padding:10px; background:#2563EB; border:none; border-radius:8px; color:white; font-weight:bold; margin-top:5px}
     .delete-btn{position:absolute; top:10px; right:10px; background:red; color:white; border:none; border-radius:5px; padding:3px 6px; font-size:10px}
     
@@ -95,6 +100,7 @@
         <input id="fimg" placeholder="Link ya Picha yako">
         <input id="fwork1" placeholder="Link ya Picha ya Kazi 1">
         <input id="fwork2" placeholder="Link ya Picha ya Kazi 2">
+        <input id="fwork3" placeholder="Link ya Picha ya Kazi 3">
         <button style="background:#DC2626; color:white; width:48%" onclick="addFundi()">Hifadhi</button>
         <button style="background:#6B7280; color:white; width:48%" onclick="closeModal()">Funga</button>
     </div>
@@ -108,9 +114,9 @@
             <h4>Tuma Tsh 2000 kwa:</h4>
             <div class="pay-number">M-Pesa: 0681821524</div>
             <div class="pay-number">Tigo Pesa: 06XX XXX</div>
-            <p>Jina: <b>VERONICA BARAKA]</b></p>
+            <p>Jina: <b>VERONICA BARAKA ]</b></p>
         </div>
-        <p style="font-size:12px">Baada ya kulipa njoo WhatsApp tukuweke juu ya list</p>
+        <p style="font-size:12px">Baada ya kulipa njoo WhatsApp tukuweke juu ya list + ✓</p>
         <button style="background:#6B7280; color:white; width:100%" onclick="closePayModal()">Funga</button>
     </div>
 </div>
@@ -146,23 +152,34 @@ function displayFundis(){
     const list = document.getElementById('fundiList');
     list.innerHTML = '';
     
-    // Weka waliolipia juu kwanza
-    const sorted = [...fundis].sort((a,b) => b.paid - a.paid);
+    // 1. Weka waliolipia juu kwanza 2. Kisha rate ya juu
+    const sorted = [...fundis].sort((a,b) => {
+        if(b.paid !== a.paid) return b.paid - a.paid;
+        return b.rating - a.rating;
+    });
+    
     const filtered = sorted.filter(i => 
         (currentCat === 'Zote' || i.skill === currentCat) &&
         (i.name.toLowerCase().includes(searchQuery.toLowerCase()) || i.skill.toLowerCase().includes(searchQuery.toLowerCase()))
     );
     
     filtered.forEach((fundi, index) => {
+        // Tengeneza nyota
+        let stars = '';
+        for(let i=1; i<=5; i++){
+            stars += i <= fundi.rating ? '⭐' : '☆';
+        }
+        
         list.innerHTML += `
-        <div class="fundi-card">
+        <div class="fundi-card ${fundi.paid ? 'verified' : ''}">
             <button class="delete-btn" onclick="deleteFundi(${index})">X</button>
             <div class="fundi-top">
-                <img src="${fundi.img || 'https://via.placeholder.com/70'}">
+                <img class="profile" src="${fundi.img || 'https://via.placeholder.com/70'}">
                 <div class="fundi-info">
                     <h3>${fundi.name} 
                         ${fundi.paid ? '<span class="badge-verified">✓ AMETHIBITISHWA</span>' : '<span class="badge-free">BURE</span>'}
                     </h3>
+                    <div class="stars">${stars} (${fundi.rating}.0)</div>
                     <p>Ujuzi: ${fundi.skill}</p>
                     <p>📍 ${fundi.location}</p>
                     <p>${fundi.desc}</p>
@@ -171,6 +188,7 @@ function displayFundis(){
             <div class="gallery">
                 ${fundi.work1 ? `<img src="${fundi.work1}">` : ''}
                 ${fundi.work2 ? `<img src="${fundi.work2}">` : ''}
+                ${fundi.work3 ? `<img src="${fundi.work3}">` : ''}
             </div>
             <button class="call-btn">Piga / WhatsApp: ${fundi.phone}</button>
         </div>`;
@@ -181,7 +199,7 @@ function displayFundis(){
 function addFundi(){
     const freeCount = fundis.filter(i => !i.paid).length;
     if(freeCount >= 1){
-        alert("Umeshajandikisha bure. Lipia Tsh 2000 ili uonekane juu");
+        alert("Umeshajandikisha bure. Lipia Tsh 2000 ili uonekane juu + ✓");
         closeModal();
         return;
     }
@@ -195,7 +213,9 @@ function addFundi(){
         img: document.getElementById('fimg').value,
         work1: document.getElementById('fwork1').value,
         work2: document.getElementById('fwork2').value,
-        paid: false
+        work3: document.getElementById('fwork3').value,
+        paid: false,
+        rating: 5 // default rating 5
     };
     
     fundis.unshift(newFundi);
