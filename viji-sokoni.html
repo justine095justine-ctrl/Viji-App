@@ -7,51 +7,38 @@
 <style>
     *{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Arial}
     body{background:#0D0F1A; color:white; padding:0 0 80px 0}
-    
     .header{background:linear-gradient(135deg, #15803D, #0D0F1A); padding:20px 15px; text-align:center}
     .header h1{font-size:22px}
-    .header p{font-size:12px; opacity:0.8; margin-top:5px}
-    
     .container{padding:15px}
-    .search-box-wrap{position:relative; margin-bottom:12px}
-    .search-box{width:100%; padding:12px 40px 12px 12px; border-radius:10px; border:1px solid #333; background:#1A1E2E; color:white}
-    .search-icon{position:absolute; right:12px; top:12px; color:#aaa}
-    
+    .search-box-wrap{display:flex; gap:8px; margin-bottom:12px}
+    .search-box{flex:1; padding:12px; border-radius:10px; border:1px solid #333; background:#1A1E2E; color:white}
+    .search-btn{padding:0 15px; background:#2563EB; border:none; border-radius:10px; color:white; font-size:18px}
     .categories{display:flex; gap:8px; overflow-x:auto; margin-bottom:15px}
     .cat-btn{padding:8px 15px; background:#1A1E2E; border:none; color:white; border-radius:20px; white-space:nowrap}
     .cat-btn.active{background:#22C55E}
-    
     .alert{background:#FEF3C7; color:#000; padding:15px; border-radius:10px; margin-bottom:15px; text-align:center}
     .alert button{width:100%; padding:12px; background:#F59E0B; border:none; border-radius:8px; font-weight:bold; margin-top:10px; color:#000; cursor:pointer}
-    
     .add-btn{width:100%; padding:14px; background:#22C55E; border:none; border-radius:10px; color:white; font-weight:bold; font-size:16px; margin-bottom:15px}
     .add-btn:disabled{background:#6B7280}
-    
     .counter{font-size:12px; text-align:center; margin-bottom:10px; color:#FACC15}
-    
     .grid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
     .item{background:#1A1E2E; border-radius:12px; padding:10px; position:relative}
-    .item.unpaid{opacity:0.6; border:2px dashed #F97316}
+    .item.unpaid{opacity:0.7; border:2px dashed #F97316}
     .item img{width:100%; height:120px; object-fit:cover; border-radius:8px; background:#333}
     .badge{position:absolute; top:15px; left:15px; background:#FACC15; color:#000; padding:3px 8px; border-radius:5px; font-size:10px; font-weight:bold}
-    
     .item h3{font-size:14px; margin:8px 0 4px 0}
     .price{color:#22C55E; font-weight:bold; font-size:16px}
     .location{font-size:11px; opacity:0.7; margin:4px 0 8px 0}
-    
+    .timer{font-size:10px; color:#F97316; margin-bottom:5px}
     .contact-btn{width:100%; padding:10px; background:#2563EB; border:none; border-radius:8px; color:white; font-weight:bold}
     .preview-btn{width:100%; padding:10px; background:#6B7280; border:none; border-radius:8px; color:white; font-size:11px}
-    
-    /* Modal ya Kuadd na Malipo */
     .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:100; padding:20px; overflow-y:auto}
     .modal-content{background:#1A1E2E; padding:20px; border-radius:12px}
     .modal input, .modal select{width:100%; padding:10px; margin:8px 0; background:#0D0F1A; border:1px solid #333; color:white; border-radius:8px}
-    .modal button{padding:12px; border:none; border-radius:8px; margin-top:10px}
-    
-    /* Popup ya Malipo */
     .pay-info{background:#0D0F1A; padding:15px; border-radius:10px; margin:15px 0; text-align:center}
     .pay-info h4{color:#F59E0B; margin-bottom:8px}
     .pay-number{font-size:22px; font-weight:bold; color:#22C55E}
+    .delete-btn{position:absolute; top:10px; right:10px; background:red; color:white; border:none; border-radius:5px; padding:3px 6px; font-size:10px}
 </style>
 </head>
 <body>
@@ -63,8 +50,8 @@
 
 <div class="container">
     <div class="search-box-wrap">
-        <input type="text" class="search-box" placeholder="Tafuta: Simu, Viatu, Friji..." onkeyup="searchItems(this.value)">
-        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-box" placeholder="Tafuta: Simu, Viatu, Friji...">
+        <button class="search-btn" onclick="searchItems()">🔍</button>
     </div>
     
     <div class="categories">
@@ -108,113 +95,124 @@
         <h3>Lipia Post Bila Kikomo</h3>
         <div class="pay-info">
             <h4>Tuma Tsh 2000 kwa:</h4>
-            <div class="pay-number">AIRTEL MONEY O681821524</div>
+            <div class="pay-number">AIRTEL MONEY 0681821524</div>
             <div class="pay-number">Tigo Pesa: 06XX XXX</div>
-            <p>Jina: <b>VERONICA BARAKA ]</b></p>
+            <p>Jina: <b>VERONICA BARAKA]</b></p>
         </div>
-        <p style="font-size:12px; opacity:0.7">Baada ya kulipa tuma Screenshot WhatsApp: 07XX XXX</p>
         <button style="background:#6B7280; color:white; width:100%" onclick="closePayModal()">Funga</button>
     </div>
 </div>
 
 <script>
 let items = JSON.parse(localStorage.getItem('vijiItems')) || [];
-let freePosts = JSON.parse(localStorage.getItem('freePosts')) || {count:0, lastReset:Date.now(), lockUntil:0};
+let freePosts = JSON.parse(localStorage.getItem('freePosts')) || {count:0};
 let currentCat = 'Zote';
+let searchQuery = '';
 
-// Angalia kama masaa 72 yamepita
+// 1. HESABU POST BURE ZILIZOBAKI
 function checkFreeLimit(){
-    const now = Date.now();
-    const dayPassed = (now - freePosts.lastReset) > 24*60*60*1000;
-    const lockPassed = now > freePosts.lockUntil;
-    
-    if(dayPassed && lockPassed){
-        freePosts = {count:0, lastReset:now, lockUntil:0};
-    }
+    const freeCount = items.filter(i => !i.paid).length;
+    freePosts.count = freeCount;
     localStorage.setItem('freePosts', JSON.stringify(freePosts));
     
     const btn = document.getElementById('addBtn');
     const counter = document.getElementById('freeCounter');
     
-    if(freePosts.lockUntil > now){
-        const hoursLeft = Math.ceil((freePosts.lockUntil - now)/1000/60/60);
+    if(freeCount >= 3){
         btn.disabled = true;
-        btn.innerText = `Subiri masaa ${hoursLeft} kupost bure`;
-        counter.innerText = `Umetumia Post 3/3 bure. Lipia Tsh 2000 kwa post zisizo na kikomo`;
+        btn.innerText = `Umejaa Post 3 Bure. Lipia ili uongeze`;
+        counter.innerText = `Umetumia Post 3/3 bure. Lipia Tsh 2000`;
     } else {
         btn.disabled = false;
         btn.innerText = '+ Ongeza Bidhaa';
-        counter.innerText = `Post Bure zilizobaki leo: ${3 - freePosts.count}/3`;
+        counter.innerText = `Post Bure zilizobaki: ${3 - freeCount}/3`;
     }
 }
 
-// Onyesha items
+// 2. ONYESHA ITEMS + TIMER
 function displayItems(){
-    // Futa post zisizolipwa zilizopita dakika 10
+    // Futa post zilizopita dakika 10
+    const now = Date.now();
     items = items.filter(item => {
         if(!item.paid){
-            const minutesPassed = (Date.now() - item.time) / 1000 / 60;
+            const minutesPassed = (now - item.time) / 1000 / 60;
             return minutesPassed < 10;
         }
         return true;
     });
     localStorage.setItem('vijiItems', JSON.stringify(items));
-    
+
     const grid = document.getElementById('itemsGrid');
     grid.innerHTML = '';
+    const filtered = items.filter(i => 
+        (currentCat === 'Zote' || i.category === currentCat) &&
+        (i.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
     
-    const filtered = items.filter(i => currentCat === 'Zote' || i.category === currentCat);
-    
-    filtered.forEach((item) => {
-        const minutesLeft = item.paid ? '' : Math.ceil(10 - (Date.now() - item.time) / 1000 / 60);
+    filtered.forEach((item, index) => {
+        let timerText = '';
+        if(!item.paid){
+            const secondsLeft = Math.max(0, 600 - Math.floor((now - item.time)/1000));
+            const min = Math.floor(secondsLeft/60);
+            const sec = secondsLeft%60;
+            timerText = `<div class="timer">Inafutika baada ya: ${min}:${sec<10?'0'+sec:sec}</div>`;
+        }
         
         grid.innerHTML += `
         <div class="item ${!item.paid ? 'unpaid' : ''}">
             ${item.paid ? '<div class="badge">KIPEKEE</div>' : ''} 
+            <button class="delete-btn" onclick="deleteItem(${index})">X</button>
             <img src="${item.img || 'https://via.placeholder.com/150'}" alt="">
             <h3>${item.title}</h3>
             <div class="price">Tsh ${Number(item.price).toLocaleString()}</div>
             <div class="location">📍 ${item.location}</div>
+            ${timerText}
             ${item.paid 
                 ? `<button class="contact-btn">Piga / WhatsApp</button>` 
-                : `<button class="preview-btn" disabled>INASUBIRI MALIPO - ${minutesLeft}min</button>`
+                : `<button class="preview-btn" disabled>INASUBIRI MALIPO</button>`
             }
         </div>`;
     });
 }
 
-// Kuadd item
+// 3. KUADD ITEM
 function addItem(){
-    const hasFree = freePosts.count < 3 && freePosts.lockUntil < Date.now();
-    
-    let alilipia = true;
-    if(hasFree){
-        alilipia = confirm(`Unayo Post Bure ${3-freePosts.count}/3 iliyobaki leo \n\nOK = Tumia Post Bure ya dakika 10 \nCANCEL = Lipia Tsh 2000 kwa post ya kudumu`);
+    const freeCount = items.filter(i => !i.paid).length;
+    if(freeCount >= 3){
+        alert("Umejaa Post 3 Bure. Lipia Tsh 2000 ili uongeze nyingine");
+        closeModal();
+        return;
     }
-    
-    if(!alilipia){
-        freePosts.count += 1;
-        if(freePosts.count >= 3){
-            freePosts.lockUntil = Date.now() + 72*60*60*1000; // lock masaa 72
-            alert("Umetumia Post zako 3 Bure. Rudi baada ya masaa 72 au Lipia Tsh 2000");
-        }
-    }
-    
+
     const newItem = {
         title: document.getElementById('title').value,
         price: document.getElementById('price').value,
         location: document.getElementById('location').value,
         category: document.getElementById('category').value,
         img: document.getElementById('img').value,
-        paid: alilipia,
+        paid: false,
         time: Date.now()
     };
     
     items.unshift(newItem);
     localStorage.setItem('vijiItems', JSON.stringify(items));
-    localStorage.setItem('freePosts', JSON.stringify(freePosts));
     closeModal();
     checkFreeLimit();
+    displayItems();
+}
+
+// 4. KUFUTA ITEM
+function deleteItem(index){
+    if(confirm("Una uhakika unataka kufuta bidhaa hii?")){
+        items.splice(index, 1);
+        localStorage.setItem('vijiItems', JSON.stringify(items));
+        checkFreeLimit();
+        displayItems();
+    }
+}
+
+function searchItems(){
+    searchQuery = document.getElementById('searchInput').value;
     displayItems();
 }
 
@@ -228,12 +226,11 @@ function filterCat(cat, btn){
     btn.classList.add('active');
     displayItems();
 }
-function searchItems(q){ displayItems(); } // search rahisi
 
 checkFreeLimit();
 displayItems();
-setInterval(() => {checkFreeLimit(); displayItems();}, 60000);
+setInterval(displayItems, 1000); // update kila sekunde 1 kwa timer
 </script>
 
 </body>
-</html>
+   </html>
