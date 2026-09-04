@@ -4,29 +4,30 @@
     <title>Viji App - Burudani + Elimu + Biashara</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body{font-family:Arial; margin:0; background:#f0f0f0}
-        header{background:#222; color:white; text-align:center; padding:20px}
+        body{font-family:Arial; margin:0; background:#f5f5f5}
+        header{background:#000080; color:white; text-align:center; padding:20px} /* BLUE BLACK */
         header h1{margin:0}
-        .container{padding:20px}
-        .grid{display:grid; grid-template-columns:1fr 1fr; gap:15px}
-        .card{padding:25px; border-radius:12px; text-align:center; box-shadow:0 4px 8px #ccc; color:white}
-        .card a{text-decoration:none; color:white; font-size:18px; font-weight:bold}
-        .card p{font-size:14px; margin-top:8px}
-        .card:hover{opacity:0.85}
+        .container{padding:15px}
+        .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+        .card{padding:25px 15px; border-radius:15px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.2); color:white}
+        .card a{text-decoration:none; color:white; font-size:17px; font-weight:bold}
+        .card p{font-size:13px; margin-top:8px; opacity:0.9}
+        .card:hover{transform:scale(1.03); transition:0.2s}
 
-        .game{background:#1e90ff;}      
-        .stories{background:#ff8c00;}    
-        .makala{background:#9b59b6;}     
-        .sokoni{background:#28a745;}     
-        .skills{background:#e74c3c;}     
-        .trends{background:#ff1493;}     
-        .jamii{background:#17a2b8;}      
-        .events{background:#ffc107; color:#222} 
+        /* RANGI ZOTE MPYA KAMA PICHA YAKO */
+        .game{background:#1e90ff;}       /* 1. BLUE */
+        .stories{background:#ff8c00;}     /* 2. ORANGE */
+        .makala{background:#9b59b6;}      /* 3. PURPLE */
+        .sokoni{background:#28a745;}      /* 4. GREEN */
+        .skills{background:#e74c3c;}      /* 5. RED */
+        .trends{background:#ff1493;}      /* 6. PINK */
+        .jamii{background:#17a2b8;}       /* 7. TEAL */
+        .events{background:#ffc107; color:#222} /* 8. YELLOW */
         .events a{color:#222}
-        .sheria{background:#000080;} /* BLUE BLACK */
+        .sheria{background:#000080;}      /* 9. BLUE BLACK */
 
-        .skills, .trends, .sheria{grid-column: span 2;}
-        footer{text-align:center; padding:15px; color:#666}
+        .skills, .trends, .sheria{grid-column: span 2;} /* Hizi zichukue mistari 2 */
+        footer{text-align:center; padding:15px; color:#666; background:white; margin-top:10px}
     </style>
 </head>
 <body>
@@ -41,13 +42,12 @@
         
         <div class="card game"><a href="game.html">🎮<br>Viji Game</a><p>Cheza na ujifunze</p></div>
         <div class="card stories"><a href="stories.html">📖<br>Viji Stories</a><p>Soma hadithi fupi</p></div>
-        <div class="card makala"><a href="makala.html">🎬<br>Documentary & Makala</a><p>Tazama na ujifunze</p></div>
+        <div class="card makala"><a href="makala.html">🎬<br>Documentary &<br>Makala</a><p>Tazama na ujifunze</p></div>
         <div class="card sokoni"><a href="sokoni.html">🛒<br>Viji Sokoni</a><p>Uza na Nunua</p></div>
         <div class="card skills"><a href="skills.html">🔧<br>Viji Skills</a><p>Pata fundi wa ujuzi wowote</p></div>
         <div class="card trends"><a href="trends.html">🔥<br>Viji Trends</a><p>Video fupi + Viral + Methali</p></div>
         <div class="card jamii"><a href="jamii.html">💬<br>Viji Jamii</a><p>Uliza na Jadili</p></div>
         <div class="card events"><a href="events.html">📍<br>Viji Events</a><p>Bash, Soko, Semina</p></div>
-        
         <div class="card sheria"><a href="viji-sheria.html">📜<br>Viji Sheria</a><p>Soma sheria na adhabu zake</p></div>
 
     </div>
