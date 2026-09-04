@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viji Talent - Onyesha Kipaji cha Kitanzania</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:80px; }
+  
+  .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #F97316; position:sticky; top:0; z-index:10; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; }
+  .back-btn { background:#F97316; color:white; padding:10px 18px; border-radius:8px; font-weight:bold; text-decoration:none; }
+  .header h1 { color:#F97316; font-size:20px; }
+  .sub { font-size:12px; color:#aaa; margin-left:60px; }
+  
+  .kanuni { background:#1A1A1A; border-left:4px solid #EF4444; padding:12px; margin:15px; border-radius:8px; font-size:12px; }
+  .kanuni b { color:#EF4444; }
+  
+  .section-title { padding:20px 15px 10px; font-size:16px; color:#F97316; font-weight:bold; display:flex; align-items:center; gap:8px; }
+  .container { padding:0 15px 15px; display:grid; grid-template-columns:1fr; gap:12px; }
+  
+  /* CARD YA FUNDI */
+  .fundi-card { background:#1A1A1A; border-radius:15px; border:1px solid #222; padding:15px; margin-bottom:12px; }
+  .fundi-top { display:flex; gap:12px; margin-bottom:10px; }
+  .fundi-top img { width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #F97316; }
+  .fundi-info h3 { font-size:15px; margin-bottom:3px; }
+  .badge { background:#22C55E; padding:3px 8px; border-radius:6px; font-size:10px; margin-left:5px; }
+  .badge.vip { background:#F97316; }
+  .badge.tamaduni { background:#8B5CF6; }
+  .badge.cheka { background:#EC4899; }
+  .fundi-meta { font-size:12px; color:#aaa; margin:5px 0; }
+  .fundi-desc { font-size:13px; color:#ccc; margin:8px 0; }
+  .picha-kazi { display:flex; gap:8px; margin:10px 0; }
+  .picha-kazi img { width:70px; height:70px; border-radius:8px; object-fit:cover; }
+  .btn { background:#25D366; color:white; padding:10px; border-radius:8px; text-align:center; font-weight:bold; text-decoration:none; display:block; margin-top:8px; }
+  
+  /* CARD YA TRENDING */
+  .trend-card { background:#1A1A1A; border-radius:15px; border:1px solid #222; padding:15px; display:flex; gap:12px; cursor:pointer; }
+  .trend-num { font-size:24px; font-weight:bold; color:#F97316; min-width:30px; }
+  .trend-info h3 { font-size:14px; margin-bottom:5px; }
+  .trend-meta { font-size:11px; color:#aaa; display:flex; gap:10px; }
+  
+  .fab { position:fixed; bottom:20px; right:20px; background:#F97316; color:white; width:55px; height:55px; border-radius:50%; font-size:28px; border:none; box-shadow:0 4px 15px rgba(249,115,22,0.4); cursor:pointer; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-top">
+      <a href="index.html" class="back-btn">← Rudi</a>
+      <h1>🎭 Viji Talent</h1>
+    </div>
+    <p class="sub">Onyesha Kipaji cha Kitanzania</p>
+  </div>
+  
+  <div class="kanuni">
+    <b>⚠️ KANUNI 4 ZA VIJI TALENT:</b> 
+        1. Vipaji vya Kitanzania tu  2. Hakuna Live 3. Hakuna Matusi  
+        4. Hakuna Kuiga jina la mtu au kampuni. Video zako mwenyewe tu.
+  </div>
+  
+  <!-- SEHEMU 1: TRENDING WIKI HII -->
+  <div class="section-title">🔥 Vinavyotrend Wiki Hii</div>
+  <div class="container">
+    <div class="trend-card">
+      <div class="trend-num">1</div>
+      <div class="trend-info">
+        <h3>Kundi la Ngoma za Wagogo <span class="badge tamaduni">TAMADUNI</span></h3>
+        <div class="trend-meta">
+          <span>👁️ 1,240 views</span>
+          <span>📍 Dodoma</span>
+        </div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-num">2</div>
+      <div class="trend-info">
+        <h3>Skiza ya Kijiji <span class="badge cheka">CHEKESHA</span></h3>
+        <div class="trend-meta">
+          <span>👁️ 3,100 views</span>
+          <span>⏱️ Dk 2:30</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- SEHEMU 2: ORODHA YA VIPAJI VYOTE -->
+  <div class="section-title">⭐ Vipaji Vyote</div>
+  <div class="container">
+    
+    <div class="fundi-card">
+      <div class="fundi-top">
+        <img src="https://via.placeholder.com/60/F97316/FFFFFF?text=J">
+        <div class="fundi-info">
+          <h3>Justine <span class="badge">BURE</span></h3>
+          <div class="fundi-meta">⭐ 5.0 | Umeme wa Nyumbani | Tarime</div>
+        </div>
+      </div>
+      <p class="fundi-desc">Nafunga wiring, natengeneza taa na sockets. Miaka 3 ya uzoefu. Kazi safi na ya uhakika.</p>
+      <div class="picha-kazi">
+        <img src="https://via.placeholder.com/70/222/FFF?text=Kazi1">
+        <img src="https://via.placeholder.com/70/222/FFF?text=Kazi2">
+      </div>
+      <a href="https://wa.me/255653243898" class="btn">Piga / WhatsApp: 0653243898</a>
+    </div>
+    
+    <div class="fundi-card">
+      <div class="fundi-top">
+        <img src="https://via.placeholder.com/60/F97316/FFFFFF?text=M">
+        <div class="fundi-info">
+          <h3>Mama Neema <span class="badge vip">VIP</span></h3>
+          <div class="fundi-meta">⭐ 4.8 | Ufundi wa Vikapu | Mwanza</div>
+        </div>
+      </div>
+      <p class="fundi-desc">Natengeneza vikapu, mikeka na vyombo vya asili. Agizo lako linakuja kwa wakati.</p>
+      <div class="picha-kazi">
+        <img src="https://via.placeholder.com/70/222/FFF?text=Kikapu">
+      </div>
+      <a href="https://wa.me/2557xxxxxxx" class="btn">Piga / WhatsApp</a>
+    </div>
+    
+    <div class="fundi-card">
+      <div class="fundi-top">
+        <img src="https://via.placeholder.com/60/F97316/FFFFFF?text=K">
+        <div class="fundi-info">
+          <h3>Kundi la Ngoma za Wagogo <span class="badge tamaduni">TAMADUNI</span></h3>
+          <div class="fundi-meta">⭐ 5.0 | Ngoma za Jadi | Dodoma</div>
+        </div>
+      </div>
+      <p class="fundi-desc">Tunafanya sherehe za jadi, harusi na matamasha. Tupigie kwa matukio yako.</p>
+      <a href="https://wa.me/2557xxxxxxx" class="btn">Piga / WhatsApp</a>
+    </div>
+    
+  </div>
+  
+  <button class="fab" onclick="window.location.href='viji-ongeza-talent.html'">+</button>
+
+</body>
+</html>
