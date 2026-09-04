@@ -14,28 +14,27 @@
     
     .container{padding:10px 15px}
     .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    .grid-full{grid-column:1 / -1}
     
     .card{
         text-decoration:none; color:white; padding:20px 15px; border-radius:15px; 
         text-align:center; min-height:120px; display:flex; flex-direction:column; 
-        justify-content:center; align-items:center; gap:8px; transition:0.2s
+        justify-content:center; align-items:center; gap:8px; border:2px solid transparent
     }
-    .card:active{transform:scale(0.95)}
+    .card:active{transform:scale(0.95); border:2px solid white}
     .card .icon{font-size:30px}
     .card h3{font-size:15px; font-weight:bold}
     .card p{font-size:11px; opacity:0.8}
     
     /* RANGI KAMA KWENYE PICHA YAKO */
-    .c1{background:#2563EB} /* Viji Game */
-    .c2{background:#F97316} /* Viji Stories */
-    .c3{background:#8B5CF6} /* Documentary */
-    .c4{background:#22C55E} /* Viji Sokoni */
-    .c5{background:#EF4444; grid-column:1 / -1} /* Viji Skills */
-    .c6{background:#EC4899; grid-column:1 / -1} /* Viji Trends */
-    .c7{background:#06B6D4} /* Viji Jamii */
-    .c8{background:#FACC15; color:#000} /* Viji Events */
-    .c9{background:#1E3A8A; grid-column:1 / -1} /* Viji Sheria */
+    .c1{background:#2563EB}
+    .c2{background:#F97316}
+    .c3{background:#8B5CF6}
+    .c4{background:#22C55E}
+    .c5{background:#EF4444; grid-column:1 / -1} /* HUYU NDIO VIJI SKILLS */
+    .c6{background:#EC4899; grid-column:1 / -1}
+    .c7{background:#06B6D4}
+    .c8{background:#FACC15; color:#000}
+    .c9{background:#1E3A8A; grid-column:1 / -1}
 </style>
 </head>
 <body>
@@ -49,57 +48,40 @@
     <div class="grid">
         
         <a href="viji-game.html" class="card c1">
-            <div class="icon">🎮</div>
-            <h3>Viji Game</h3>
-            <p>Cheza na ujifunze</p>
+            <div class="icon">🎮</div><h3>Viji Game</h3><p>Cheza na ujifunze</p>
         </a>
 
         <a href="viji-stories.html" class="card c2">
-            <div class="icon">📖</div>
-            <h3>Viji Stories</h3>
-            <p>Soma hadithi fupi</p>
+            <div class="icon">📖</div><h3>Viji Stories</h3><p>Soma hadithi fupi</p>
         </a>
 
         <a href="viji-doc.html" class="card c3">
-            <div class="icon">🎬</div>
-            <h3>Documentary & Makala</h3>
-            <p>Tazama na ujifunze</p>
+            <div class="icon">🎬</div><h3>Documentary & Makala</h3><p>Tazama na ujifunze</p>
         </a>
 
         <a href="viji-sokoni.html" class="card c4">
-            <div class="icon">🛒</div>
-            <h3>Viji Sokoni</h3>
-            <p>Uza na Nunua</p>
+            <div class="icon">🛒</div><h3>Viji Sokoni</h3><p>Uza na Nunua</p>
         </a>
 
+        <!-- HAPA NDIO VIJI SKILLS MWEKUNDU MKUBWA -->
         <a href="viji-skills.html" class="card c5">
-            <div class="icon">🔧</div>
-            <h3>Viji Skills</h3>
-            <p>Pata fundi wa ujuzi wowote</p>
+            <div class="icon">🔧</div><h3>Viji Skills</h3><p>Pata fundi wa ujuzi wowote</p>
         </a>
 
         <a href="viji-trends.html" class="card c6">
-            <div class="icon">🔥</div>
-            <h3>Viji Trends</h3>
-            <p>Video fupi + Viral + Methali</p>
+            <div class="icon">🔥</div><h3>Viji Trends</h3><p>Video fupi + Viral + Methali</p>
         </a>
 
         <a href="viji-jamii.html" class="card c7">
-            <div class="icon">💬</div>
-            <h3>Viji Jamii</h3>
-            <p>Jadili na watu</p>
+            <div class="icon">💬</div><h3>Viji Jamii</h3><p>Jadili na watu</p>
         </a>
 
         <a href="viji-events.html" class="card c8">
-            <div class="icon">📍</div>
-            <h3>Viji Events</h3>
-            <p>Tukio na matangazo</p>
+            <div class="icon">📍</div><h3>Viji Events</h3><p>Tukio na matangazo</p>
         </a>
 
         <a href="viji-sheria.html" class="card c9">
-            <div class="icon">⚖️</div>
-            <h3>Viji Sheria</h3>
-            <p>Jua haki zako</p>
+            <div class="icon">⚖️</div><h3>Viji Sheria</h3><p>Jua haki zako</p>
         </a>
 
     </div>
