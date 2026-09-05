@@ -5,13 +5,14 @@
 <title>Cheza - Viji Games</title>
 <style>
   body { background:#0F0F0F; color:white; font-family:Arial; padding:20px; text-align:center; }
- .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
- .back-btn { background:#FFD700; color:#000; padding:10px 15px; border-radius:8px; text-decoration:none; font-weight:bold; }
- .timer { background:#EF4444; padding:15px; border-radius:10px; font-size:24px; font-weight:bold; }
- .score { color:#FFD700; font-size:18px; margin:10px 0; }
- .question { background:#1A1A1A; padding:20px; border-radius:15px; margin:20px 0; font-size:16px; min-height:60px; }
- .options button { width:100%; background:#222; color:white; border:1px solid #333; padding:15px; margin:8px 0; border-radius:10px; font-size:15px; cursor:pointer; }
- .options button:active { background:#FFD700; color:#000; }
+.header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.back-btn { background:#FFD700; color:#000; padding:10px 15px; border-radius:8px; text-decoration:none; font-weight:bold; }
+.timer { background:#EF4444; padding:15px; border-radius:10px; font-size:24px; font-weight:bold; }
+.score { color:#FFD700; font-size:18px; margin:10px 0; }
+.question { background:#1A1A1A; padding:20px; border-radius:15px; margin:20px 0; font-size:16px; min-height:60px; }
+.input-box { width:100%; padding:15px; background:#222; border:2px solid #FFD700; border-radius:10px; color:white; font-size:16px; text-align:center; margin:10px 0; }
+.submit-btn { width:100%; background:#FFD700; color:#000; padding:15px; border:none; border-radius:10px; font-size:16px; font-weight:bold; }
+.feedback { margin-top:10px; font-size:14px; font-weight:bold; }
 </style>
 </head>
 <body>
@@ -22,7 +23,9 @@
   
   <div class="score">🪙 Coins: <span id="coins">0</span></div>
   <div class="question" id="question">Pakia...</div>
-  <div class="options" id="options"></div>
+  <input type="text" id="answerInput" class="input-box" placeholder="Andika jibu hapa...">
+  <button class="submit-btn" onclick="checkAnswer()">THIBITISHA</button>
+  <div id="feedback" class="feedback"></div>
 
 <script>
 const urlParams = new URLSearchParams(window.location.search);
@@ -31,43 +34,69 @@ const gameType = urlParams.get('type');
 let time = 60;
 let coins = 0;
 let timer;
+let currentQ;
 
-// BENKI YA MASWALI YA GAME ZOTE 5
+// BENKI KUBWA - MASWALI YA DUNIA NZIMA KILA GAME
 const bank = {
-  maswali: [
-    {q:"Mlima mrefu zaidi Afrika?", a:"Kilimanjaro", opts:["Kilimanjaro","Kenya","Meru","Ruwenzori"]},
-    {q:"Rais wa kwanza wa Tanzania?", a:"Nyerere", opts:["Nyerere","Magufuli","Kikwete","Mwinyi"]},
-    {q:"Mji mkuu wa Tanzania?", a:"Dodoma", opts:["Dar","Dodoma","Arusha","Mwanza"]},
-    {q:"Ziwa kubwa zaidi Afrika?", a:"Victoria", opts:["Tanganyika","Victoria","Nyasa","Malawi"]},
-    {q:"Pesa ya Tanzania?", a:"Shilingi", opts:["Shilingi","Dollar","Rand","Euro"]}
+  maswali: [ // HISTORIA + JIOPOLITIKA DUNIA
+    {q:"Ni nchi ngapi zipo duniani zilizotambuliwa na Umoja wa Mataifa?", a:"193"},
+    {q:"Mto mrefu zaidi duniani unaitwaje?", a:"Nile"},
+    {q:"Nchi iliyo na idadi kubwa ya watu duniani 2026?", a:"India"},
+    {q:"Nani alikuwa Rais wa kwanza wa Marekani?", a:"Washington"},
+    {q:"Vita vya pili vya dunia vilimalizika mwaka gani?", a:"1945"},
+    {q:"Sarafu inayotumika nchi nyingi za Ulaya?", a:"Euro"},
+    {q:"Mlima mrefu zaidi duniani?", a:"Everest"},
+    {q:"Mji mkuu wa Japan?", a:"Tokyo"},
+    {q:"Nchi iliyo na silaha za nyuklia nyingi zaidi?", a:"Russia"},
+    {q:"Tuzo kubwa ya Amani duniani?", a:"Nobel"}
   ],
-  hesabu: [
-    {q:"37 x 3 =?", a:"111", opts:["111","101","120","90"]},
-    {q:"144 / 12 =?", a:"12", opts:["10","12","14","16"]},
-    {q:"25 + 48 =?", a:"73", opts:["73","68","75","70"]},
-    {q:"9 x 9 =?", a:"81", opts:["72","81","90","99"]},
-    {q:"100 - 37 =?", a:"63", opts:["63","67","53","73"]}
+  hesabu: [ // HESABU ZA DUNIA - ZOTE NIVEAU
+    {q:"2^10 =?", a:"1024"},
+    {q:"Suluhisha: 5x - 10 = 15. x =?", a:"5"},
+    {q:"Eneo la mstatili 12m x 8m =?", a:"96"},
+    {q:"√256 =?", a:"16"},
+    {q:"Log10 ya 10000 =?", a:"4"},
+    {q:"25% ya 480 =?", a:"120"},
+    {q:"Kasi = Umbali/Muda. Kama 300km kwa masaa 5, kasi?", a:"60"},
+    {q:"Pi hadi nambari 2?", a:"3.14"},
+    {q:"Faktor za 72?", a:"1,2,3,4,6,8,9,12,18,24,36,72"},
+    {q:"Mteremko wa (1,2) na (3,10)?", a:"4"}
   ],
-  kumbuka: [
-    {q:"Ni kipi si chakula cha TZ?", a:"Sushi", opts:["Ugali","Sushi","Wali","Nyama"]},
-    {q:"Mji wa almasi upo wapi?", a:"Shinyanga", opts:["Arusha","Shinyanga","Mwanza","Geita"]},
-    {q:"Chakula maarufu Zanzibar?", a:"Pilau", opts:["Ugali","Pilau","Chipsi","Wali"]},
-    {q:"Mnyama wa Taifa?", a:"Simba", opts:["Ndovu","Simba","Twiga","Chui"]},
-    {q:"Ndege wa Taifa?", a:"Tai", opts:["Tai","Korongo","Kanga","Njiwa"]}
+  kumbuka: [ // SAYANSI YA DUNIA
+    {q:"Gesi kubwa zaidi katika anga?", a:"Nitrojeni"},
+    {q:"Chembe yenye chaji hasi?", a:"Elektroni"},
+    {q:"Kipimo cha nguvu?", a:"Newton"},
+    {q:"Mtoaji wa damu mwilini?", a:"Moyo"},
+    {q:"Mchakato wa mimea kutengeneza chakula?", a:"Utoaji wa lishe"},
+    {q:"Chuma kinachopatikana damu?", a:"Chuma"},
+    {q:"Kipimo cha umbali kati ya nyota?", a:"Mwaka wa mwanga"},
+    {q:"Joto la kuyeyuka kwa barafu?", a:"0"},
+    {q:"Nishati ya jua inatoka wapi?", a:"Muungano wa nyuklia"},
+    {q:"DNA inasimama nini?", a:"Deoxyribonucleic Acid"}
   ],
-  ramani: [
-    {q:"Mwanza inajulikana na nini?", a:"Samaki", opts:["Kahawa","Samaki","Chai","Pamba"]},
-    {q:"Arusha inajulikana na nini?", a:"Utalii", opts:["Utalii","Madini","Kilimo","Biashara"]},
-    {q:"Mbeya inajulikana na nini?", a:"Chai", opts:["Chai","Kahawa","Almasi","Dhahabu"]},
-    {q:"Kilimanjaro inajulikana na nini?", a:"Kahawa", opts:["Kahawa","Chai","Pamba","Mchele"]},
-    {q:"Geita inajulikana na nini?", a:"Dhahabu", opts:["Dhahabu","Almasi","Maka","Chuma"]}
+  ramani: [ // JIOPOLITIKA + JIOLAJIA DUNIA
+    {q:"Mji mkuu wa Canada?", a:"Ottawa"},
+    {q:"Jangwa kubwa zaidi duniani?", a:"Sahara"},
+    {q:"Kisiwa kikubwa zaidi duniani?", a:"Greenland"},
+    {q:"Mto Amazon upo bara gani?", a:"Amerika ya Kusini"},
+    {q:"Nchi iliyo na nguzo za Eiffel?", a:"Ufaransa"},
+    {q:"Mji mkuu wa Australia?", a:"Canberra"},
+    {q:"Bahari kubwa zaidi?", a:"Pasifiki"},
+    {q:"Nchi ya Pyramidi?", a:"Misri"},
+    {q:"Bara dogo zaidi?", a:"Australia"},
+    {q:"Jangwa la Gobi lipo nchi gani?", a:"China"}
   ],
-  fumbo: [
-    {q:"Fimbo ya...", a:"Mnyonge", opts:["Mnyonge","Mlafi","Mlevi","Mvivu"]},
-    {q:"Asiyefunzwa na mamake...", a:"Atafunzwa na ulimwengu", opts:["Atafunzwa na ulimwengu","Atakufa","Atapona","Ataolewa"]},
-    {q:"Kidole kimoja...", a:"hakivunji chawa", opts:["hakivunji chawa","hakitoshi","hakiendi mbali","hakina nguvu"]},
-    {q:"Mchezea watoto...", a:"hafi", opts:["hafi","halala","hasomi","hafanyi kazi"]},
-    {q:"Asiye na ndugu...", a:"hufa magonjwa", opts:["hufa magonjwa","hufa njaa","hufa mapema","hufa maskini"]}
+  fumbo: [ // METHALI + FASIHI ZA DUNIA
+    {q:"Mwandishi wa 'Romeo na Juliet'?", a:"Shakespeare"},
+    {q:"Methali ya Kiingereza: 'A stitch in time saves...?'", a:"nine"},
+    {q:"Mtunzi wa 'The Old Man and the Sea'?", a:"Hemingway"},
+    {q:"Fumbo: Niko kila mahali lakini hunioni?", a:"Hewa"},
+    {q:"Nahau: Kupiga mbizi?", a:"kufa"},
+    {q:"Mshairi maarufu wa Nigeria?", a:"Soyinka"},
+    {q:"Methali: 'Mti hauendi kwa kisu' maana?", a:"uvivu"},
+    {q:"Kitabu kitakatifu cha Waislamu?", a:"Qurani"},
+    {q:"Kitabu cha kwanza cha Biblia?", a:"Mwanzo"},
+    {q:"Nahau ya Kichina: 'Paka mweusi chumba cheusi'?", a:"tatizo"}
   ]
 };
 
@@ -83,32 +112,41 @@ function startTimer(){
 
 function loadQ(){
   if(current >= maswali.length){ current = 0; maswali.sort(() => 0.5 - Math.random()); }
-  let q = maswali[current];
-  document.getElementById("question").innerText = q.q;
-  let opts = q.opts.sort(() => 0.5 - Math.random());
-  document.getElementById("options").innerHTML = opts.map(o=>
-    `<button onclick="check('${o}')">${o}</button>`
-  ).join("");
+  currentQ = maswali[current];
+  document.getElementById("question").innerText = `${current+1}. ${currentQ.q}`;
+  document.getElementById("answerInput").value = "";
+  document.getElementById("feedback").innerText = "";
 }
 
-function check(ans){
-  if(ans === maswali[current].a){
-    coins += 3; // TOA COIN 3
+function checkAnswer(){
+  let userAns = document.getElementById("answerInput").value.trim().toLowerCase();
+  let correctAns = currentQ.a.toLowerCase();
+  
+  if(userAns === correctAns){
+    coins += 5;
     document.getElementById("coins").innerText = coins;
+    document.getElementById("feedback").innerText = "✅ SAHIHI! +5 Coins";
+    document.getElementById("feedback").style.color = "#22C55E";
+  } else {
+    document.getElementById("feedback").innerText = `❌ MAKOSA! Jibu: ${currentQ.a}`;
+    document.getElementById("feedback").style.color = "#EF4444";
   }
-  current++; loadQ();
+  
+  setTimeout(()=>{ current++; loadQ(); }, 1500);
 }
+
+document.getElementById("answerInput").addEventListener("keypress", function(e){
+  if(e.key === "Enter"){ checkAnswer(); }
+});
 
 function malizaGame(){
   clearInterval(timer);
   alert(`⏰ Muda umemaliza!\nUmekusanya 🪙 ${coins} Viji Coins`);
   
-  // Hifadhi coin
   let total = parseInt(localStorage.getItem("vijiCoins")) || 0;
   total += coins;
   localStorage.setItem("vijiCoins", total);
   
-  // Angalia Hall of Fame
   let hallCoins = parseInt(localStorage.getItem("hallCoins")) || 0;
   if(total > hallCoins){
     let jina = prompt("🎉 Hongera! Umekuwa No.1\nWeka jina lako la Hall of Fame:");
