@@ -3,114 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ongeza Maudhui - Viji</title>
+<title>Viji Games - Cheza na Viji Coin</title>
 <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:40px; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:80px; }
   
-  .header { background:#1A1A1A; padding:15px; text-align:center; border-bottom:2px solid #F97316; position:sticky; top:0; }
-  .header h1 { color:#F97316; margin:0; font-size:18px; }
-  .header p { color:#aaa; font-size:12px; margin-top:5px; }
+  .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #FFD700; position:sticky; top:0; z-index:10; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; }
+  .back-btn { background:#FFD700; color:#000; padding:10px 18px; border-radius:8px; font-weight:bold; text-decoration:none; }
+  .header h1 { color:#FFD700; font-size:20px; }
+  .coin-box { background:#1A1A1A; padding:8px 12px; border-radius:8px; color:#FFD700; font-weight:bold; }
   
-  .container { padding:15px; max-width:600px; margin:auto; }
-  .card { background:#1A1A1A; border-radius:12px; padding:20px; border:1px solid #222; }
+  .hall { background:#1A1A1A; border:2px solid #FFD700; padding:12px; margin:15px; border-radius:10px; text-align:center; }
+  .hall b { color:#FFD700; }
   
-  label { font-size:13px; color:#aaa; margin-bottom:6px; display:block; margin-top:15px; font-weight:bold; }
-  input, select, textarea { 
-    width:100%; padding:12px; background:#222; border:1px solid #333; 
-    border-radius:8px; color:white; font-size:14px; box-sizing:border-box; 
+  .section-title { padding:20px 15px 10px; font-size:16px; color:#FFD700; font-weight:bold; }
+  .container { padding:0 15px 15px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  
+  .game-card { background:#1A1A1A; border-radius:15px; border:1px solid #222; padding:15px; text-align:center; }
+  .game-icon { font-size:40px; margin-bottom:8px; }
+  .game-card h3 { font-size:14px; margin-bottom:5px; color:#FFD700; }
+  .game-card p { font-size:11px; color:#aaa; margin-bottom:10px; }
+  .play-btn { background:#FFD700; color:#000; padding:10px; border-radius:8px; font-size:13px; font-weight:bold; border:none; width:100%; cursor:pointer; }
+  
+  .tangazo { 
+    background: linear-gradient(135deg, #22C55E, #FFD700); 
+    margin:20px 15px; 
+    padding:20px; 
+    border-radius:15px; 
+    text-align:center;
+    color:#000;
   }
-  textarea { height:150px; resize:vertical; }
-  input:focus, select:focus, textarea:focus { border-color:#F97316; outline:none; }
-  
-  .btn { 
-    background:#F97316; color:white; padding:14px; border:none; 
-    border-radius:8px; width:100%; font-weight:bold; font-size:16px; 
-    margin-top:20px; cursor:pointer; 
+  .tangazo h2 { font-size:18px; margin-bottom:8px; }
+  .tangazo p { font-size:13px; margin-bottom:12px; }
+  .btn-group { display:flex; gap:10px; justify-content:center; }
+  .tangazo-btn { 
+    background:#000; 
+    color:#FFD700; 
+    padding:12px 15px; 
+    border-radius:10px; 
+    font-weight:bold; 
+    text-decoration:none; 
+    font-size:12px;
   }
-  .btn:hover { background:#EA580C; }
-  
-  .info-box { 
-    background:#222; padding:12px; border-radius:8px; 
-    font-size:12px; border-left:4px solid #F97316; margin-top:15px; 
-  }
-  .file-upload { 
-    border:2px dashed #333; padding:20px; text-align:center; 
-    border-radius:8px; cursor:pointer; 
+  .tangazo-btn2 { 
+    background:white; 
+    color:#000; 
+    padding:12px 15px; 
+    border-radius:10px; 
+    font-weight:bold; 
+    text-decoration:none; 
+    font-size:12px;
   }
 </style>
 </head>
 <body>
-
   <div class="header">
-    <h1>➕ Ongeza Maudhui Mapya</h1>
-    <p>Pata 70% ya kila mauzo yako</p>
+    <div class="header-top">
+      <a href="index.html" class="back-btn">← Rudi</a>
+      <h1>🎮 Viji Games</h1>
+      <div class="coin-box">🪙 <span id="myCoins">0</span></div>
+    </div>
   </div>
-
+  
+  <div class="hall">
+    <b>👑 HALL OF FAME</b><br>
+    <span id="hallName">Jina: Hakuna</span> | 🪙 <span id="hallCoins">0</span> Coins
+  </div>
+  
+  <div class="section-title">🔥 Michezo 5 Mikubwa - Dakika 1</div>
   <div class="container">
-    <form class="card">
-      
-      <label>1. Chagua Aina ya Maudhui *</label>
-      <select required>
-        <option value="">-- Chagua --</option>
-        <option value="kozi">Kozi - Video + PDF</option>
-        <option value="story">Story - Riwaya</option>
-        <option value="noti">Noti - Muhtasari wa Masomo</option>
-        <option value="kitabu">Kitabu - PDF Kamili</option>
-        <option value="makala">Makala - Blog</option>
-      </select>
-
-      <label>2. Jina la Kichwa *</label>
-      <input type="text" placeholder="Mfano: Jinsi ya Kupata Pesa Mtandaoni 2026" required>
-
-      <label>3. Maelezo Mafupi / Kionjo *</label>
-      <textarea placeholder="Andika aya 2-3 za kuvutia watu wanonue. Hiki ndio kionjo cha bure." required></textarea>
-
-      <label>4. Weka Bei Tsh *</label>
-      <input type="number" placeholder="Mfano: 500, 1000, 5000" min="100" required>
-
-      <label>5. Pakia Faili Kuu *</label>
-      <div class="file-upload">
-        <input type="file" accept=".pdf,.mp4,.docx,.zip" style="display:none;" id="fileInput">
-        <label for="fileInput" style="cursor:pointer;">
-          📁 Bonyeza hapa kuchagua Faili<br>
-          <small style="color:#aaa;">PDF, Video, DOCX. Max 100MB</small>
-        </label>
-      </div>
-
-      <label>6. Picha ya Kava / Thumbnail</label>
-      <div class="file-upload">
-        <input type="file" accept="image/*" style="display:none;" id="imageInput">
-        <label for="imageInput" style="cursor:pointer;">
-          🖼️ Chagua Picha ya Kuvutia<br>
-          <small style="color:#aaa;">Inapendekezwa: 1200x600</small>
-        </label>
-      </div>
-
-      <div class="info-box">
-        <b>📊 Ukikubali:</b><br>
-        Wewe unapata: <b style="color:#22C55E;">70%</b><br>
-        Viji Maktaba: <b style="color:#F97316;">30%</b><br>
-        Malipo yanatumwa kila Ijumaa kwenye namba yako.
-      </div>
-
-      <button type="submit" class="btn">Tuma kwa Ukaguzi</button>
-      <p style="font-size:12px; color:#aaa; text-align:center; margin-top:10px;">
-        Admin atakagua ndani ya masaa 24. Utapata SMS ukikubaliwa.
-      </p>
-
-    </form>
-    
-    <a href="viji-elimu.html" style="display:block; text-align:center; margin-top:15px; color:#aaa; text-decoration:none;">← Rudi Maktabani</a>
+    <div class="game-card"><div class="game-icon">🧠</div><h3>Maswali ya Viji Pro</h3><p>Historia + Jiografia + Siasa ya TZ</p><button class="play-btn" onclick="anzaGame('maswali')">Cheza Sasa</button></div>
+    <div class="game-card"><div class="game-icon">🔢</div><h3>Hesabu za Akili</h3><p>Zidisha, Gawanya, Pata jibu haraka</p><button class="play-btn" onclick="anzaGame('hesabu')">Cheza Sasa</button></div>
+    <div class="game-card"><div class="game-icon">🖼️</div><h3>Kumbuka Picha</h3><p>Pata jozi za picha za Kitanzania</p><button class="play-btn" onclick="anzaGame('kumbuka')">Cheza Sasa</button></div>
+    <div class="game-card"><div class="game-icon">🗺️</div><h3>Ramani ya Tanzania</h3><p>Tambua Mkoa + Chakula chake</p><button class="play-btn" onclick="anzaGame('ramani')">Cheza Sasa</button></div>
+    <div class="game-card"><div class="game-icon">📜</div><h3>Fumbo la Methali</h3><p>Kamilisha methali na nahau</p><button class="play-btn" onclick="anzaGame('fumbo')">Cheza Sasa</button></div>
+  </div>
+  
+  <!-- TANGAZO NA NAMBA YAKO -->
+  <div class="tangazo">
+    <h2>🚀 Una Game Yako Mwenyewe?</h2>
+    <p>Tuma game yako tuweke kwenye Viji Games <b>BURE KABISA!</b><br>
+    Tunakupa sifa + Viji Coins za kuanzia 100</p>
+    <div class="btn-group">
+      <a href="https://wa.me/255653244898?text=Habari%20Viji%20App.%20Nina%20game%20nataka%20niweke%20kwenye%20Viji%20Games" class="tangazo-btn">📱 Tuma WhatsApp 0653 244 898</a>
+      <a href="viji-tuma-game.html" class="tangazo-btn2">📝 Jaza Form</a>
+    </div>
   </div>
 
 <script>
-  document.querySelector('form').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('✅ Asante! Maudhui yako yametumwa kwa ukaguzi.\n\nUtapata ujumbe ukikubaliwa ndani ya masaa 24.');
-    window.location.href = 'viji-elimu.html';
-  });
+let myCoins = parseInt(localStorage.getItem("vijiCoins")) || 0;
+document.getElementById("myCoins").innerText = myCoins;
+let hallName = localStorage.getItem("hallName") || "Hakuna";
+let hallCoins = parseInt(localStorage.getItem("hallCoins")) || 0;
+document.getElementById("hallName").innerText = "Jina: " + hallName;
+document.getElementById("hallCoins").innerText = hallCoins;
+function anzaGame(type){ window.location.href = `viji-play.html?type=${type}`; }
 </script>
-
 </body>
 </html>
