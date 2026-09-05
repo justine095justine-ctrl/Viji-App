@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pandisha Kipaji - Viji Talent</title>
+<style>
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding:20px; }
+  .header { display:flex; align-items:center; gap:15px; margin-bottom:20px; }
+  .back-btn { background:#F97316; color:white; padding:10px 15px; border-radius:8px; text-decoration:none; font-weight:bold; }
+  h1 { color:#F97316; font-size:22px; }
+  .form-box { background:#1A1A1A; padding:20px; border-radius:15px; border:1px solid #222; }
+  .form-box label { display:block; margin:15px 0 5px; font-size:14px; color:#aaa; }
+  .form-box input, .form-box textarea, .form-box select { 
+    width:100%; padding:12px; background:#222; border:1px solid #333; 
+    border-radius:8px; color:white; font-size:14px; 
+  }
+  .btn-submit { 
+    width:100%; background:#F97316; color:white; padding:15px; 
+    border:none; border-radius:10px; font-size:16px; font-weight:bold; 
+    margin-top:20px; cursor:pointer; 
+  }
+  .alert { background:#1A1A1A; border-left:4px solid #EF4444; padding:12px; margin-bottom:15px; font-size:13px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <a href="viji-talent.html" class="back-btn">← Rudi</a>
+    <h1>📹 Pandisha Kipaji Chako</h1>
+  </div>
+  
+  <div class="alert">
+    <b>⚠️ Kumbuka Sheria 6 za Viji Talent:</b> Hakuna siasa, hakuna matangazo ya biashara bila kibali cha Viji App. Video zako mwenyewe tu.
+  </div>
+
+  <div class="form-box">
+    <label>Jina lako la Kipaji</label>
+    <input type="text" placeholder="Mf: Justine Umeme">
+    
+    <label>Aina ya Kipaji</label>
+    <select>
+      <option>CHEKESHA</option>
+      <option>TAMADUNI</option>
+      <option>SANA</option>
+      <option>NYIMBO</option>
+      <option>UFUNDI</option>
+    </select>
+    
+    <label>Maelezo ya Kipaji</label>
+    <textarea rows="3" placeholder="Eleza kidogo kuhusu kipaji chako..."></textarea>
+    
+    <label>Mkoa</label>
+    <input type="text" placeholder="Mf: Mwanza, Dar, Arusha">
+    
+    <label>Pandisha Video Yako</label>
+    <input type="file" accept="video/*">
+    
+    <button class="btn-submit" onclick="alert('🚀 Asante! Video yako imepokelewa. Admin atakagua kwanza kabla haijatoka.')">Tuma Kipaji</button>
+  </div>
+
+</body>
+</html>
