@@ -47,12 +47,15 @@
     <p class="sub">Onyesha Kipaji cha Kitanzania</p>
   </div>
   
+  <!-- SHERIA 6 ZOTE -->
   <div class="kanuni">
-    <b>⚠️ SHERIA 4 ZA VIJI TALENT:</b> 
+    <b>⚠️ SHERIA 6 ZA VIJI TALENT:</b> 
     <li>1. Vipaji vya Kitanzania tu</li>
     <li>2. Hakuna Live</li>
     <li>3. Hakuna Matusi</li>
-    <li>4. Hakuna Kuiga jina la mtu au kampuni. Video zako mwenyewe tu.</li>
+    <li>4. Hakuna Kuiga jina la mtu au kampuni</li>
+    <li>5. Hakuna kuchukua video kutoka kwenye branding nyingine</li>
+    <li>6. <b>Hakuna kutangaza biashara wala siasa</b> bila kibali malumu kutoka Viji App</li>
   </div>
   
   <div class="section-title">🔥 Vinavyotrend Wiki Hii</div>
@@ -121,32 +124,27 @@
   <button class="fab" onclick="window.location.href='viji-ongeza-talent.html'">+</button>
 
 <script>
-// HII NDIO INAYOHESABU VIEWS
 function ongezaView(videoId, displayId){
   let video = document.getElementById(videoId);
   let display = document.getElementById(displayId);
   let key = "view_"+videoId;
   
-  // Pata idadi ya zamani
   let views = localStorage.getItem(key);
   if(views === null){ views = 0; }
   views = parseInt(views);
   
-  // Onyesha idadi
   display.innerHTML = "👁️ " + views + " views";
   
-  // Ongeza mara 1 tu mtu anapocheza video
   video.addEventListener('play', function(){
     if(!video.dataset.counted){
       views = views + 1;
       localStorage.setItem(key, views);
       display.innerHTML = "👁️ " + views + " views";
-      video.dataset.counted = "true"; // isihesabu mara 2
+      video.dataset.counted = "true";
     }
   });
 }
 
-// Washa hesabu kwa video zote
 ongezaView('vid-ngoma', 'views-ngoma');
 ongezaView('vid-skiza', 'views-skiza');
 ongezaView('vid-justine', 'views-justine');
@@ -154,4 +152,4 @@ ongezaView('vid-justine', 'views-justine');
 </script>
 
 </body>
-</html>
+               </html>
