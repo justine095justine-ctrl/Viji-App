@@ -4,14 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viji App - Mlango Mkuu</title>
-   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#FFD700">
-<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0FB5B3">
+<link rel="icon" href="icon-512.png">
 <style>
+    /* RANGI KUU YA VIJI */
+    :root {
+      --viji-main: #0FB5B3;
+      --viji-dark: #0A8F8D;
+      --viji-light: #E0F7F6;
+    }
+
     * { margin:0; padding:0; box-sizing:border-box; }
   body { 
-    background:#0F0F0F; 
-    color:white; 
+    background:var(--viji-light); 
+    color:#222; 
     font-family:Arial, sans-serif; 
     min-height:100vh;
     display:flex;
@@ -24,9 +31,10 @@
     width:100%;
     text-align:center; 
   }
-  .logo { font-size:60px; margin-bottom:10px; }
-  h1 { color:#F97316; font-size:36px; margin-bottom:8px; }
-  .subtitle { color:#aaa; font-size:15px; margin-bottom:35px; }
+  .logo { display:none; } /* TUMEONDOA ICON YA JUU */
+  
+  h1 { color:var(--viji-main); font-size:36px; margin-bottom:8px; font-weight:bold; }
+  .subtitle { color:#555; font-size:15px; margin-bottom:35px; }
   
   .grid { 
     display:grid; 
@@ -34,10 +42,10 @@
     gap:15px; 
   }
   .box { 
-    background:#1A1A1A; 
-    padding:25px 15px; 
+    background:var(--viji-main); /* RANGI MOJA */
+    padding:30px 15px; 
     border-radius:15px; 
-    border:1px solid #222; 
+    border:2px solid var(--viji-dark); 
     cursor:pointer; 
     text-align:center; 
     transition:0.3s; 
@@ -46,63 +54,60 @@
     display:block; 
   }
   .box:hover { 
-    border:1px solid #F97316; 
+    background:var(--viji-dark); 
     transform:translateY(-5px);
-    background:#222;
   }
-  .icon { font-size:50px; margin-bottom:12px; }
-  .box h3 { margin:5px 0; font-size:17px; font-weight:bold; color:#F97316; }
-  .box p { font-size:12px; color:#aaa; line-height:1.4; }
-  .full { grid-column: span 2; }
-  .footer { color:#444; font-size:11px; margin-top:40px; }
+  .icon { display:none; } /* TUMEONDOA ICON ZOTE NDANI YA BOX */
   
-  .coming-soon { opacity:0.6; }
+  .box h3 { margin:0 0 8px 0; font-size:18px; font-weight:bold; color:white; }
+  .box p { font-size:13px; color:#E0F7F6; line-height:1.4; }
+  
+  .full { grid-column: span 2; }
+  .footer { color:#777; font-size:11px; margin-top:40px; }
+  
 </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo">📚</div>
     <h1>VIJI APP</h1>
-    <p class="subtitle">Burudani. Elimu. Biashara. Yote kwa Kiswahili</p>
+    <p class="subtitle">Elimu. Sheria. Soko. Game. Yote kwa Kiswahili</p>
     
     <div class="grid">
       <!-- 1. VIJI SOKONI -->
       <a href="viji-sokoni.html" class="box">
-        <div class="icon">🛒</div>
         <h3>Viji Sokoni</h3>
         <p>Fungua Duka. Uza Bidhaa na Huduma</p>
       </a>
 
       <!-- 2. VIJI GAME -->
-      <a href="viji-games.html" class="card">
-    <div class="card-icon">🎮</div>
-    <h3>Viji Games</h3>
-    <p>Cheza na Ushinde Viji Coin</p>
+      <a href="viji-games.html" class="box">
+        <h3>Viji Game</h3>
+        <p>Cheza na Ushinde Viji Coin</p>
       </a>
 
       <!-- 3. VIJI ELIMU -->
       <a href="viji-elimu.html" class="box">
-        <div class="icon">📚</div>
         <h3>Viji Elimu</h3>
         <p>Jifunze Kozi + Soma Story + Pakua Noti</p>
       </a>
 
-      <!-- 4. VIJI TALENT - HAPA NDIPO NILIPOREKEBISHA -->
+      <!-- 4. VIJI TALENT -->
       <a href="viji-talent.html" class="box">
-        <div class="icon">⭐</div>
         <h3>Viji Talent</h3>
         <p>Onyesha Kipaji. Tafuta Fundi. Ajiriwa</p>
       </a>
 
       <!-- 5. VIJI SHERIA -->
-      <a href="viji-sheria.html" class="game-card">
-  <div style="font-size:40px;">⚖️</div>
-  <h3 style="color:#FFD700;">Viji Sheria</h3>
-  <p>Jifunze Haki Zako. Kanuni kwa Lugha Rahisi</p>
+      <a href="viji-sheria.html" class="box full">
+        <h3>Viji Sheria</h3>
+        <p>Jifunze Haki Zako. Kanuni kwa Lugha Rahisi</p>
       </a>
     </div>
     
-    <script>
+    <p class="footer">© 2026 Viji App. Rangi moja. Brand moja.</p>
+  </div>
+  
+<script>
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('sw.js');
 }
