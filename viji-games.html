@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viji Games - Cheza na Viji Coin</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:80px; }
+  
+  .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #FFD700; position:sticky; top:0; z-index:10; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; }
+  .back-btn { background:#FFD700; color:#000; padding:10px 18px; border-radius:8px; font-weight:bold; text-decoration:none; }
+  .header h1 { color:#FFD700; font-size:20px; }
+  .coin-box { background:#1A1A1A; padding:8px 12px; border-radius:8px; color:#FFD700; font-weight:bold; }
+  
+  .hall { background:#1A1A1A; border:2px solid #FFD700; padding:12px; margin:15px; border-radius:10px; text-align:center; }
+  .hall b { color:#FFD700; }
+  
+  .section-title { padding:20px 15px 10px; font-size:16px; color:#FFD700; font-weight:bold; }
+  .container { padding:0 15px 15px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  
+  .game-card { background:#1A1A1A; border-radius:15px; border:1px solid #222; padding:15px; text-align:center; }
+  .game-icon { font-size:40px; margin-bottom:8px; }
+  .game-card h3 { font-size:14px; margin-bottom:5px; color:#FFD700; }
+  .game-card p { font-size:11px; color:#aaa; margin-bottom:10px; }
+  .play-btn { background:#FFD700; color:#000; padding:10px; border-radius:8px; font-size:13px; font-weight:bold; border:none; width:100%; cursor:pointer; }
+  
+  /* TANGAZO JIPYA */
+  .tangazo { 
+    background: linear-gradient(135deg, #22C55E, #FFD700); 
+    margin:20px 15px; 
+    padding:20px; 
+    border-radius:15px; 
+    text-align:center;
+    color:#000;
+  }
+  .tangazo h2 { font-size:18px; margin-bottom:8px; }
+  .tangazo p { font-size:13px; margin-bottom:12px; }
+  .tangazo-btn { 
+    background:#000; 
+    color:#FFD700; 
+    padding:12px 20px; 
+    border-radius:10px; 
+    font-weight:bold; 
+    text-decoration:none; 
+    display:inline-block;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-top">
+      <a href="index.html" class="back-btn">← Rudi</a>
+      <h1>🎮 Viji Games</h1>
+      <div class="coin-box">🪙 <span id="myCoins">0</span></div>
+    </div>
+  </div>
+  
+  <!-- HALL OF FAME -->
+  <div class="hall">
+    <b>👑 HALL OF FAME</b><br>
+    <span id="hallName">Jina: Hakuna</span> | 🪙 <span id="hallCoins">0</span> Coins
+  </div>
+  
+  <div class="section-title">🔥 Michezo 5 Mikubwa - Dakika 1</div>
+  <div class="container">
+    
+    <div class="game-card">
+      <div class="game-icon">🧠</div>
+      <h3>Maswali ya Viji Pro</h3>
+      <p>Historia + Jiografia + Siasa ya TZ</p>
+      <button class="play-btn" onclick="anzaGame('maswali')">Cheza Sasa</button>
+    </div>
+    
+    <div class="game-card">
+      <div class="game-icon">🔢</div>
+      <h3>Hesabu za Akili</h3>
+      <p>Zidisha, Gawanya, Pata jibu haraka</p>
+      <button class="play-btn" onclick="anzaGame('hesabu')">Cheza Sasa</button>
+    </div>
+    
+    <div class="game-card">
+      <div class="game-icon">🖼️</div>
+      <h3>Kumbuka Picha</h3>
+      <p>Pata jozi za picha za Kitanzania</p>
+      <button class="play-btn" onclick="anzaGame('kumbuka')">Cheza Sasa</button>
+    </div>
+    
+    <div class="game-card">
+      <div class="game-icon">🗺️</div>
+      <h3>Ramani ya Tanzania</h3>
+      <p>Tambua Mkoa + Chakula chake</p>
+      <button class="play-btn" onclick="anzaGame('ramani')">Cheza Sasa</button>
+    </div>
+    
+    <div class="game-card">
+      <div class="game-icon">📜</div>
+      <h3>Fumbo la Methali</h3>
+      <p>Kamilisha methali na nahau</p>
+      <button class="play-btn" onclick="anzaGame('fumbo')">Cheza Sasa</button>
+    </div>
+    
+  </div>
+  
+  <!-- SEHEMU YA TANGAZO -->
+  <div class="tangazo">
+    <h2>🚀 Una Game Yako Mwenyewe?</h2>
+    <p>Je umetengeneza mchezo wako? 
+    <br>Wasiliana na <b>Viji App</b>
+    <br>Tutaliweka BURE kabisa kwenye Viji Games!</p>
+    <a href="https://wa.me/255XXXXXXXXX" class="tangazo-btn">📱 Wasiliana Nasi WhatsApp</a>
+  </div>
+
+<script>
+// PATA COIN ZAKO
+let myCoins = parseInt(localStorage.getItem("vijiCoins")) || 0;
+document.getElementById("myCoins").innerText = myCoins;
+
+// HALL OF FAME
+let hallName = localStorage.getItem("hallName") || "Hakuna";
+let hallCoins = parseInt(localStorage.getItem("hallCoins")) || 0;
+document.getElementById("hallName").innerText = "Jina: " + hallName;
+document.getElementById("hallCoins").innerText = hallCoins;
+
+function anzaGame(type){
+  window.location.href = `viji-play.html?type=${type}`;
+}
+</script>
+</body>
+</html>
