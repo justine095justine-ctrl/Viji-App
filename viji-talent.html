@@ -122,7 +122,33 @@
   </div>
   
   <button class="fab" onclick="window.location.href='viji-ongeza-talent.html'">+</button>
+<!-- WEKA HII CHINI YA "VINAVYOTREND WIKI HII" -->
 
+<div style="text-align:center; margin:20px 0;">
+  <button onclick="endaUkumbi()" style="
+    background: linear-gradient(45deg, red, #FF5722);
+    color:white; border:none; padding:15px 30px; 
+    border-radius:25px; font-size:16px; font-weight:bold;
+    box-shadow: 0 0 15px red; animation: pulse 1.5s infinite;
+  ">
+    🔴 INGANA VIJI STAGE LIVE
+  </button>
+</div>
+
+<style>
+@keyframes pulse {
+  0% { transform:scale(1); }
+  50% { transform:scale(1.05); }
+  100% { transform:scale(1); }
+}
+</style>
+
+<script>
+function endaUkumbi(){
+  // Kama bado huna ukumbi.html tumia stage.html direct kwa sasa
+  window.location.href = "ukumbi.html"; 
+}
+</script>
 <script>
 function ongezaView(videoId, displayId){
   let video = document.getElementById(videoId);
