@@ -3,32 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Viji Stage</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #0066CC; color: white; font-family: Arial; text-align: center; margin:0; }
+    header { padding: 20px; }
+    .video { background: #000; height: 250px; margin: 15px; border-radius: 15px; display:flex; align-items:center; justify-content:center; font-size:18px;}
+    .jumla-box { background: white; color: #0066CC; padding: 15px; margin: 15px; border-radius: 15px; font-size: 26px; font-weight: bold;}
+    .btn-moyo { background: white; color: #0066CC; border: none; padding: 18px; margin: 8px; border-radius: 25px; font-weight: bold; font-size: 18px; width: 90%;}
+    .btn-moyo:active { background: #FFD700; }
+    .rudi { color:white; text-decoration: none; font-size:14px; }
+  </style>
 </head>
 <body>
   <header>
     <h2>Viji Stage</h2>
-    <a href="index.html" style="color:white">Rudi Nyuma</a>
+    <a href="index.html" class="rudi">← Rudi Nyumbani</a>
   </header>
 
-  <div class="video-box">
-    <p>[Hapa pa Live Video]</p>
+  <div class="video">
+    [Hapa pa Live Video]
   </div>
 
-  <div class="viji-miyoyo">
-    <h3>Jumla: Tsh <span id="jumla">0</span></h3>
-    <button onclick="tumaMoyo(10)">Moyo Tsh 10</button>
-    <button onclick="tumaMoyo(50)">Miyoyo 5 = Tsh 50</button>
-    <button onclick="tumaMoyo(100)">Miyoyo 10 = Tsh 100</button>
+  <div class="jumla-box">
+    Jumla: Tsh <span id="jumla">0</span>
   </div>
 
-  <script src="firebase-config.js"></script>
+  <div class="miyoyo">
+    <button class="btn-moyo" onclick="tumaMoyo(10)">❤️ Tuma Moyo - Tsh 10</button>
+    <button class="btn-moyo" onclick="tumaMoyo(50)">❤️❤️❤️ Tuma Miyoyo 5 - Tsh 50</button>
+    <button class="btn-moyo" onclick="tumaMoyo(100)">🔥 Tuma Miyoyo 10 - Tsh 100</button>
+  </div>
+
   <script>
-    let jumlaMiyoyo = 0;
+    let jumlaMiyoyo = localStorage.getItem('jumla') || 0;
+    document.getElementById('jumla').innerText = jumlaMiyoyo;
+
     function tumaMoyo(kiasi){
-      jumlaMiyoyo += kiasi;
+      jumlaMiyoyo = parseInt(jumlaMiyoyo) + kiasi;
       document.getElementById('jumla').innerText = jumlaMiyoyo;
-      alert("Asante! Umetuma Tsh " + kiasi);
+      localStorage.setItem('jumla', jumlaMiyoyo); // Hii inahifadhi hata ukifunga app
+      alert("Asante sana! Umetuma Tsh " + kiasi);
     }
   </script>
 </body>
