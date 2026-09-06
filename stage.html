@@ -5,47 +5,23 @@
   <title>Viji Stage Live</title>
   <style>
     body { margin:0; background:#000; font-family:Arial; overflow:hidden; }
-    
-    .stage-video {
-      width:100%; height:100vh; object-fit:cover;
-      background:#222;
-    }
-
-    .stage-info {
-      position:absolute; bottom:100px; left:15px; color:white;
-      background: rgba(0,0,0,0.5); padding:10px; border-radius:10px;
-    }
+    .stage-video { width:100%; height:100vh; object-fit:cover; background:#222; }
+    .stage-info { position:absolute; bottom:100px; left:15px; color:white; background: rgba(0,0,0,0.5); padding:10px; border-radius:10px; }
     .stage-info h3 { margin:0; font-size:18px; }
-    .stage-info p { margin:5px 0; font-size:14px; }
-
-    .btn-moyo {
-      position:absolute; bottom:100px; right:20px;
-      background:#0FB5B3; border:none; color:white;
-      width:60px; height:60px; border-radius:50%;
-      font-size:24px; cursor:pointer; transition:0.2s;
-    }
-    .btn-moyo:disabled { background:gray; cursor:not-allowed; }
-    .btn-moyo:active { transform:scale(0.9); }
-
-    .btn-funga {
-      position:absolute; top:20px; right:20px;
-      background:red; color:white; border:none;
-      padding:10px 15px; border-radius:8px; font-weight:bold;
-    }
-
-    .idadi { color:#0FB5B3; font-weight:bold; }
-    .timer { color:yellow; font-size:12px; }
+    .btn-moyo { position:absolute; bottom:100px; right:20px; background:#0FB5B3; border:none; color:white; width:60px; height:60px; border-radius:50%; font-size:24px; cursor:pointer; }
+    .btn-moyo:disabled { background:gray; }
+    .btn-funga { position:absolute; top:20px; right:20px; background:red; color:white; border:none; padding:10px 15px; border-radius:8px; font-weight:bold; }
+    .idadi { color:#0FB5B3; font-weight:bold; } .timer { color:yellow; font-size:12px; }
   </style>
 </head>
 <body>
 
-<!-- HII NI VIDEO YA MTU ANAYEENDA LIVE -->
 <video class="stage-video" autoplay muted loop>
   <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
 </video>
 
 <div class="stage-info">
-  <h3>🎤 Juma - Anaimba Bongo Fleva</h3>
+  <h3 id="jinaLaLive">🎤 Inapakia...</h3>
   <p>👀 <span class="idadi" id="wanaotazama">247</span> wanaangalia</p>
   <p>❤️ <span class="idadi" id="jumlaMiyo">0</span> Miyoyo Halali</p>
   <p class="timer" id="timer">Kaa dakika 1 ili moyo uheshimiwe</p>
@@ -55,87 +31,37 @@
 <button class="btn-funga" onclick="fungaStage()">X</button>
 
 <script>
-// ====== MIPANGILIO YA VIJI STAGE ======
-let liveId = "juma-live-06-09-2026"; // BADILISHA HII KWA KILA LIVE
-let miyo = 0;
-let watu = 247;
-let dakika = 0;
-let moyoHalali = false;
+let liveId = localStorage.getItem("liveInayoendeshwa") || "juma-live-06-09-2026"; 
+let miyo = 0; let dakika = 0; let moyoHalali = false;
 
-// 1. ANGALIA KAMA KASHA TOA MOYO AKIINGIA
+// WEKA JINA KWA KUTEGEMEA NI NANI
+if(liveId.includes("juma")){ document.getElementById('jinaLaLive').innerText = "🎤 Juma - Bongo Fleva"; }
+if(liveId.includes("amina")){ document.getElementById('jinaLaLive').innerText = "💃 Amina - Dansi"; }
+
 window.onload = function(){
-  let ameshatoa = localStorage.getItem(liveId);
-  if(ameshatoa == "ndiyo"){
+  if(localStorage.getItem(liveId) == "ndiyo"){
     document.getElementById('btnMoyo').disabled = true;
     document.getElementById('btnMoyo').innerText = "✅";
     document.getElementById('timer').innerText = "Umeshatoa moyo wako";
     moyoHalali = true;
   }
-  anzaTimer(); // Anza kuhesabu dakika
-  anzaWatu(); // Ongeza watu
+  setInterval(() => { dakika++; document.getElementById('timer').innerText = "Umekaa: " + dakika + " dk"; if(dakika >= 1 && !moyoHalali){ document.getElementById('timer').innerText = "Sasa unaweza kutoa moyo ❤️"; } }, 60000);
 }
 
-// 2. TIMER YA DAKIKA 1
-function anzaTimer(){
-  let count = 0;
-  let interval = setInterval(() => {
-    count++;
-    dakika = count;
-    document.getElementById('timer').innerText = "Umekaa: " + dakika + " dk";
-    
-    if(count >= 1 && moyoHalali == false){
-      document.getElementById('timer').innerText = "Sasa unaweza kutoa moyo ❤️";
-    }
-  }, 60000); // Kila dakika 1 = 60000ms
-}
-
-// 3. KUTOA MOYO - KANUNI KALI
 function toaMoyo(){
-  // Kama hajaka dakika 1
-  if(dakika < 1){
-    alert("Subiri dakika 1 kwanza ili moyo wako uheshimiwe");
-    return;
-  }
-  
-  // Kama kashatoa
-  if(localStorage.getItem(liveId) == "ndiyo"){
-    alert("Umeshatoa moyo wako kwenye Live hii");
-    return;
-  }
-
-  // ONGEZA MOYO
-  miyo++;
-  document.getElementById('jumlaMiyo').innerText = miyo;
-  
-  // KUMBUKA KWENYE SIMU YAKE
-  localStorage.setItem(liveId, "ndiyo"); 
-  moyoHalali = true;
-  
-  // ZIMA KITUFE
-  document.getElementById('btnMoyo').disabled = true;
-  document.getElementById('btnMoyo').innerText = "✅";
-  document.getElementById('timer').innerText = "Asante kwa moyo wako ❤️";
+  if(dakika < 1){ alert("Subiri dakika 1 kwanza"); return; }
+  if(localStorage.getItem(liveId) == "ndiyo"){ alert("Umeshatoa moyo wako"); return; }
+  miyo++; document.getElementById('jumlaMiyo').innerText = miyo;
+  localStorage.setItem(liveId, "ndiyo"); moyoHalali = true;
+  document.getElementById('btnMoyo').disabled = true; document.getElementById('btnMoyo').innerText = "✅";
 }
 
-// 4. KUONGEZA WATU WA KUFIKI
-function anzaWatu(){
-  setInterval(() => {
-    watu = watu + Math.floor(Math.random() * 3);
-    document.getElementById('wanaotazama').innerText = watu;
-  }, 5000);
-}
-
-// 5. KUFUNGA STAGE NA KUHIFADHI
 function fungaStage(){
-  if(confirm("Una uhakika unataka kumaliza Viji Stage?\nMuda: " + dakika + " dk\nMiyoyo: " + miyo)){
-    
-    // HIFADHI KAMA REPLAY
-    alert("✅ Live Imehifadhiwa!\nMuda: " + dakika + " dk\nMiyoyo Halali: " + miyo + "\n\nPesa: Tsh " + (miyo * 10));
-    
+  if(confirm("Toka Live?\nMuda: " + dakika + " dk\nMiyoyo: " + miyo)){
+    alert("✅ Live Imehifadhiwa!\nPesa: Tsh " + (miyo * 10));
     window.location.href = "profile.html"; 
   }
 }
 </script>
-
 </body>
 </html>
