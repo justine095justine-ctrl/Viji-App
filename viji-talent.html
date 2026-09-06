@@ -3,167 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viji Talent - Onyesha Kipaji cha Kitanzania</title>
+<title>Viji Stage Live</title>
 <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#0F0F0F; color:white; font-family:Arial, sans-serif; padding-bottom:80px; }
-  
-  .header { background:#0F0F0F; padding:15px; border-bottom:2px solid #F97316; position:sticky; top:0; z-index:10; }
-  .header-top { display:flex; align-items:center; justify-content:space-between; }
-  .back-btn { background:#F97316; color:white; padding:10px 18px; border-radius:8px; font-weight:bold; text-decoration:none; }
-  .header h1 { color:#F97316; font-size:20px; }
-  .sub { font-size:12px; color:#aaa; margin-left:60px; }
-  
-  .kanuni { background:#1A1A1A; border-left:4px solid #EF4444; padding:12px; margin:15px; border-radius:8px; font-size:12px; }
-  .kanuni b { color:#EF4444; }
-  .kanuni li { margin:5px 0 0 20px; color:#ccc; }
-  
-  .btn-stage { 
-    background: linear-gradient(45deg, red, #FF5722);
-    color:white; border:none; padding:15px 30px; 
-    border-radius:25px; font-size:16px; font-weight:bold;
-    box-shadow: 0 0 15px red; animation: pulse 1.5s infinite; width:90%;
-    margin:15px auto; display:block;
-  }
-  @keyframes pulse { 0% { transform:scale(1); } 50% { transform:scale(1.05); } 100% { transform:scale(1); } }
+  body { background:#000; font-family:Arial; color:white; overflow:hidden; }
 
-  .section-title { padding:20px 15px 10px; font-size:16px; color:#F97316; font-weight:bold; }
-  .container { padding:0 15px 15px; }
-  
-  .talent-card { background:#1A1A1A; border-radius:15px; border:1px solid #222; padding:15px; margin-bottom:12px; }
-  .talent-top { display:flex; gap:12px; margin-bottom:10px; align-items:center; }
-  .talent-top img { width:50px; height:50px; border-radius:50%; object-fit:cover; border:2px solid #F97316; }
-  .talent-info h3 { font-size:15px; margin-bottom:3px; }
-  .badge { padding:3px 8px; border-radius:6px; font-size:10px; margin-left:5px; font-weight:bold; }
-  .badge.tamaduni { background:#8B5CF6; } .badge.cheka { background:#EC4899; } .badge.sanaa { background:#22C55E; } .badge.live { background:red; animation:blink 1s infinite; }
-  @keyframes blink { 50% { opacity:0.5; } }
-  .talent-meta { font-size:12px; color:#aaa; margin:5px 0; display:flex; gap:15px; }
-  .talent-desc { font-size:13px; color:#ccc; margin:8px 0; }
-  
-  .video-box { background:#000; border-radius:10px; overflow:hidden; margin:10px 0; }
-  .video-box video { width:100%; height:200px; object-fit:cover; display:block; }
-  
-  .fab { position:fixed; bottom:20px; right:20px; background:#F97316; color:white; width:60px; height:60px; border-radius:50%; font-size:28px; border:none; box-shadow:0 4px 15px rgba(249,115,22,0.4); cursor:pointer; }
+  .stage-video {
+    width:100%; height:100vh; object-fit:cover; background:#111;
+  }
+
+  .stage-top {
+    position:absolute; top:15px; left:15px; right:15px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .btn-rudi {
+    background:rgba(0,0,0,0.6); color:white; border:none;
+    padding:10px 15px; border-radius:8px; font-weight:bold;
+  }
+  .btn-funga {
+    background:red; color:white; border:none;
+    padding:10px 15px; border-radius:8px; font-weight:bold;
+  }
+
+  .stage-info {
+    position:absolute; bottom:120px; left:15px;
+    background: rgba(0,0,0,0.6); padding:12px; border-radius:12px;
+  }
+  .stage-info h3 { margin:0; font-size:18px; }
+  .stage-info p { margin:5px 0; font-size:13px; }
+  .idadi { color:#0FB5B3; font-weight:bold; font-size:16px; }
+  .timer { color:yellow; font-size:12px; }
+
+  .btn-moyo {
+    position:absolute; bottom:120px; right:20px;
+    background:#0FB5B3; border:none; color:white;
+    width:65px; height:65px; border-radius:50%;
+    font-size:28px; cursor:pointer; transition:0.2s;
+    box-shadow:0 0 15px #0FB5B3;
+  }
+  .btn-moyo:disabled { background:gray; box-shadow:none; cursor:not-allowed; }
+  .btn-moyo:active { transform:scale(0.9); }
+
+  .moyo-animate {
+    position:absolute; font-size:30px; animation:fly 1s ease-out forwards;
+    pointer-events:none;
+  }
+  @keyframes fly {
+    0% { opacity:1; transform:translateY(0) scale(1); }
+    100% { opacity:0; transform:translateY(-200px) scale(1.5); }
+  }
 </style>
 </head>
 <body>
-  <div class="header">
-    <div class="header-top">
-      <a href="index.html" class="back-btn">← Rudi</a>
-      <h1>🎭 Viji Talent</h1>
-    </div>
-    <p class="sub">Onyesha Kipaji cha Kitanzania</p>
-  </div>
-  
-  <!-- SHERIA 6 ZOTE - NIMEZIREKEBISHA -->
-  <div class="kanuni">
-    <b>⚠️ SHERIA 6 ZA VIJI TALENT:</b> 
-    <li>1. Vipaji vya Kitanzania tu</li>
-    <li>2. Live inaruhusiwa kwenye Viji Stage tu</li> <!-- NILIBADILISHA HII -->
-    <li>3. Hakuna Matusi</li>
-    <li>4. Hakuna Kuiga jina la mtu au kampuni</li>
-    <li>5. Hakuna kuchukua video kutoka kwenye branding nyingine</li>
-    <li>6. <b>Hakuna kutangaza biashara wala siasa</b> bila kibali malumu kutoka Viji App</li>
-  </div>
 
-  <!-- KITUFE KIPYA CHA VIJI STAGE -->
-  <button class="btn-stage" onclick="endaUkumbi()">🔴 INGANA VIJI STAGE LIVE</button>
-  
-  <!-- SEHEMU YA VIJI STAGE UKUMBI -->
-  <div class="section-title">🔴 WANAENDA LIVE SASA</div>
-  <div class="container">
-    <div class="talent-card">
-      <div class="talent-top">
-        <img src="https://via.placeholder.com/50/ff0000/FFFFFF?text=J">
-        <div class="talent-info">
-          <h3>Juma <span class="badge live">● LIVE</span></h3>
-          <div class="talent-meta">
-            <span>👁️ 247 wanaangalia</span>
-            <span>📍 Mwanza</span>
-          </div>
-        </div>
-      </div>
-      <p class="talent-desc">Anapiga Bongo Fleva moja kwa moja</p>
-      <button onclick="ingiaStage('juma-live')" style="width:100%; padding:12px; background:red; color:white; border:none; border-radius:10px; font-weight:bold;">INGIA STAGE</button>
-    </div>
-  </div>
+<video class="stage-video" autoplay muted loop>
+  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+</video>
 
-  <div class="section-title">🔥 Vinavyotrend Wiki Hii</div>
-  <div class="container">
-    <div class="talent-card">
-      <div class="talent-top">
-        <img src="https://via.placeholder.com/50/8B5CF6/FFFFFF?text=NG">
-        <div class="talent-info">
-          <h3>Kundi la Ngoma za Wagogo <span class="badge tamaduni">TAMADUNI</span></h3>
-          <div class="talent-meta">
-            <span id="views-ngoma">👁️ 0 views</span>
-            <span>📍 Dodoma</span>
-          </div>
-        </div>
-      </div>
-      <div class="video-box">
-        <video id="vid-ngoma" controls poster="https://via.placeholder.com/400x200/222/FFF?text=Ngoma+za+Wagogo">
-          <source src="#" type="video/mp4">
-        </video>
-      </div>
-    </div>
-    
-    <div class="talent-card">
-      <div class="talent-top">
-        <img src="https://via.placeholder.com/50/EC4899/FFFFFF?text=SK">
-        <div class="talent-info">
-          <h3>Skiza ya Kijiji <span class="badge cheka">CHEKESHA</span></h3>
-          <div class="talent-meta">
-            <span id="views-skiza">👁️ 0 views</span>
-            <span>⏱️ Dk 2:30</span>
-          </div>
-        </div>
-      </div>
-      <div class="video-box">
-        <video id="vid-skiza" controls poster="https://via.placeholder.com/400x200/222/FFF?text=Skiza+ya+Kijiji">
-          <source src="#" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-  
-  <button class="fab" onclick="window.location.href='viji-ongeza-talent.html'">+</button>
+<div class="stage-top">
+  <button class="btn-rudi" onclick="rudiNyuma()">← Rudi</button>
+  <button class="btn-funga" onclick="fungaStage()">X Toka</button>
+</div>
+
+<div class="stage-info">
+  <h3 id="jinaLaLive">🎤 Inapakia Live...</h3>
+  <p>👀 <span class="idadi" id="wanaotazama">247</span> wanaangalia</p>
+  <p>❤️ <span class="idadi" id="jumlaMiyo">0</span> Miyoyo Halali</p>
+  <p>💰 <span class="idadi" id="pesa">Tsh 0</span></p>
+  <p class="timer" id="timer">Kaa dakika 1 ili moyo uheshimiwe</p>
+</div>
+
+<button class="btn-moyo" id="btnMoyo" onclick="toaMoyo(event)">❤️</button>
 
 <script>
-// KAZI ZA VIJI STAGE
-function endaUkumbi(){
-  alert("Chagua mtu wa kuangalia hapa chini kwenye 'WANAENDA LIVE SASA'");
+let liveId = localStorage.getItem("liveInayoendeshwa") || "juma-live"; 
+let miyo = 0; 
+let dakika = 0; 
+let moyoHalali = false;
+let watu = 247;
+
+// 1. WEKA JINA KWA KUTEGEMEA NI NANI
+window.onload = function(){
+  if(liveId.includes("juma")){ 
+    document.getElementById('jinaLaLive').innerText = "🎤 Juma - Bongo Fleva Live"; 
+  }
+  
+  // ANGALIA KAMA KASHA TOA MOYO
+  if(localStorage.getItem(liveId) == "ndiyo"){
+    document.getElementById('btnMoyo').disabled = true;
+    document.getElementById('btnMoyo').innerText = "✅";
+    document.getElementById('timer').innerText = "Umeshatoa moyo wako";
+    moyoHalali = true;
+  }
+  
+  anzaTimer();
+  anzaWatu();
 }
 
-function ingiaStage(liveId){
-  localStorage.setItem("liveInayoendeshwa", liveId);
-  window.location.href = "stage.html"; // Hakikisha una file ya stage.html
-}
-
-// KAZI ZA VIEW
-function ongezaView(videoId, displayId){
-  let video = document.getElementById(videoId);
-  let display = document.getElementById(displayId);
-  let key = "view_"+videoId;
-  
-  let views = localStorage.getItem(key);
-  if(views === null){ views = 0; }
-  views = parseInt(views);
-  
-  display.innerHTML = "👁️ " + views + " views";
-  
-  video.addEventListener('play', function(){
-    if(!video.dataset.counted){
-      views = views + 1;
-      localStorage.setItem(key, views);
-      display.innerHTML = "👁️ " + views + " views";
-      video.dataset.counted = "true";
+// 2. TIMER YA DAKIKA 1
+function anzaTimer(){
+  setInterval(() => {
+    dakika++;
+    document.getElementById('timer').innerText = "Umekaa: " + dakika + " dk";
+    
+    if(dakika >= 1 && moyoHalali == false){
+      document.getElementById('timer').innerText = "Sasa unaweza kutoa moyo ❤️";
     }
-  });
+  }, 60000); // Dakika 1
 }
 
-ongezaView('vid-ngoma', 'views-ngoma');
-ongezaView('vid-skiza', 'views-skiza');
+// 3. ONGEZA WATU BANDIA
+function anzaWatu(){
+  setInterval(() => {
+    watu = watu + Math.floor(Math.random() * 3);
+    document.getElementById('wanaotazama').innerText = watu;
+  }, 5000);
+}
+
+// 4. KUTOA MOYO - KANUNI KALI
+function toaMoyo(event){
+  if(dakika < 1){
+    alert("Subiri dakika 1 kwanza ili moyo wako uheshimiwe");
+    return;
+  }
+  
+  if(localStorage.getItem(liveId) == "ndiyo"){
+    alert("Umeshatoa moyo wako kwenye Live hii tayari");
+    return;
+  }
+
+  // ONGEZA MOYO + PESA
+  miyo++;
+  document.getElementById('jumlaMiyo').innerText = miyo;
+  document.getElementById('pesa').innerText = "Tsh " + (miyo * 10);
+  
+  // KUMBUKA KWENYE SIMU YAKE HATA AKITOKA
+  localStorage.setItem(liveId, "ndiyo"); 
+  moyoHalali = true;
+  
+  // ANIMATION YA MOYO KUPAA
+  let moyo = document.createElement("div");
+  moyo.innerHTML = "❤️";
+  moyo.classList.add("moyo-animate");
+  moyo.style.left = event.clientX + "px";
+  moyo.style.top = event.clientY + "px";
+  document.body.appendChild(moyo);
+  setTimeout(() => moyo.remove(), 1000);
+  
+  // ZIMA KITUFE
+  document.getElementById('btnMoyo').disabled = true;
+  document.getElementById('btnMoyo').innerText = "✅";
+  document.getElementById('timer').innerText = "Asante kwa moyo wako ❤️";
+}
+
+// 5. KUFUNGA NA KUHIFADHI
+function fungaStage(){
+  if(confirm("Una uhakika unataka kutoka?\n\nMuda: " + dakika + " dk\nMiyoyo: " + miyo + "\nPesa: Tsh " + (miyo * 10))){
+    alert("✅ Live Imehifadhiwa kama Replay!\n\nMuda Wote: " + dakika + " dk\nMiyoyo Halali: " + miyo + "\nMapato: Tsh " + (miyo * 10));
+    window.location.href = "viji-talent.html"; 
+  }
+}
+
+function rudiNyuma(){
+  window.location.href = "viji-talent.html";
+}
 </script>
 </body>
-</html>
+   </html>
