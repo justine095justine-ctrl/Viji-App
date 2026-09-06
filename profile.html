@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <title>Viji CV - Profile Yako</title>
+  <style>
+    body { font-family: Arial; background:#f5f5f5; padding:15px; }
+    .viji-cv { 
+      background:white; 
+      padding:20px; 
+      border-radius:15px; 
+      max-width:400px; 
+      margin:auto; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .profile-pic {
+      width:100px; height:100px; border-radius:50%; 
+      display:block; margin:0 auto 10px; object-fit:cover;
+    }
+    .viji-cv h2 { text-align:center; color:#0FB5B3; }
+    .viji-cv label { font-weight:bold; margin-top:10px; display:block; }
+    .viji-cv input, .viji-cv select, .viji-cv textarea {
+      width:100%; padding:10px; margin:5px 0 15px; 
+      border:1px solid #ccc; border-radius:8px; box-sizing:border-box;
+    }
+    .btn-ajiri { 
+      background:#0FB5B3; color:white; border:none; 
+      padding:14px; width:100%; border-radius:10px; 
+      font-weight:bold; font-size:16px; cursor:pointer;
+    }
+    .btn-ajiri:hover { background:#0a9a98; }
+    .miyo { text-align:center; color:gray; font-size:14px; }
+  </style>
+</head>
+<body>
+
+<div class="viji-cv">
+  <img src="https://via.placeholder.com/100" class="profile-pic" id="profilePic">
+  <h2 id="jina">Jina Lako</h2>
+  <p class="miyo">❤️ Miyoyo: <span id="jumlaMiyo">0</span></p>
+
+  <label>Jina Kamili:</label>
+  <input type="text" id="inputJina" placeholder="Andika jina lako">
+
+  <label>Kipaji Chako:</label>
+  <select id="kipaji">
+    <option>Chagua Kipaji</option>
+    <option>🎤 Mwanamuziki</option>
+    <option>💃 Mdansi</option>
+    <option>😂 Mcheshi</option>
+    <option>🎭 Mwigizaji</option>
+    <option>🍲 Mpishi</option>
+    <option>🛠️ Mfundi</option>
+    <option>📖 Mshairi</option>
+  </select>
+
+  <label>Mahali:</label>
+  <input type="text" id="mahali" placeholder="Mfano: Mwanza">
+
+  <label>Maelezo Mafupi Kuhusu Kipaji:</label>
+  <textarea id="maelezo" rows="3" placeholder="Mfano: Naimba Bongo Fleva na R&B"></textarea>
+
+  <button class="btn-ajiri" onclick="hifadhiCV()">💾 Hifadhi CV Yangu</button>
+  <br><br>
+  <button class="btn-ajiri" style="background:#FF5722;" onclick="niajiri()">🔵 NIAJIRI KWA KAZI</button>
+</div>
+
+<script>
+let jumlaMiyo = 0;
+
+// HIFADHI CV
+function hifadhiCV(){
+  let jina = document.getElementById('inputJina').value;
+  let kipaji = document.getElementById('kipaji').value;
+  let mahali = document.getElementById('mahali').value;
+
+  if(jina == "" || kipaji == "Chagua Kipaji"){
+    alert("Tafadhali jaza Jina na Kipaji kwanza!");
+    return;
+  }
+
+  document.getElementById('jina').innerText = jina;
+  alert("✅ CV yako imehifadhiwa!\nJina: " + jina + "\nKipaji: " + kipaji + "\nMahali: " + mahali);
+}
+
+// KITUFE CHA KUKUPELEKA KAZI
+function niajiri(){
+  alert("🔥 Hongera!\nCV yako itaonekana kwa Makampuni kwenye Viji Soko.\nWakikupenda watakuwasiliana nawe.");
+}
+</script>
+
+</body>
+</html>
