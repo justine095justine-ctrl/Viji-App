@@ -1,0 +1,45 @@
+:root {
+  --bluu-bahari: #0066CC; /* Hii ndio rangi yetu kuu */
+  --bluu-ngavu: #004C99;
+  --nyeupe: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bluu-bahari);
+  color: var(--nyeupe);
+  text-align: center;
+}
+
+header {
+  padding: 40px 20px;
+}
+
+header h1 {
+  font-size: 40px;
+  margin: 0;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--nyeupe);
+  color: var(--bluu-bahari);
+  padding: 40px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card:active {
+  background: var(--bluu-ngavu);
+  color: var(--nyeupe);
+}
