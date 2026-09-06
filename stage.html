@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <title>Viji Stage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h2>Viji Stage</h2>
+    <a href="index.html" style="color:white">Rudi Nyuma</a>
+  </header>
 
+  <div class="video-box">
+    <p>[Hapa pa Live Video]</p>
+  </div>
+
+  <div class="viji-miyoyo">
+    <h3>Jumla: Tsh <span id="jumla">0</span></h3>
+    <button onclick="tumaMoyo(10)">Moyo Tsh 10</button>
+    <button onclick="tumaMoyo(50)">Miyoyo 5 = Tsh 50</button>
+    <button onclick="tumaMoyo(100)">Miyoyo 10 = Tsh 100</button>
+  </div>
+
+  <script src="firebase-config.js"></script>
+  <script>
+    let jumlaMiyoyo = 0;
+    function tumaMoyo(kiasi){
+      jumlaMiyoyo += kiasi;
+      document.getElementById('jumla').innerText = jumlaMiyoyo;
+      alert("Asante! Umetuma Tsh " + kiasi);
+    }
+  </script>
+</body>
+</html>
